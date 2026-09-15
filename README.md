@@ -96,6 +96,12 @@ hazard/
 
 ## Usage Examples
 
+### Runtime modes
+
+The local dashboard runs in `demo_synthetic` mode by default. It uses synthetic model inputs for interface and pipeline testing and displays a warning in the dashboard. Set `APP_ENV=production` to prevent synthetic predictions from being served; production then requires a real inference provider through `INFERENCE_MODE`.
+
+The local API runs on port `8001` and the dashboard on port `8503`. Docker keeps the API internal port at `8000` and supplies the dashboard service URL automatically.
+
 ### Training
 ```powershell
 .venv\Scripts\python train.py --epochs 5 --batch_size 2 --img_size 64 --checkpoint_dir checkpoints

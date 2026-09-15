@@ -15,6 +15,7 @@ import os
 
 # Configuration
 API_BASE_URL = os.getenv("MULTIHAZARD_API_URL", "http://localhost:8001/api/v1")
+INDIA_BOUNDS = [[6.5, 68.0], [35.5, 97.5]]
 
 st.set_page_config(page_title="MultiHazard-VLM Dashboard", layout="wide")
 
@@ -57,8 +58,11 @@ m = folium.Map(
     location=[20.5937, 78.9629],  # India center
     zoom_start=5,
     tiles="OpenStreetMap",
-    click=True  # Enable click events
+    click=True,
+    max_bounds=True,
+    max_bounds_viscosity=1.0,
 )
+m.fit_bounds(INDIA_BOUNDS)
 
 # Add title/instruction layer
 folium.Marker(

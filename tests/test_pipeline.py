@@ -21,8 +21,8 @@ def test_dataset_loaders_read_real_sample_tiffs():
     flood = S1S2WaterDataset()
     wildfire = HLSBurnScarDataset()
 
-    flood_tensor, _, flood_mask, _ = flood[0]
-    wildfire_tensor, _, wildfire_mask, _ = wildfire[0]
+    flood_tensor, _, flood_mask, flood_meta = flood[0]
+    wildfire_tensor, _, wildfire_mask, wildfire_meta = wildfire[0]
 
     assert flood_tensor.shape == (10, 512, 512)
     assert wildfire_tensor.shape == (10, 512, 512)
@@ -30,6 +30,11 @@ def test_dataset_loaders_read_real_sample_tiffs():
     assert wildfire_mask.shape == (512, 512)
     assert flood_tensor.abs().max().item() > 1e-6
     assert wildfire_tensor.abs().max().item() > 1e-6
+
+    assert flood_meta['georeferenced'] is True
+    assert wildfire_meta['georeferenced'] is True
+    assert 6.5 <= flood_meta['lat'] <= 35.5
+    assert 68.0 <= flood_meta['lon'] <= 97.5
 
 
 def test_combined_dataset_has_train_val_split():

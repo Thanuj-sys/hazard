@@ -1,11 +1,13 @@
 import os
 import numpy as np
 import rasterio
-from rasterio.transform import from_origin
+from rasterio.transform import from_bounds
+
+SAMPLE_BOUNDS = (68.0, 6.5, 97.5, 35.5)
 
 def create_sample_tiff(filepath, num_bands, height, width, dtype, scale=1.0):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
-    transform = from_origin(0, 0, 10, 10) # Dummy transform
+    transform = from_bounds(*SAMPLE_BOUNDS, width, height)
     
     with rasterio.open(
         filepath, 'w',

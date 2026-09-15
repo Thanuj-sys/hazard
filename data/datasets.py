@@ -12,6 +12,7 @@ from typing import Dict, Any, Tuple, List, Optional
 
 import numpy as np
 import rasterio
+from rasterio.warp import transform_bounds
 import torch
 import torch.nn.functional as F
 from torch.utils.data import Dataset
@@ -89,6 +90,33 @@ def _load_raster_array(path: Optional[str]) -> np.ndarray:
     return arr.astype(np.float32)
 
 
+def _raster_geospatial_metadata(path: Optional[str]) -> Dict[str, Any]:
+    """Return validated WGS84 bounds and center metadata for a raster."""
+    if path is None or not os.path.exists(path):
+        return {"lat": None, "lon": None, "bbox": None, "crs": None, "georeferenced": False}
+
+    with rasterio.open(path) as src:
+        if src.crs is None:
+            return {"lat": None, "lon": None, "bbox": None, "crs": None, "georeferenced": False}
+        bounds = transform_bounds(src.crs, "EPSG:4326", *src.bounds)
+
+    min_lon, min_lat, max_lon, max_lat = bounds
+    valid = (
+        -180 <= min_lon < max_lon <= 180
+        and -90 <= min_lat < max_lat <= 90
+    )
+    if not valid:
+        return {"lat": None, "lon": None, "bbox": None, "crs": str(src.crs), "georeferenced": False}
+
+    return {
+        "lat": (min_lat + max_lat) / 2.0,
+        "lon": (min_lon + max_lon) / 2.0,
+        "bbox": [min_lon, min_lat, max_lon, max_lat],
+        "crs": "EPSG:4326",
+        "georeferenced": True,
+    }
+
+
 class MultiHazardDataset(Dataset):
     """Base class with common logic for hazard datasets."""
     def __init__(self, data_dir: str) -> None:
@@ -158,7 +186,7 @@ class S1S2WaterDataset(MultiHazardDataset):
         if torch.any(flood_mask < 0):
             quality_mask = (flood_mask >= 0).to(torch.uint8)
 
-        meta = {"lat": 0.0, "lon": 0.0, "timestamp": "2023-01-01", "hazard_type": 0, "bbox": [0, 0, 1, 1], "h3_index": "862830827ffffff"}
+        meta = {**_raster_geospatial_metadata(record.get('s1_path', self.s1_path)), "timestamp": "2023-01-01", "hazard_type": 0, "h3_index": None}
         return tensor, quality_mask, flood_mask, meta
 
 
@@ -204,7 +232,7 @@ class HLSBurnScarDataset(MultiHazardDataset):
         if torch.any(burn_mask < 0):
             quality_mask = (burn_mask >= 0).to(torch.uint8)
 
-        meta = {"lat": 0.0, "lon": 0.0, "timestamp": "2023-01-01", "hazard_type": 1, "bbox": [0, 0, 1, 1], "h3_index": "862830827ffffff"}
+        meta = {**_raster_geospatial_metadata(record.get('hls_path', self.hls_path)), "timestamp": "2023-01-01", "hazard_type": 1, "h3_index": None}
         return tensor, quality_mask, burn_mask, meta
 
 
@@ -250,7 +278,7 @@ class CASLandslideDataset(MultiHazardDataset):
         if torch.any(landslide_mask < 0):
             quality_mask = (landslide_mask >= 0).to(torch.uint8)
 
-        meta = {"lat": 0.0, "lon": 0.0, "timestamp": "2023-01-01", "hazard_type": 2, "bbox": [0, 0, 1, 1], "h3_index": "862830827ffffff"}
+        meta = {**_raster_geospatial_metadata(record.get('rgb_path', self.rgb_path)), "timestamp": "2023-01-01", "hazard_type": 2, "h3_index": None}
         return tensor, quality_mask, landslide_mask, meta
 
 class CombinedHazardDataset(Dataset):

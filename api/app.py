@@ -5,6 +5,7 @@ With PostgreSQL, Redis caching, and Prometheus monitoring.
 """
 
 import glob
+import math
 import os
 import sys
 from typing import Dict, Any, List, Optional
@@ -73,6 +74,31 @@ class DashboardDataResponse(BaseModel):
 
 MODEL_CACHE: Optional[MultiHazardVLM] = None
 INFERENCE_MODE = os.getenv("INFERENCE_MODE", "demo_synthetic")
+APP_ENV = os.getenv("APP_ENV", "development").lower()
+
+
+def validate_aoi_bounds(aoi_bounds: List[float]) -> List[float]:
+    """Validate AOI order as [min_lat, min_lon, max_lat, max_lon]."""
+    if len(aoi_bounds) != 4 or not all(math.isfinite(float(value)) for value in aoi_bounds):
+        raise HTTPException(status_code=422, detail="aoi_bounds must contain four finite numbers.")
+    min_lat, min_lon, max_lat, max_lon = (float(value) for value in aoi_bounds)
+    if not (-90 <= min_lat < max_lat <= 90 and -180 <= min_lon < max_lon <= 180):
+        raise HTTPException(
+            status_code=422,
+            detail="aoi_bounds must be [min_lat, min_lon, max_lat, max_lon] within geographic limits.",
+        )
+    return [min_lat, min_lon, max_lat, max_lon]
+
+
+def validate_point(latitude: float, longitude: float) -> tuple[float, float]:
+    """Validate a geographic point before using it for inference or persistence."""
+    latitude = float(latitude)
+    longitude = float(longitude)
+    if not (math.isfinite(latitude) and math.isfinite(longitude)):
+        raise HTTPException(status_code=422, detail="latitude and longitude must be finite numbers.")
+    if not (-90 <= latitude <= 90 and -180 <= longitude <= 180):
+        raise HTTPException(status_code=422, detail="latitude or longitude is outside geographic limits.")
+    return latitude, longitude
 
 
 def resolve_latest_checkpoint(checkpoint_dir: str = "checkpoints") -> Optional[str]:
@@ -143,6 +169,12 @@ def load_model() -> MultiHazardVLM:
 
 
 def build_demo_prediction(aoi_bounds: Optional[List[float]] = None) -> Dict[str, Any]:
+    if APP_ENV == "production" and INFERENCE_MODE == "demo_synthetic":
+        raise HTTPException(
+            status_code=503,
+            detail="Synthetic inference is disabled in production; configure a real data inference mode.",
+        )
+
     model = load_model()
     device = next(model.parameters()).device
 
@@ -342,6 +374,7 @@ async def handle_predict(request: Request):
             except Exception:
                 pass
 
+        aoi_bounds = validate_aoi_bounds(aoi_bounds)
         logger.info(f"Running prediction for AOI: {aoi_bounds}")
 
         prediction = build_demo_prediction(aoi_bounds)
@@ -371,6 +404,8 @@ async def handle_predict(request: Request):
             "language_report": prediction['language_report'],
             "message": "Prediction complete."
         }
+    except HTTPException:
+        raise
     except Exception as exc:
         import traceback
         logger.error(f"Error in handle_predict: {exc}\n{traceback.format_exc()}")
@@ -421,11 +456,18 @@ async def handle_predict_point(request: Request):
         if longitude is None:
             longitude = 78.9629
 
+        latitude, longitude = validate_point(latitude, longitude)
+
         logger.info(f"Running point prediction for: {latitude}, {longitude}")
         
         # Check cache first
         cached_result = get_cached_prediction(latitude, longitude)
         if cached_result:
+            cached_result.setdefault("inference_mode", INFERENCE_MODE)
+            cached_result.setdefault(
+                "data_source",
+                "Synthetic demo tensors" if INFERENCE_MODE == "demo_synthetic" else INFERENCE_MODE,
+            )
             logger.info(f"Cache hit for location ({latitude}, {longitude})")
             return cached_result
         
@@ -495,11 +537,14 @@ async def handle_predict_point(request: Request):
             logger.warning(f"[Metrics] Error updating metrics: {e}")
         
         return response
+    except HTTPException:
+        raise
     except Exception as exc:
         import traceback
         error_msg = f"Error in predict_point: {exc}\n{traceback.format_exc()}"
         logger.error(error_msg)
         print(error_msg, sys.stderr)
+        raise HTTPException(status_code=500, detail="Point prediction failed.") from exc
 @app.get("/api/v1/predict-point")
 async def predict_point_get(request: Request):
     return await handle_predict_point(request)
