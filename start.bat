@@ -5,6 +5,9 @@ echo ==============================================
 echo   OmniHazard-VLM System Startup Script
 echo ==============================================
 
+set "INFERENCE_MODE=planetary_computer"
+set "MULTIHAZARD_API_URL=http://127.0.0.1:8001/api/v1"
+
 set "SCRIPT_DIR=%~dp0"
 set "PYTHON_EXE=%SCRIPT_DIR%.venv\Scripts\python.exe"
 if not exist "%PYTHON_EXE%" set "PYTHON_EXE=%SCRIPT_DIR%venv\Scripts\python.exe"

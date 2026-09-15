@@ -98,7 +98,7 @@ hazard/
 
 ### Runtime modes
 
-The local dashboard runs in `demo_synthetic` mode by default. It uses synthetic model inputs for interface and pipeline testing and displays a warning in the dashboard. Set `APP_ENV=production` to prevent synthetic predictions from being served; production then requires a real inference provider through `INFERENCE_MODE`.
+The Windows startup script and Docker deployment use `planetary_computer` mode. This fetches recent public Sentinel-1/Sentinel-2 imagery around the selected map point. If a sensor or scene is unavailable, the response reports that limitation. `demo_synthetic` remains available for offline interface testing only. Set `APP_ENV=production` to prevent synthetic predictions from being served.
 
 The local API runs on port `8001` and the dashboard on port `8503`. Docker keeps the API internal port at `8000` and supplies the dashboard service URL automatically.
 

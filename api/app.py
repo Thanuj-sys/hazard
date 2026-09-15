@@ -8,8 +8,10 @@ import glob
 import math
 import os
 import sys
+from datetime import datetime, timedelta, timezone
 from typing import Dict, Any, List, Optional
 
+import numpy as np
 import torch
 import torch.nn.functional as F
 import uvicorn
@@ -99,6 +101,17 @@ def validate_point(latitude: float, longitude: float) -> tuple[float, float]:
     if not (-90 <= latitude <= 90 and -180 <= longitude <= 180):
         raise HTTPException(status_code=422, detail="latitude or longitude is outside geographic limits.")
     return latitude, longitude
+
+
+def h3_token(latitude: float, longitude: float, resolution: int) -> int:
+    """Return a model-safe integer token across H3 v3 and v4 APIs."""
+    import h3
+
+    if hasattr(h3, "geo_to_h3"):
+        cell = h3.geo_to_h3(latitude, longitude, resolution)
+    else:
+        cell = h3.latlng_to_cell(latitude, longitude, resolution)
+    return int(cell, 16) % 10000
 
 
 def resolve_latest_checkpoint(checkpoint_dir: str = "checkpoints") -> Optional[str]:
@@ -248,6 +261,105 @@ def build_demo_prediction(aoi_bounds: Optional[List[float]] = None) -> Dict[str,
     }
 
 
+def _latest_band_arrays(dataset: Any, band_names: List[str]) -> List[np.ndarray]:
+    """Extract the latest available STAC bands as 2D float arrays."""
+    if dataset is None:
+        return []
+    available = set(getattr(dataset, "data_vars", {}))
+    if not all(name in available for name in band_names):
+        return []
+    latest = dataset.isel(time=-1) if "time" in dataset.dims else dataset
+    arrays = []
+    for name in band_names:
+        array = np.atleast_2d(np.asarray(latest[name].values, dtype=np.float32).squeeze())
+        if not np.isfinite(array).any():
+            return []
+        fill_value = float(np.nanmedian(array))
+        array = np.nan_to_num(array, nan=fill_value, posinf=fill_value, neginf=fill_value)
+        arrays.append(array)
+    return arrays
+
+
+def build_planetary_computer_prediction(latitude: float, longitude: float) -> Dict[str, Any]:
+    """Run inference from the latest public Sentinel scenes around a point."""
+    from data.planetary_computer import PlanetaryComputerClient
+
+    half_size = float(os.getenv("REALTIME_AOI_DEGREES", "0.025"))
+    bbox = [longitude - half_size, latitude - half_size, longitude + half_size, latitude + half_size]
+    end = datetime.now(timezone.utc)
+    start = end - timedelta(days=int(os.getenv("REALTIME_LOOKBACK_DAYS", "30")))
+    date_range = f"{start.date().isoformat()}/{end.date().isoformat()}"
+
+    client = PlanetaryComputerClient("sentinel-1-grd")
+    sentinel1 = client.load_sentinel1(bbox, date_range)
+    sentinel2 = client.load_sentinel2(bbox, date_range)
+    s1_arrays = _latest_band_arrays(sentinel1, ["vv", "vh"])
+    s2_arrays = _latest_band_arrays(sentinel2, ["B02", "B03", "B04", "B08", "B11", "B12"])
+    if not s2_arrays:
+        raise HTTPException(status_code=503, detail="No recent Sentinel-2 scene covers this location.")
+    missing_sensors = []
+    if not s1_arrays:
+        s1_arrays = [np.zeros_like(s2_arrays[0]), np.zeros_like(s2_arrays[0])]
+        missing_sensors.append("Sentinel-1")
+
+    bands = s1_arrays + s2_arrays
+    resized_bands = [
+        F.interpolate(torch.from_numpy(array).float().unsqueeze(0).unsqueeze(0), size=(64, 64), mode="bilinear", align_corners=False)
+        for array in bands
+    ]
+    band_tensor = torch.cat(resized_bands, dim=1)
+    if band_tensor.shape[1] < 10:
+        band_tensor = F.pad(band_tensor, (0, 0, 0, 0, 0, 10 - band_tensor.shape[1]))
+    band_tensor = (band_tensor - band_tensor.mean(dim=(2, 3), keepdim=True)) / band_tensor.std(dim=(2, 3), keepdim=True).clamp_min(1e-6)
+
+    red = s2_arrays[2]
+    nir = s2_arrays[3]
+    ndvi = float(np.nanmean((nir - red) / np.where(np.abs(nir + red) < 1e-6, 1.0, nir + red)))
+    h3_indices = {
+        resolution: torch.tensor([[h3_token(latitude, longitude, resolution)]], dtype=torch.long)
+        for resolution in (4, 6, 8)
+    }
+    geo_attributes = {
+        "elevation": torch.zeros(1, 1),
+        "slope": torch.zeros(1, 1),
+        "ndvi": torch.tensor([[ndvi]], dtype=torch.float32),
+        "aspect": torch.zeros(1, 1),
+        "lithology_class": torch.zeros(1, dtype=torch.long),
+    }
+    model = load_model()
+    device = next(model.parameters()).device
+    aoi_tensor = torch.tensor([[latitude - half_size, longitude - half_size, latitude + half_size, longitude + half_size]], dtype=torch.float32, device=device)
+    with torch.no_grad():
+        outputs = model(
+            images=band_tensor.unsqueeze(1).to(device),
+            quality_flags=torch.ones(1, 1, dtype=torch.bool, device=device),
+            h3_indices={key: value.to(device) for key, value in h3_indices.items()},
+            geo_attributes={key: value.to(device) for key, value in geo_attributes.items()},
+            aoi_bounds=aoi_tensor,
+        )
+
+    hazard_names = ["Flood", "Wildfire", "Landslide"]
+    probabilities = torch.softmax(outputs["hazard_logits"][0], dim=-1).cpu().tolist()
+    hazard_name = hazard_names[int(torch.argmax(outputs["hazard_logits"][0]).item())]
+    raw_coords = outputs["coords_geo"][0].cpu().tolist()
+    radius = float(torch.clamp(outputs["radius_km"][0, 0], min=0.5, max=30.0).item())
+    acquisition = getattr(sentinel2, "time", None)
+    acquisition_date = str(acquisition.values[-1]) if acquisition is not None else "unknown"
+    source = f"Microsoft Planetary Computer Sentinel-1/Sentinel-2, latest acquisition {acquisition_date}"
+    if missing_sensors:
+        source += f"; unavailable sensors: {', '.join(missing_sensors)}"
+    return {
+        "status": "success",
+        "inference_mode": "planetary_computer",
+        "data_source": source,
+        "hazard_type": hazard_name,
+        "hazard_probabilities": {"flood": probabilities[0], "wildfire": probabilities[1], "landslide": probabilities[2]},
+        "predicted_coordinates": [float(raw_coords[0]), float(raw_coords[1])],
+        "radius_km": compute_location_based_radius(latitude, longitude, hazard_name, radius),
+        "language_report": f"{hazard_name.upper()} ALERT: Latest satellite imagery was analyzed for the selected location. This result requires validation before operational use.",
+    }
+
+
 # --- Dummy Service Functions (To be replaced with actual module calls) ---
 
 def run_ingestion_with_fallback(aoi_bounds: List[float], date_start: str, date_end: str):
@@ -377,7 +489,10 @@ async def handle_predict(request: Request):
         aoi_bounds = validate_aoi_bounds(aoi_bounds)
         logger.info(f"Running prediction for AOI: {aoi_bounds}")
 
-        prediction = build_demo_prediction(aoi_bounds)
+        if INFERENCE_MODE == "planetary_computer":
+            prediction = build_planetary_computer_prediction((aoi_bounds[0] + aoi_bounds[2]) / 2.0, (aoi_bounds[1] + aoi_bounds[3]) / 2.0)
+        else:
+            prediction = build_demo_prediction(aoi_bounds)
         
         # Use AOI center as clicked point
         center_lat = (aoi_bounds[0] + aoi_bounds[2]) / 2.0
@@ -461,15 +576,16 @@ async def handle_predict_point(request: Request):
         logger.info(f"Running point prediction for: {latitude}, {longitude}")
         
         # Check cache first
-        cached_result = get_cached_prediction(latitude, longitude)
-        if cached_result:
-            cached_result.setdefault("inference_mode", INFERENCE_MODE)
-            cached_result.setdefault(
-                "data_source",
-                "Synthetic demo tensors" if INFERENCE_MODE == "demo_synthetic" else INFERENCE_MODE,
-            )
-            logger.info(f"Cache hit for location ({latitude}, {longitude})")
-            return cached_result
+        if INFERENCE_MODE != "planetary_computer":
+            cached_result = get_cached_prediction(latitude, longitude)
+            if cached_result:
+                cached_result.setdefault("inference_mode", INFERENCE_MODE)
+                cached_result.setdefault(
+                    "data_source",
+                    "Synthetic demo tensors" if INFERENCE_MODE == "demo_synthetic" else INFERENCE_MODE,
+                )
+                logger.info(f"Cache hit for location ({latitude}, {longitude})")
+                return cached_result
         
         # Create AOI bounds around clicked point (0.5 degree buffer)
         aoi_bounds = [
@@ -479,7 +595,10 @@ async def handle_predict_point(request: Request):
             longitude + 0.5
         ]
         
-        prediction = build_demo_prediction(aoi_bounds)
+        if INFERENCE_MODE == "planetary_computer":
+            prediction = build_planetary_computer_prediction(latitude, longitude)
+        else:
+            prediction = build_demo_prediction(aoi_bounds)
         
         # Use clicked point as-is
         clamped_lat = max(-90.0, min(90.0, latitude))

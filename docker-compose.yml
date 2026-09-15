@@ -59,6 +59,8 @@ services:
       REDIS_PORT: 6379
       REDIS_PASSWORD: hazard_redis_password
       PYTHON_UNBUFFERED: 1
+      APP_ENV: production
+      INFERENCE_MODE: planetary_computer
     ports:
       - "8000:8000"
     depends_on:

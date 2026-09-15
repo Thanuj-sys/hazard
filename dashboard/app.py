@@ -45,7 +45,7 @@ def fetch_prediction(lat: float, lon: float):
                 "longitude": lon,
                 "country_boundary": None
             },
-            timeout=30
+            timeout=180
         )
         response.raise_for_status()
         return response.json()
