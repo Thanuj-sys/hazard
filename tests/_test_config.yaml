@@ -1,0 +1,8 @@
+model:
+  embed_dim: 256
+  img_size: 64
+  max_seq_len: 30
+  num_geo_attributes: 5
+  num_heads: 8
+  num_input_channels: 10
+  patch_size: 16

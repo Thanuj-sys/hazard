@@ -1,0 +1,26 @@
+# Python environments and caches
+.venv/
+.venv-1/
+.venv-2/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+# Runtime output
+logs/
+*.log
+
+# Local secrets and database state
+.env
+*.sqlite
+
+# Large model artifacts and downloaded datasets
+checkpoints/
+dataset/
+datasets/*/train/*.tif
+*.pt
+*.pth
+
+# Notebook/runtime artifacts
+.ipynb_checkpoints/

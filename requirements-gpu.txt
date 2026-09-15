@@ -1,0 +1,5 @@
+# Install with the local CUDA PyTorch build first, then the remaining project dependencies.
+--extra-index-url https://download.pytorch.org/whl/cu128
+-r requirements.txt
+torch==2.11.0+cu128
+torchvision==0.26.0+cu128

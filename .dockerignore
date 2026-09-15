@@ -1,0 +1,30 @@
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+
+# Large model/data artifacts
+checkpoints/
+dataset/
+datasets/
+data/**/*.tif
+data/**/*.tiff
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.hdf5
+*.pdf
+
+# Runtime output and local tooling
+logs/
+.git/
+.vscode/
+.pytest_cache/
+
+# Docker and generated files
+docker-compose*.yml
+*.log

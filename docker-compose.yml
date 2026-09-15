@@ -1,0 +1,168 @@
+services:
+  # PostgreSQL Database with PostGIS
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: hazard_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hazard_password
+      POSTGRES_DB: hazard_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init_sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - hazard_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Redis Cache
+  redis:
+    image: redis:7.2-alpine
+    container_name: hazard_redis
+    command: redis-server --appendonly yes --requirepass hazard_redis_password
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "hazard_redis_password", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - hazard_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # FastAPI Backend (Uvicorn)
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hazard_api
+    environment:
+      DATABASE_URL: postgresql://postgres:hazard_password@postgres:5432/hazard_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: hazard_redis_password
+      PYTHON_UNBUFFERED: 1
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    command: >
+      bash -c "
+      python init_database.py &&
+      python -m uvicorn api.app:app --host 0.0.0.0 --port 8000 --reload
+      "
+    networks:
+      - hazard_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Streamlit Dashboard
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hazard_dashboard
+    environment:
+      DATABASE_URL: postgresql://postgres:hazard_password@postgres:5432/hazard_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: hazard_redis_password
+      STREAMLIT_SERVER_PORT: 8503
+      MULTIHAZARD_API_URL: http://api:8000/api/v1
+    ports:
+      - "8503:8503"
+    depends_on:
+      - api
+    volumes:
+      - .:/app
+    command: python -m streamlit run dashboard/app.py --server.port 8503
+    networks:
+      - hazard_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Prometheus for Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: hazard_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - hazard_network
+    depends_on:
+      - api
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Grafana for Visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: hazard_grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_SECURITY_ADMIN_USER: admin
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana_dashboards:/etc/grafana/provisioning/dashboards
+    networks:
+      - hazard_network
+    depends_on:
+      - prometheus
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  hazard_network:
+    driver: bridge

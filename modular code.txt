@@ -1,0 +1,447 @@
+# MultiHazard-VLM — Master Prompt & Module Prompts
+
+Project: A Vision-Language Framework for Multi-Hazard Mapping on Earth Observation Data
+Team D15 | Amrita School of AI, Coimbatore
+
+---
+
+## 1. Project Analysis (Summary)
+
+**Problem it solves:** Existing hazard-detection VLMs stop at post-event classification/captioning. They have no spatial regression layer (can't pinpoint an epicenter or compute a physical impact radius), and when forced to generate coordinates via free-text generation, they hallucinate numbers — which is dangerous for emergency deployment.
+
+**Core idea:** Decouple the outputs. One shared visual+geospatial backbone feeds three *separate* heads:
+1. A language reasoner (captions + restoration advice)
+2. A sigmoid coordinate regressor (epicenter lat/lon)
+3. A ReLU radius regressor (impact radius, 0.1–30 km, clamped)
+
+This avoids asking a single text engine to "type out" numbers, which is the actual fix for Gap 3 (Logical Inference Gap).
+
+**Architecture chain:**
+```
+Sentinel-1/2 + DEM/Slope/NDVI (via MS Planetary Computer)
+        │
+Cross-Modality Alignment & Masking Engine
+        │
+Spatiotemporal Mamba Visual Backbone ──┐
+        │                              │
+Geospatial Prompt Encoder (H3 grid) ───┤
+        │                              │
+        └──────── Cross-Attention Fusion Layer
+                          │
+        ┌─────────────────┼─────────────────┐
+        │                 │                 │
+Language Reasoner   Coordinate Regressor   Radius Estimator (MLP)
+(Alerts & Reports)   (Sigmoid head)         (ReLU head)
+```
+
+**Datasets:** S1S2-Water (Sentinel-1/2 paired), HLS Burn Scar Scenes (804 scenes, NASA/IBM), CAS Landslide Dataset (20,865 images), all accessed via Microsoft Planetary Computer API.
+
+**Deliverables:** Working prototype with 3 task heads, automated 30-day rolling forecast (12–24hr ingestion), interactive H3 heatmap dashboard, expert-style structured reports.
+
+**Weak points to shore up before build:** (a) one fixed radius range for 3 physically different hazards needs justification per-hazard, (b) custom metrics (DAP/DDR/FC/RN/SC/APP) need actual formulas before anyone can implement an eval script, (c) SDFSegFormer-B2 (Objective 2) isn't reflected in the pipeline diagram — reconcile this before coding starts.
+
+---
+
+## 2. MASTER PROMPT (use this to prime any AI assistant on the whole project)
+
+```
+You are acting as a technical collaborator on "MultiHazard-VLM," a final-year
+engineering capstone project (Team D15, Amrita School of AI). Treat this as a
+real systems-engineering project, not a toy demo.
+
+PROJECT GOAL
+Build an end-to-end vision-language pipeline that ingests Sentinel-1/2 optical
++ SAR imagery and ancillary geospatial layers (DEM, slope, NDVI, lithology),
+and produces THREE decoupled outputs per hazard event:
+  1. A natural-language hazard caption + restoration advice report
+  2. Regressed epicenter coordinates (lat/lon)
+  3. A regressed physical impact radius in km, range 0.1–30, clamped
+
+HAZARDS IN SCOPE: floods, wildfire, rainfall-induced landslides.
+GEOGRAPHIC SCOPE: India-focused, generalizable to other regions with equivalent
+data feeds.
+OUT OF SCOPE: seismic/earthquake prediction, post-disaster relief logistics.
+
+WHY DECOUPLED HEADS (critical design constraint — do not violate):
+Standard VLMs generate text and coordinates through the same autoregressive
+text engine, which causes hallucinated numbers — unacceptable for emergency
+deployment. This project's core innovation is separating language generation
+from numeric regression into independent heads that share a common fused
+representation. Any implementation you help with MUST preserve this
+separation — never suggest generating coordinates as part of the text output.
+
+ARCHITECTURE (do not deviate without being told to):
+Data (Sentinel-1/2 + DEM/slope/NDVI via Microsoft Planetary Computer API)
+  → Cross-Modality Alignment & Masking Engine (handles missing/corrupted
+    sensor channels)
+  → Spatiotemporal Mamba selective-scan visual backbone (processes rolling
+    30-day imagery sequences — chosen over standard Transformers specifically
+    to fix the "Computational Lag Gap": Transformers are too slow for
+    continuous 30-day rolling timelines)
+  → Geospatial Prompt Encoder using Uber's H3 hierarchical hex-grid (encodes
+    location context — fixes the "Spatial Blindness Gap")
+  → Cross-Attention Fusion Layer (fuses visual + geospatial tokens)
+  → THREE PARALLEL HEADS:
+      a) Language Reasoner (LLM conditioned on extracted geo-attributes,
+         NOT free-floating — must be grounded in DEM/slope/NDVI/lithology
+         values to prevent hallucination)
+      b) Spatial Coordinate Regressor (sigmoid activation, outputs bounded
+         lat/lon offsets)
+      c) Fluid Radius Dynamics Estimator (small MLP, ReLU activation,
+         output clamped to [0.1, 30] km)
+
+DATASETS AVAILABLE:
+- S1S2-Water: Sentinel-1 (VV/VH, dB) + Sentinel-2 (6-band TOA reflectance),
+  10980x10980 COG GeoTIFFs, UTM projection.
+- HLS Burn Scar Scenes: 804 scenes, 512x512px, 6-band HLS + burn masks,
+  contiguous US, 2018-2021, ~11% burn / 88% unburned / 1% missing.
+- CAS Landslide Dataset: 20,865 RGB images, 512x512px, satellite+UAV,
+  9 regions, pixel-level masks (Chinese Academy of Sciences).
+- Access layer: Microsoft Planetary Computer (Azure-backed API/compute).
+
+TECH STACK: Python/PyTorch, Docker + Kubernetes, REST API gateway with
+cron-based ingestion, Uber H3 library for spatial indexing/heatmaps.
+
+EVALUATION METRICS (define precisely before implementing — these are
+project-specific, not standard literature metrics):
+- Caption quality: Damage Assessment Precision (DAP), Damage Detail Recall
+  (DDR), Factual Correctness (FC)
+- Restoration advice quality: Recovery Necessity (RN), Strategic
+  Completeness (SC), Action Priority Precision (APP)
+- Overall: Average accuracy (AVG) across the above
+
+WHEN HELPING WITH ANY PART OF THIS PROJECT:
+1. Always preserve the decoupled-head design — never merge text and numeric
+   generation.
+2. Ground any language-generation logic in the extracted geo-attributes
+   (DEM/slope/NDVI/lithology), not raw pixel captioning alone.
+3. Respect the 0.1–30 km radius clamp and flag if a hazard type's physics
+   would suggest a different range is more appropriate (e.g., wildfire
+   spread vs. landslide runout vs. flood extent have very different scales).
+4. Keep the 30-day rolling / 12-24hr ingestion cadence in mind for any
+   pipeline or infra code — this is a continuous system, not single-shot
+   inference.
+5. If asked to implement a metric (DAP/DDR/FC/RN/SC/APP), ask for or
+   propose a precise formula before writing eval code — don't assume.
+6. Flag any place where a stated objective (e.g., SDFSegFormer-B2) doesn't
+   match the pipeline diagram, so the team can reconcile it.
+
+Now help me with: [INSERT YOUR SPECIFIC TASK HERE]
+```
+
+---
+
+## 3. MODULE PROMPTS
+
+Each of these is meant to be pasted as its own conversation/task — self-contained enough that a teammate can hand off just their module without needing the whole master prompt, but consistent with it.
+
+### 3.1 Data & Geospatial Ingestion Module (Thanuj)
+
+```
+You are helping build the DATA INGESTION module of MultiHazard-VLM, a
+multi-hazard (flood/wildfire/landslide) vision-language forecasting system.
+
+YOUR MODULE'S JOB:
+- Pull Sentinel-1 (GRD, VV/VH, dB) and Sentinel-2 (L1C, 6-band TOA
+  reflectance) imagery via the Microsoft Planetary Computer STAC API.
+- Pull ancillary geospatial layers: DEM, slope (derived from DEM), NDVI
+  (derived from S2 bands), and lithology.
+- Align pre/post disaster imagery pairs.
+- Handle missing/corrupted sensor channels (some tiles will be cloud-covered
+  or have SAR dropout) — build a masking/flagging scheme, not silent
+  interpolation, since downstream modules need to know what's real vs
+  imputed.
+- Encode location context using Uber's H3 hierarchical hex-grid at an
+  appropriate resolution for ~0.1-30km hazard radii.
+- Output a clean, versioned, COG-based data format that the Mamba backbone
+  and the geospatial prompt encoder can both consume on a rolling 30-day
+  window with 12-24hr ingestion cadence.
+
+CONSTRAINTS:
+- Must work against real dataset structures: S1S2-Water (10980x10980 COG,
+  UTM), HLS Burn Scar Scenes (512x512, 6-band HLS + burn mask), CAS
+  Landslide Dataset (512x512 RGB, satellite+UAV, pixel masks).
+- Must be automatable via cron (REST API gateway), not manual/notebook-only.
+- Must explicitly propagate a per-pixel or per-tile "data quality/missing"
+  flag downstream — this feeds the Cross-Modality Alignment & Masking
+  Engine, so don't silently drop or fill missing data without flagging it.
+
+TASK: [describe your specific sub-task — e.g., "write a STAC query + COG
+loader for a given AOI and date range" or "implement the H3 encoding step
+at resolution X"]
+```
+
+### 3.2 Spatiotemporal Mamba Visual Backbone (Krishna)
+
+```
+You are helping build the VISUAL BACKBONE module of MultiHazard-VLM.
+
+CONTEXT: This backbone replaces a standard Transformer specifically because
+Transformers create a computational bottleneck when processing a continuous
+30-day rolling timeline of environmental imagery (this is "Gap 1:
+Computational Lag Gap" in the project's research framing). A Mamba
+selective-scan architecture is used instead for its linear-time sequence
+processing.
+
+YOUR MODULE'S JOB:
+- Implement a spatiotemporal Mamba (selective state-space model) backbone
+  that ingests sequences of aligned multi-band satellite imagery (Sentinel-1
+  SAR + Sentinel-2 optical + DEM/slope/NDVI channels) over a rolling 30-day
+  window.
+- Output dense visual feature tokens suitable for cross-attention fusion
+  with the H3 geospatial encoder downstream.
+- Must handle variable-length/missing-frame sequences gracefully (some days
+  will have cloud cover or no new pass) using the quality flags produced by
+  the data ingestion module — do not assume every day in the window has
+  valid imagery.
+- Should be reasonably efficient — this needs to run on a 12-24hr ingestion
+  cadence, not be a multi-hour offline job per tile.
+
+CONSTRAINTS:
+- Input channels: SAR (VV/VH), optical (Blue/Green/Red/NIR/SWIR1/SWIR2),
+  DEM, slope, NDVI — up to ~10 channels per timestep.
+- Output must be a fixed-size token sequence/embedding compatible with a
+  downstream cross-attention layer (specify the embedding dim you use).
+- Framework: PyTorch.
+
+TASK: [e.g., "implement the selective-scan block," "design the
+patchify/tokenization strategy for multi-band multi-temporal input," or
+"handle variable missing frames in the 30-day window"]
+```
+
+### 3.3 Geospatial Prompt Encoder — H3 Grid (Thanuj / Krishna)
+
+```
+You are helping build the GEOSPATIAL PROMPT ENCODER module of
+MultiHazard-VLM.
+
+CONTEXT: This module exists to fix "Gap 2: Spatial Blindness" — existing
+hazard systems only issue broad macro-level alerts (e.g. "heavy rain across
+North-East India") because they lack spatial regression layers that can
+localize a threat epicenter or compute a physical destruction radius. This
+encoder turns raw lat/lon + terrain context into structured tokens the model
+can reason over hierarchically (region → district → local cell).
+
+YOUR MODULE'S JOB:
+- Encode each area of interest using Uber's H3 hierarchical hexagonal grid
+  at multiple resolutions (choose resolutions that make sense for
+  0.1-30km hazard radii — justify your resolution choice).
+- Produce embeddings that carry both spatial identity (which hex cell) and
+  relevant static context (DEM/slope/lithology at that cell) as encoder
+  "prompt" tokens.
+- These tokens must be fusable via cross-attention with the Mamba visual
+  backbone's output tokens.
+
+CONSTRAINTS:
+- Use the h3-py library conventions for cell indexing.
+- Keep the encoding resolution-aware: landslide/flood epicenters may need
+  finer resolution than wildfire spread fronts — decide and document your
+  reasoning per hazard type if you use different resolutions.
+- Output embedding dimension must match what the Cross-Attention Fusion
+  Layer expects (coordinate with the backbone module's output dim).
+
+TASK: [e.g., "implement H3 multi-resolution encoding for a bounding box,"
+"design the terrain-context embedding lookup," etc.]
+```
+
+### 3.4 Cross-Attention Fusion Layer (Krishna)
+
+```
+You are helping build the CROSS-ATTENTION FUSION LAYER of MultiHazard-VLM.
+
+YOUR MODULE'S JOB:
+- Fuse the Spatiotemporal Mamba backbone's visual tokens with the H3
+  Geospatial Prompt Encoder's spatial/terrain tokens via cross-attention.
+- Produce a single fused representation that feeds THREE separate
+  downstream heads: the language reasoner, the coordinate regressor, and
+  the radius estimator.
+
+CRITICAL DESIGN CONSTRAINT:
+This fused representation must be head-agnostic — do not bake in
+assumptions that favor one downstream head over another. The whole point of
+this architecture is that language generation and numeric regression are
+DECOUPLED after this fusion point; keep this layer as a shared trunk, not
+something pre-specialized for captioning.
+
+CONSTRAINTS:
+- Input: visual tokens (from Mamba backbone) + geospatial tokens (from H3
+  encoder) — specify and reconcile their dimensions with the other two
+  modules' authors.
+- Output: fixed-size fused embedding(s) suitable for three different head
+  architectures (autoregressive LM head, sigmoid regression head, MLP+ReLU
+  regression head).
+- Framework: PyTorch, standard multi-head cross-attention is acceptable
+  unless the project specifies otherwise.
+
+TASK: [e.g., "implement the cross-attention block," "design how multiple
+H3-resolution tokens are pooled before fusion," etc.]
+```
+
+### 3.5 Language Reasoner — Alerts & Reports (Siva Pranav)
+
+```
+You are helping build the LANGUAGE REASONER module of MultiHazard-VLM.
+
+CONTEXT: This is NOT a free-floating image captioner. The project's central
+fix for "Gap 3: Logical Inference Gap" is that this LLM must be conditioned
+directly on EXTRACTED GEO-ATTRIBUTES (DEM, slope, NDVI, lithology values
+pulled from the fused representation / geospatial encoder), not just raw
+pixels — this is what prevents hallucination. It must also NEVER be asked
+to output coordinates or radius numbers itself; those come from the
+separate regression heads.
+
+YOUR MODULE'S JOB:
+- Take the fused visual+geospatial representation (and the extracted
+  terrain attributes) and generate:
+  a) A disaster/hazard caption describing what's observed
+  b) Restoration/intervention advice, structured as an expert-style report
+- Output must be structured (not just free text) — e.g., sections for
+  hazard type, severity, affected terrain characteristics, and prioritized
+  recommendations — so it can be evaluated against the project's metrics:
+  DAP (damage assessment precision), DDR (damage detail recall), FC
+  (factual correctness), RN (recovery necessity), SC (strategic
+  completeness), APP (action priority precision).
+- Ground every generated claim in the extracted geo-attributes passed in —
+  if slope/lithology data isn't available for a claim, the report should
+  not assert it.
+
+CONSTRAINTS:
+- No coordinate or radius numbers in the text output — those live in
+  separate heads. If you're tempted to have the LLM state "the epicenter is
+  at X,Y," stop — that's a boundary violation of the architecture.
+- Report structure should roughly follow IMD/NDMA report conventions (per
+  the project's dataset construction pipeline, which used domain experts
+  drafting baseline reports against IMD/NDMA guidelines).
+
+TASK: [e.g., "design the prompt template that conditions the LLM on
+extracted geo-attributes," "design the structured report schema," "propose
+formulas for DAP/DDR/FC," etc.]
+```
+
+### 3.6 Spatial Coordinate & Radius Regression Heads (Siva Pranav)
+
+```
+You are helping build the COORDINATE REGRESSOR and RADIUS ESTIMATOR heads
+of MultiHazard-VLM.
+
+CONTEXT: These exist specifically to avoid coordinate hallucination — they
+are numeric regression heads operating on the fused representation, fully
+separate from the language reasoner's text generation.
+
+YOUR MODULE'S JOB — TWO HEADS:
+1. Spatial Coordinate / Bounding-Box Regressor: sigmoid-activated head that
+   outputs the hazard epicenter location (bounded lat/lon offset within the
+   input tile/AOI).
+2. Fluid Radius Dynamics Estimator: small MLP with ReLU activation that
+   outputs the physical impact radius in km, clamped to [0.1, 30].
+
+CONSTRAINTS:
+- Sigmoid head output must be interpretable as a bounded offset within a
+  known reference frame (the input tile/AOI bounds) — document how you
+  convert this back to real lat/lon.
+- Radius head output must be clamped post-activation to [0.1, 30] km — be
+  ready to discuss whether one fixed range is appropriate across floods,
+  wildfire, and landslides, or whether per-hazard-type scaling/clamping
+  makes more physical sense (this is a known open question in the
+  project — flag it rather than silently picking one).
+- Both heads take the SAME fused representation as input as the language
+  reasoner, but must not depend on the language reasoner's output or vice
+  versa (decoupled, parallel heads).
+- Loss functions: propose appropriate regression losses (e.g., smooth L1 /
+  Huber for radius, a distance-aware loss like haversine error for
+  coordinates) — standard MSE may not respect geographic distance
+  properly.
+
+TASK: [e.g., "implement the two regression heads," "design the coordinate
+loss function," "design the radius clamping logic per hazard type," etc.]
+```
+
+### 3.7 Evaluation & Metrics Module (all / whoever owns eval)
+
+```
+You are helping build the EVALUATION module of MultiHazard-VLM.
+
+CONTEXT: The project defines custom metrics that are NOT standard in the
+literature (the literature reviewed uses things like IoU/Dice for
+segmentation and classification accuracy — this project needs metrics for
+generated reports and regressed spatial outputs instead). These metrics
+need precise, implementable formulas before any evaluation script can be
+written.
+
+METRICS TO FORMALIZE AND IMPLEMENT:
+- DAP (Damage Assessment Precision) — precision of damage claims made in
+  the generated caption against ground truth
+- DDR (Damage Detail Recall) — recall of damage details against ground
+  truth
+- FC (Factual Correctness) — correctness of factual claims (terrain,
+  severity, etc.) against geo-attribute ground truth
+- RN (Recovery Necessity) — whether restoration advice correctly identifies
+  necessary interventions
+- SC (Strategic Completeness) — completeness of the restoration
+  recommendation set
+- APP (Action Priority Precision) — correctness of the prioritization order
+  of recommended actions
+- AVG — overall average across the above
+
+ALSO NEEDED (standard, for the regression heads):
+- Coordinate error: haversine distance between predicted and true epicenter
+- Radius error: absolute/relative error against ground-truth impact radius,
+  per hazard type
+
+YOUR JOB:
+- Propose precise, defensible formulas for each custom metric (e.g., DAP as
+  a claim-level precision against an annotated claim set; do NOT propose
+  black-box "LLM-judges-itself" scoring without stating that's what you're
+  doing).
+- Note where human/expert-in-the-loop scoring is needed vs. where it can be
+  automated.
+- Design the eval script structure so it can run per-hazard-type
+  (flood/wildfire/landslide) and produce a breakdown, not just one pooled
+  number — a single AVG could hide poor performance on one hazard type.
+
+TASK: [e.g., "propose formulas for DAP/DDR/FC," "design the coordinate/
+radius eval script," etc.]
+```
+
+### 3.8 Systems & Deployment Module (Tejadeep)
+
+```
+You are helping build the DEPLOYMENT & SYSTEMS module of MultiHazard-VLM.
+
+YOUR MODULE'S JOB:
+- Containerize each pipeline stage (ingestion, backbone, fusion, three
+  heads) as Docker services orchestrated via Kubernetes.
+- Build a REST API gateway that triggers automated ingestion on a cron
+  schedule (12-24hr cadence) for the rolling 30-day forecast window.
+- Implement edge failover for constrained deployment (TensorRT/Jetson
+  target per the project's stated tooling).
+- Build a fallback matrix — define what the system does when a component
+  fails (e.g., missing SAR data, GPU unavailable, LLM service down) so the
+  pipeline degrades gracefully instead of failing silently on emergency
+  infrastructure.
+- Build/support the interactive H3 heatmap dashboard visualizing daily
+  hazard-risk evolution.
+- Own evaluation benchmarking infra (latency, throughput, resource use —
+  distinct from the model-quality metrics in the Evaluation module).
+
+CONSTRAINTS:
+- This is meant to run continuously (rolling 30-day window, 12-24hr
+  ingestion), not as a one-off batch job — design for long-running
+  reliability, logging, and monitoring, not just a demo script.
+- Because outputs feed emergency/disaster response use cases, failures must
+  be visible/logged, never silent — a wrong or missing coordinate/radius
+  output is worse than an explicit "unavailable" state.
+
+TASK: [e.g., "design the Kubernetes service topology," "design the
+fallback matrix," "design the cron ingestion trigger + API contract between
+services," etc.]
+```
+
+---
+
+## 4. How to use these
+
+1. Paste the **Master Prompt** at the start of any new AI chat where you're working across the whole project (e.g., reconciling the pipeline diagram, writing the report, prepping for review Q&A).
+2. Paste the relevant **Module Prompt** when a teammate is heads-down on their own component — it's self-contained but stays consistent with the master architecture.
+3. Fill in the `[INSERT YOUR SPECIFIC TASK HERE]` / `TASK:` line each time with the actual thing you need done that session.
+4. Before Sem 8, revisit the "weak points" flagged in Section 1 (radius range justification, metric formulas, SDFSegFormer-B2 reconciliation) — these are baked into the prompts as things the AI should flag, but your team still needs to resolve them for the final report.

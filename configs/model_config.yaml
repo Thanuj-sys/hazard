@@ -1,0 +1,40 @@
+model:
+  embed_dim: 256
+  num_heads: 8
+  patch_size: 16
+  num_input_channels: 10
+  max_seq_len: 30
+  img_size: 64
+  h3_resolutions: [4, 6, 8]
+  num_geo_attributes: 5
+  radius_clamp_min: 0.1
+  radius_clamp_max: 30.0
+
+training:
+  lr: 0.0001
+  batch_size: 8
+  epochs: 100
+  weight_decay: 0.00001
+  warmup_steps: 1000
+  scheduler: "cosine"
+
+data:
+  tile_size: 512
+  overlap: 64
+  bands_s1:
+    - "VV"
+    - "VH"
+  bands_s2:
+    - "Blue"
+    - "Green"
+    - "Red"
+    - "NIR"
+    - "SWIR1"
+    - "SWIR2"
+  ingestion_cadence_hours: 24
+  rolling_window_days: 30
+
+deployment:
+  docker_image: "multihazard-vlm:latest"
+  api_port: 8000
+  dashboard_port: 8501
