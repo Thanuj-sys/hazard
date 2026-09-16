@@ -151,24 +151,9 @@ if india_boundary:
             district_boundaries,
             name="District boundaries",
             style_function=lambda _: {"color": "#8b8178", "weight": 0.35, "fillOpacity": 0},
+            tooltip=folium.GeoJsonTooltip(fields=["DISTRICT", "ST_NM"], aliases=["District", "State"]),
+            popup=folium.GeoJsonPopup(fields=["DISTRICT", "ST_NM"], aliases=["District", "State"]),
         ).add_to(m)
-        for feature in district_boundaries.get("features", []):
-            district_name = feature.get("properties", {}).get("DISTRICT")
-            geometry = feature.get("geometry")
-            if not district_name or not geometry:
-                continue
-            label_point = shape(geometry).representative_point()
-            folium.Marker(
-                location=[label_point.y, label_point.x],
-                icon=folium.DivIcon(
-                    html=(
-                        f'<div class="district-label" style="display:none;font-size:8px;'
-                        f'color:#493d35;text-shadow:0 1px 2px #fff,1px 0 #fff,-1px 0 #fff;'
-                        f'white-space:nowrap;">{district_name}</div>'
-                    )
-                ),
-                tooltip=district_name,
-            ).add_to(m)
         m.get_root().script.add_child(Element(f"""
             <script>
             (function() {{
@@ -178,9 +163,6 @@ if india_boundary:
                     var zoom = map.getZoom();
                     var weight = zoom >= 8 ? 0.9 : (zoom >= 6 ? 0.55 : 0.25);
                     districts.setStyle({{weight: weight, opacity: zoom >= 6 ? 0.9 : 0.45}});
-                    document.querySelectorAll('.district-label').forEach(function(label) {{
-                        label.style.display = zoom >= 7 ? 'block' : 'none';
-                    }});
                 }}
                 map.on('zoomend', updateDistricts);
                 updateDistricts();
