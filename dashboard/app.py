@@ -36,6 +36,10 @@ default_hazard = st.sidebar.selectbox("Filter by Hazard Type", ["All", "Flood", 
 
 # Function to fetch prediction for clicked coordinates
 def fetch_prediction(lat: float, lon: float):
+    if not (INDIA_BOUNDS[0][0] <= lat <= INDIA_BOUNDS[1][0] and INDIA_BOUNDS[0][1] <= lon <= INDIA_BOUNDS[1][1]):
+        st.warning("Please select a location within India.")
+        return None
+
     try:
         # Call API with clicked coordinates (direct point prediction)
         response = requests.post(
@@ -59,17 +63,13 @@ m = folium.Map(
     zoom_start=5,
     tiles="OpenStreetMap",
     click=True,
+    min_zoom=5,
+    max_zoom=10,
+    world_copy_jump=False,
     max_bounds=True,
     max_bounds_viscosity=1.0,
 )
-m.fit_bounds(INDIA_BOUNDS)
-
-# Add title/instruction layer
-folium.Marker(
-    location=[35, 75],
-    popup="Click on any location to predict hazards!",
-    icon=folium.Icon(color='blue', icon='info-sign', prefix='fa')
-).add_to(m)
+m.fit_bounds(INDIA_BOUNDS, padding=(12, 12))
 
 # Display stored prediction on map if available
 if st.session_state.prediction_data:
