@@ -218,6 +218,22 @@ if india_boundary:
                 tooltip=state_name,
             ).add_to(m)
 
+if st.session_state.weather_data and st.session_state.weather_location:
+    weather = st.session_state.weather_data
+    weather_lat, weather_lon = st.session_state.weather_location
+    district_name, state_name = find_district(weather_lat, weather_lon)
+    folium.Marker(
+        location=[weather_lat, weather_lon],
+        icon=folium.DivIcon(html="<div style='width:1px;height:1px;'></div>"),
+        popup=folium.Popup(
+            f"<b>District</b>&nbsp; {district_name}<br>"
+            f"<b>State</b>&nbsp; {state_name}<br>"
+            f"<b>Temperature</b>&nbsp; {weather['temperature_c']} °C",
+            max_width=220,
+            show=True,
+        ),
+    ).add_to(m)
+
 # Display stored prediction on map if available
 if st.session_state.prediction_data:
     pred = st.session_state.prediction_data
@@ -355,15 +371,5 @@ if weather and weather.get("status") == "success":
     weather_lat, weather_lon = st.session_state.get("weather_location") or (st.session_state.clicked_lat, st.session_state.clicked_lon)
     district_name, state_name = find_district(weather_lat, weather_lon)
     st.markdown("---")
-    st.subheader(f"🌦️ Live Weather: {district_name}, {state_name}")
-    st.caption(f"Source: {weather['source']} | Observed: {weather['observed_at']} ({weather['timezone']})")
-    weather_columns = st.columns(5)
-    weather_columns[0].metric("Condition", weather["condition"])
-    weather_columns[1].metric("Temperature", f"{weather['temperature_c']} °C")
-    weather_columns[2].metric("Feels like", f"{weather['feels_like_c']} °C")
-    weather_columns[3].metric("Humidity", f"{weather['humidity_percent']}%")
-    weather_columns[4].metric("Wind", f"{weather['wind_speed_kmh']} km/h")
-    st.caption(
-        f"Rain: {weather['rain_mm']} mm | Precipitation: {weather['precipitation_mm']} mm | "
-        f"Cloud cover: {weather['cloud_cover_percent']}% | Wind direction: {weather['wind_direction_degrees']}°"
-    )
+    st.subheader(f"🌡️ {district_name}, {state_name}")
+    st.metric("Temperature", f"{weather['temperature_c']} °C")
