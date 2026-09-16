@@ -52,8 +52,8 @@ if "prediction_data" not in st.session_state:
 # Sidebar Controls
 st.sidebar.header("⚙️ Controls")
 default_hazard = st.sidebar.selectbox("Filter by Hazard Type", ["All", "Flood", "Wildfire", "Landslide"])
-show_districts = st.sidebar.checkbox("Show district boundaries", value=False)
-show_states = st.sidebar.checkbox("Show state boundaries", value=False)
+show_districts = True
+show_states = True
 
 
 @st.cache_data(ttl=86400, show_spinner=False)
