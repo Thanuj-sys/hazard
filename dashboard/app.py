@@ -183,7 +183,6 @@ if india_boundary:
             name="District boundaries",
             style_function=lambda _: {"color": "#8b8178", "weight": 0.35, "fillOpacity": 0},
             tooltip=folium.GeoJsonTooltip(fields=["DISTRICT", "ST_NM"], aliases=["District", "State"]),
-            popup=folium.GeoJsonPopup(fields=["DISTRICT", "ST_NM"], aliases=["District", "State"]),
         ).add_to(m)
         m.get_root().script.add_child(Element(f"""
             <script>
