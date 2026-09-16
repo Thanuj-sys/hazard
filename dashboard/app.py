@@ -12,8 +12,10 @@ import pandas as pd
 import json
 import math
 import os
+import tempfile
 
 from branca.element import Element
+import geopandas as gpd
 from shapely.geometry import Point, mapping, shape
 from shapely.ops import unary_union
 
@@ -21,6 +23,18 @@ from shapely.ops import unary_union
 API_BASE_URL = os.getenv("MULTIHAZARD_API_URL", "http://localhost:8001/api/v1")
 INDIA_BOUNDS = [[6.5, 68.0], [35.5, 97.5]]
 INDIA_BOUNDARY_URL = "https://raw.githubusercontent.com/datameet/maps/master/Country/india-composite.geojson"
+STATE_FILES = {
+    "Admin2.shp": "https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.shp",
+    "Admin2.shx": "https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.shx",
+    "Admin2.dbf": "https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.dbf",
+    "Admin2.prj": "https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.prj",
+}
+DISTRICT_FILES = {
+    "2011_Dist.shp": "https://raw.githubusercontent.com/datameet/maps/master/Districts/Census_2011/2011_Dist.shp",
+    "2011_Dist.shx": "https://raw.githubusercontent.com/datameet/maps/master/Districts/Census_2011/2011_Dist.shx",
+    "2011_Dist.dbf": "https://raw.githubusercontent.com/datameet/maps/master/Districts/Census_2011/2011_Dist.dbf",
+    "2011_Dist.prj": "https://raw.githubusercontent.com/datameet/maps/master/Districts/Census_2011/2011_Dist.prj",
+}
 
 st.set_page_config(page_title="MultiHazard-VLM Dashboard", layout="wide")
 
@@ -38,6 +52,8 @@ if "prediction_data" not in st.session_state:
 # Sidebar Controls
 st.sidebar.header("⚙️ Controls")
 default_hazard = st.sidebar.selectbox("Filter by Hazard Type", ["All", "Flood", "Wildfire", "Landslide"])
+show_districts = st.sidebar.checkbox("Show district boundaries", value=False)
+show_states = st.sidebar.checkbox("Show state boundaries", value=False)
 
 
 @st.cache_data(ttl=86400, show_spinner=False)
@@ -58,7 +74,31 @@ def load_india_boundary():
         return None
 
 
+@st.cache_data(ttl=86400, show_spinner=False)
+def load_admin_boundaries(files, shapefile_name):
+    """Download and cache administrative boundaries for the India-only map."""
+    try:
+        directory = tempfile.mkdtemp(prefix="india-boundaries-")
+        for filename, url in files.items():
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+            with open(os.path.join(directory, filename), "wb") as boundary_file:
+                boundary_file.write(response.content)
+        frame = gpd.read_file(os.path.join(directory, shapefile_name)).to_crs("EPSG:4326")
+        frame["geometry"] = frame.geometry.simplify(0.01, preserve_topology=True)
+        if shapefile_name == "2011_Dist.shp":
+            frame = frame[["DISTRICT", "ST_NM", "geometry"]]
+        else:
+            frame = frame[["ST_NM", "geometry"]]
+        return json.loads(frame.to_json())
+    except (requests.RequestException, ValueError, OSError) as exc:
+        st.sidebar.warning(f"Administrative boundaries unavailable. ({exc})")
+        return None
+
+
 india_boundary = load_india_boundary()
+state_boundaries = load_admin_boundaries(STATE_FILES, "Admin2.shp") if show_states or show_districts else None
+district_boundaries = load_admin_boundaries(DISTRICT_FILES, "2011_Dist.shp") if show_districts else None
 
 # Function to fetch prediction for clicked coordinates
 def fetch_prediction(lat: float, lon: float):
@@ -105,8 +145,21 @@ if india_boundary:
     folium.GeoJson(
         india_boundary,
         name="India boundary",
-        style_function=lambda _: {"color": "#b7791f", "weight": 2, "fillColor": "#d9ead3", "fillOpacity": 1},
+        style_function=lambda _: {"color": "#8a5a16", "weight": 2, "fillColor": "#d9ead3", "fillOpacity": 1},
     ).add_to(m)
+    if district_boundaries:
+        folium.GeoJson(
+            district_boundaries,
+            name="District boundaries",
+            style_function=lambda _: {"color": "#8c9a8c", "weight": 0.45, "fillOpacity": 0},
+        ).add_to(m)
+    if state_boundaries:
+        folium.GeoJson(
+            state_boundaries,
+            name="State boundaries",
+            style_function=lambda _: {"color": "#8a5a16", "weight": 1.4, "fillOpacity": 0},
+            tooltip=folium.GeoJsonTooltip(fields=["ST_NM"], aliases=["State"]),
+        ).add_to(m)
 
 # Display stored prediction on map if available
 if st.session_state.prediction_data:
