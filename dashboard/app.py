@@ -13,9 +13,13 @@ import json
 import math
 import os
 
+from shapely.geometry import Point, box, mapping, shape
+from shapely.ops import unary_union
+
 # Configuration
 API_BASE_URL = os.getenv("MULTIHAZARD_API_URL", "http://localhost:8001/api/v1")
 INDIA_BOUNDS = [[6.5, 68.0], [35.5, 97.5]]
+INDIA_BOUNDARY_URL = "https://raw.githubusercontent.com/datameet/maps/master/Country/india-composite.geojson"
 
 st.set_page_config(page_title="MultiHazard-VLM Dashboard", layout="wide")
 
@@ -34,9 +38,32 @@ if "prediction_data" not in st.session_state:
 st.sidebar.header("⚙️ Controls")
 default_hazard = st.sidebar.selectbox("Filter by Hazard Type", ["All", "Flood", "Wildfire", "Landslide"])
 
+
+@st.cache_data(ttl=86400, show_spinner=False)
+def load_india_boundary():
+    """Load India's boundary once so neighboring map tiles can be masked."""
+    try:
+        response = requests.get(INDIA_BOUNDARY_URL, timeout=15)
+        response.raise_for_status()
+        payload = response.json()
+        geometries = [shape(feature["geometry"]) for feature in payload.get("features", [])]
+        if payload.get("type") == "Feature" and payload.get("geometry"):
+            geometries = [shape(payload["geometry"])]
+        if not geometries:
+            return None
+        return mapping(unary_union(geometries))
+    except (requests.RequestException, ValueError, KeyError) as exc:
+        st.sidebar.warning(f"India boundary unavailable; using geographic bounds. ({exc})")
+        return None
+
+
+india_boundary = load_india_boundary()
+
 # Function to fetch prediction for clicked coordinates
 def fetch_prediction(lat: float, lon: float):
-    if not (INDIA_BOUNDS[0][0] <= lat <= INDIA_BOUNDS[1][0] and INDIA_BOUNDS[0][1] <= lon <= INDIA_BOUNDS[1][1]):
+    in_extent = INDIA_BOUNDS[0][0] <= lat <= INDIA_BOUNDS[1][0] and INDIA_BOUNDS[0][1] <= lon <= INDIA_BOUNDS[1][1]
+    in_boundary = india_boundary is None or shape(india_boundary).covers(Point(lon, lat))
+    if not (in_extent and in_boundary):
         st.warning("Please select a location within India.")
         return None
 
@@ -70,6 +97,21 @@ m = folium.Map(
     max_bounds_viscosity=1.0,
 )
 m.fit_bounds(INDIA_BOUNDS, padding=(12, 12))
+
+if india_boundary:
+    india_shape = shape(india_boundary)
+    map_extent = box(INDIA_BOUNDS[0][1], INDIA_BOUNDS[0][0], INDIA_BOUNDS[1][1], INDIA_BOUNDS[1][0])
+    outside_india = map_extent.difference(india_shape)
+    folium.GeoJson(
+        mapping(outside_india),
+        name="Outside India mask",
+        style_function=lambda _: {"fillColor": "#0b0d12", "color": "#0b0d12", "weight": 0, "fillOpacity": 1.0},
+    ).add_to(m)
+    folium.GeoJson(
+        india_boundary,
+        name="India boundary",
+        style_function=lambda _: {"color": "#f4c95d", "weight": 2, "fillOpacity": 0},
+    ).add_to(m)
 
 # Display stored prediction on map if available
 if st.session_state.prediction_data:
