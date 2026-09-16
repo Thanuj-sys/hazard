@@ -36,6 +36,8 @@ if "clicked_lon" not in st.session_state:
     st.session_state.clicked_lon = 78.9629
 if "prediction_data" not in st.session_state:
     st.session_state.prediction_data = None
+if "weather_data" not in st.session_state:
+    st.session_state.weather_data = None
 
 # Sidebar Controls
 st.sidebar.header("⚙️ Controls")
@@ -79,6 +81,19 @@ district_boundaries = load_admin_boundaries("india_districts.geojson")
 if india_boundary is None and state_boundaries:
     india_boundary = mapping(unary_union([shape(feature["geometry"]) for feature in state_boundaries["features"]]))
 
+
+def find_district(lat: float, lon: float) -> tuple[str, str]:
+    """Find the district and state containing a map point."""
+    if not district_boundaries:
+        return "Unknown district", "Unknown state"
+    point = Point(lon, lat)
+    for feature in district_boundaries.get("features", []):
+        geometry = feature.get("geometry")
+        if geometry and shape(geometry).covers(point):
+            properties = feature.get("properties", {})
+            return properties.get("DISTRICT", "Unknown district"), properties.get("ST_NM", "Unknown state")
+    return "Outside mapped district", "India"
+
 # Function to fetch prediction for clicked coordinates
 def fetch_prediction(lat: float, lon: float):
     in_extent = INDIA_BOUNDS[0][0] <= lat <= INDIA_BOUNDS[1][0] and INDIA_BOUNDS[0][1] <= lon <= INDIA_BOUNDS[1][1]
@@ -102,6 +117,20 @@ def fetch_prediction(lat: float, lon: float):
         return response.json()
     except requests.exceptions.RequestException as e:
         st.warning(f"⚠️ API Error: {str(e)}")
+        return None
+
+
+def fetch_weather(lat: float, lon: float):
+    try:
+        response = requests.get(
+            f"{API_BASE_URL}/weather",
+            params={"latitude": lat, "longitude": lon},
+            timeout=30,
+        )
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as exc:
+        st.warning(f"⚠️ Live weather unavailable: {exc}")
         return None
 
 # Create Folium Map - Centered on India
@@ -238,6 +267,7 @@ if map_data and map_data.get('last_clicked'):
         pred_data = fetch_prediction(clicked_lat, clicked_lon)
         if pred_data and pred_data.get('status') == 'success':
             st.session_state.prediction_data = pred_data
+            st.session_state.weather_data = fetch_weather(clicked_lat, clicked_lon)
             st.rerun()  # Rerun to update map with prediction
 
 # Display Hazard Report
@@ -282,6 +312,23 @@ if st.session_state.prediction_data:
             st.warning("Demo mode: this result uses synthetic model inputs and must not be used for operational hazard decisions.")
         elif pred.get('data_source'):
             st.caption(f"Data source: {pred['data_source']}")
+
+        weather = st.session_state.weather_data
+        if weather and weather.get("status") == "success":
+            district_name, state_name = find_district(lat, lon)
+            st.markdown("---")
+            st.subheader(f"🌦️ Live Weather: {district_name}, {state_name}")
+            st.caption(f"Source: {weather['source']} | Observed: {weather['observed_at']} ({weather['timezone']})")
+            weather_columns = st.columns(5)
+            weather_columns[0].metric("Condition", weather["condition"])
+            weather_columns[1].metric("Temperature", f"{weather['temperature_c']} °C")
+            weather_columns[2].metric("Feels like", f"{weather['feels_like_c']} °C")
+            weather_columns[3].metric("Humidity", f"{weather['humidity_percent']}%")
+            weather_columns[4].metric("Wind", f"{weather['wind_speed_kmh']} km/h")
+            st.caption(
+                f"Rain: {weather['rain_mm']} mm | Precipitation: {weather['precipitation_mm']} mm | "
+                f"Cloud cover: {weather['cloud_cover_percent']}% | Wind direction: {weather['wind_direction_degrees']}°"
+            )
         
         st.markdown("---")
         st.subheader("📢 Official Advisory")

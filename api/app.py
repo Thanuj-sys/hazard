@@ -12,6 +12,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Dict, Any, List, Optional
 
 import numpy as np
+import requests
 import torch
 import torch.nn.functional as F
 import uvicorn
@@ -78,6 +79,15 @@ MODEL_CACHE: Optional[MultiHazardVLM] = None
 INFERENCE_MODE = os.getenv("INFERENCE_MODE", "demo_synthetic")
 APP_ENV = os.getenv("APP_ENV", "development").lower()
 
+WEATHER_CODES = {
+    0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
+    45: "Fog", 48: "Depositing rime fog", 51: "Light drizzle", 53: "Moderate drizzle",
+    55: "Dense drizzle", 61: "Slight rain", 63: "Moderate rain", 65: "Heavy rain",
+    71: "Slight snow", 73: "Moderate snow", 75: "Heavy snow", 80: "Slight rain showers",
+    81: "Moderate rain showers", 82: "Violent rain showers", 95: "Thunderstorm",
+    96: "Thunderstorm with slight hail", 99: "Thunderstorm with heavy hail",
+}
+
 
 def validate_aoi_bounds(aoi_bounds: List[float]) -> List[float]:
     """Validate AOI order as [min_lat, min_lon, max_lat, max_lon]."""
@@ -112,6 +122,51 @@ def h3_token(latitude: float, longitude: float, resolution: int) -> int:
     else:
         cell = h3.latlng_to_cell(latitude, longitude, resolution)
     return int(cell, 16) % 10000
+
+
+def fetch_live_weather(latitude: float, longitude: float) -> Dict[str, Any]:
+    """Fetch current weather for a map point from Open-Meteo."""
+    try:
+        response = requests.get(
+            "https://api.open-meteo.com/v1/forecast",
+            params={
+                "latitude": latitude,
+                "longitude": longitude,
+                "current": ",".join([
+                    "temperature_2m", "relative_humidity_2m", "apparent_temperature",
+                    "precipitation", "rain", "weather_code", "cloud_cover",
+                    "wind_speed_10m", "wind_direction_10m",
+                ]),
+                "timezone": "auto",
+                "forecast_days": 1,
+            },
+            timeout=20,
+        )
+        response.raise_for_status()
+        payload = response.json()
+        current = payload.get("current", {})
+        code = int(current.get("weather_code", -1))
+        return {
+            "status": "success",
+            "source": "Open-Meteo",
+            "latitude": latitude,
+            "longitude": longitude,
+            "observed_at": current.get("time"),
+            "timezone": payload.get("timezone"),
+            "temperature_c": current.get("temperature_2m"),
+            "feels_like_c": current.get("apparent_temperature"),
+            "humidity_percent": current.get("relative_humidity_2m"),
+            "precipitation_mm": current.get("precipitation"),
+            "rain_mm": current.get("rain"),
+            "cloud_cover_percent": current.get("cloud_cover"),
+            "wind_speed_kmh": current.get("wind_speed_10m"),
+            "wind_direction_degrees": current.get("wind_direction_10m"),
+            "weather_code": code,
+            "condition": WEATHER_CODES.get(code, "Unknown conditions"),
+        }
+    except (requests.RequestException, ValueError, KeyError) as exc:
+        logger.warning(f"Live weather lookup failed: {exc}")
+        raise HTTPException(status_code=503, detail="Live weather is temporarily unavailable.") from exc
 
 
 def resolve_latest_checkpoint(checkpoint_dir: str = "checkpoints") -> Optional[str]:
@@ -732,6 +787,12 @@ async def health_check():
             "model": "✅ loaded"
         }
     }
+
+
+@app.get("/api/v1/weather")
+async def weather_get(latitude: float = 20.5937, longitude: float = 78.9629):
+    latitude, longitude = validate_point(latitude, longitude)
+    return fetch_live_weather(latitude, longitude)
 
 async def handle_dashboard_data(request: Request):
     """
