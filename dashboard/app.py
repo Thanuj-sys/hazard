@@ -12,29 +12,17 @@ import pandas as pd
 import json
 import math
 import os
-import tempfile
 
 from branca.element import Element
-import geopandas as gpd
 from shapely.geometry import Point, mapping, shape
 from shapely.ops import unary_union
 
 # Configuration
 API_BASE_URL = os.getenv("MULTIHAZARD_API_URL", "http://localhost:8001/api/v1")
 INDIA_BOUNDS = [[6.5, 68.0], [35.5, 97.5]]
+STATE_COLORS = ["#f6d6ad", "#d9c2f0", "#c7e9c0", "#f4b6c2", "#c9def2", "#f6e6a8", "#d7c4e8"]
 INDIA_BOUNDARY_URL = "https://raw.githubusercontent.com/datameet/maps/master/Country/india-composite.geojson"
-STATE_FILES = {
-    "Admin2.shp": "https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.shp",
-    "Admin2.shx": "https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.shx",
-    "Admin2.dbf": "https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.dbf",
-    "Admin2.prj": "https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.prj",
-}
-DISTRICT_FILES = {
-    "2011_Dist.shp": "https://raw.githubusercontent.com/datameet/maps/master/Districts/Census_2011/2011_Dist.shp",
-    "2011_Dist.shx": "https://raw.githubusercontent.com/datameet/maps/master/Districts/Census_2011/2011_Dist.shx",
-    "2011_Dist.dbf": "https://raw.githubusercontent.com/datameet/maps/master/Districts/Census_2011/2011_Dist.dbf",
-    "2011_Dist.prj": "https://raw.githubusercontent.com/datameet/maps/master/Districts/Census_2011/2011_Dist.prj",
-}
+BOUNDARY_DIR = os.path.join(os.path.dirname(__file__), "boundaries")
 
 st.set_page_config(page_title="MultiHazard-VLM Dashboard", layout="wide")
 
@@ -74,31 +62,22 @@ def load_india_boundary():
         return None
 
 
-@st.cache_data(ttl=86400, show_spinner=False)
-def load_admin_boundaries(files, shapefile_name):
-    """Download and cache administrative boundaries for the India-only map."""
+@st.cache_data(show_spinner=False)
+def load_admin_boundaries(filename):
+    """Load bundled administrative boundaries for the India-only map."""
     try:
-        directory = tempfile.mkdtemp(prefix="india-boundaries-")
-        for filename, url in files.items():
-            response = requests.get(url, timeout=30)
-            response.raise_for_status()
-            with open(os.path.join(directory, filename), "wb") as boundary_file:
-                boundary_file.write(response.content)
-        frame = gpd.read_file(os.path.join(directory, shapefile_name)).to_crs("EPSG:4326")
-        frame["geometry"] = frame.geometry.simplify(0.01, preserve_topology=True)
-        if shapefile_name == "2011_Dist.shp":
-            frame = frame[["DISTRICT", "ST_NM", "geometry"]]
-        else:
-            frame = frame[["ST_NM", "geometry"]]
-        return json.loads(frame.to_json())
-    except (requests.RequestException, ValueError, OSError) as exc:
+        with open(os.path.join(BOUNDARY_DIR, filename), encoding="utf-8") as boundary_file:
+            return json.load(boundary_file)
+    except (ValueError, OSError) as exc:
         st.sidebar.warning(f"Administrative boundaries unavailable. ({exc})")
         return None
 
 
-india_boundary = load_india_boundary()
-state_boundaries = load_admin_boundaries(STATE_FILES, "Admin2.shp") if show_states or show_districts else None
-district_boundaries = load_admin_boundaries(DISTRICT_FILES, "2011_Dist.shp") if show_districts else None
+india_boundary = None
+state_boundaries = load_admin_boundaries("india_states.geojson")
+district_boundaries = load_admin_boundaries("india_districts.geojson")
+if india_boundary is None and state_boundaries:
+    india_boundary = mapping(unary_union([shape(feature["geometry"]) for feature in state_boundaries["features"]]))
 
 # Function to fetch prediction for clicked coordinates
 def fetch_prediction(lat: float, lon: float):
@@ -139,27 +118,55 @@ m = folium.Map(
 )
 m.fit_bounds(INDIA_BOUNDS, padding=(12, 12))
 m.get_root().header.add_child(Element("<style>.leaflet-container { background: #8ecae6; }</style>"))
+folium.map.Marker(
+    [35.0, 78.0],
+    icon=folium.DivIcon(
+        html='<div style="font-size:22px;font-weight:800;color:#542b1f;background:#fff8e8;'
+        'border:1px solid #d4b483;padding:7px 14px;text-align:center;white-space:nowrap;">'
+        'India Political Map<br><span style="font-size:12px;font-weight:600;">States, Union Territories &amp; Districts</span></div>'
+    ),
+).add_to(m)
 
 if india_boundary:
     india_shape = shape(india_boundary)
+    def state_style(feature):
+        state_name = feature.get("properties", {}).get("ST_NM", "")
+        color_index = sum(ord(char) for char in state_name) % len(STATE_COLORS)
+        return {"color": "#80552a", "weight": 1.6, "fillColor": STATE_COLORS[color_index], "fillOpacity": 1}
+
     folium.GeoJson(
         india_boundary,
         name="India boundary",
-        style_function=lambda _: {"color": "#8a5a16", "weight": 2, "fillColor": "#d9ead3", "fillOpacity": 1},
+        style_function=lambda _: {"color": "#80552a", "weight": 2, "fillColor": "#d9ead3", "fillOpacity": 1},
     ).add_to(m)
-    if district_boundaries:
-        folium.GeoJson(
-            district_boundaries,
-            name="District boundaries",
-            style_function=lambda _: {"color": "#8c9a8c", "weight": 0.45, "fillOpacity": 0},
-        ).add_to(m)
     if state_boundaries:
         folium.GeoJson(
             state_boundaries,
             name="State boundaries",
-            style_function=lambda _: {"color": "#8a5a16", "weight": 1.4, "fillOpacity": 0},
+            style_function=state_style,
             tooltip=folium.GeoJsonTooltip(fields=["ST_NM"], aliases=["State"]),
         ).add_to(m)
+    if district_boundaries:
+        district_layer = folium.GeoJson(
+            district_boundaries,
+            name="District boundaries",
+            style_function=lambda _: {"color": "#8b8178", "weight": 0.35, "fillOpacity": 0},
+        ).add_to(m)
+        m.get_root().script.add_child(Element(f"""
+            <script>
+            (function() {{
+                var map = {m.get_name()};
+                var districts = {district_layer.get_name()};
+                function updateDistricts() {{
+                    var zoom = map.getZoom();
+                    var weight = zoom >= 8 ? 0.9 : (zoom >= 6 ? 0.55 : 0.25);
+                    districts.setStyle({{weight: weight, opacity: zoom >= 6 ? 0.9 : 0.45}});
+                }}
+                map.on('zoomend', updateDistricts);
+                updateDistricts();
+            }})();
+            </script>
+        """))
         for feature in state_boundaries.get("features", []):
             state_name = feature.get("properties", {}).get("ST_NM")
             geometry = feature.get("geometry")
