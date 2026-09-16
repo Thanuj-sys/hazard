@@ -142,11 +142,15 @@ if st.session_state.prediction_data:
             st.subheader("⚠️ Hazard Type & Probabilities")
             hazard_type = pred['hazard_type']
             probs = pred['hazard_probabilities']
-            st.metric("Primary Hazard", hazard_type, delta=f"{probs.get(hazard_type.lower(), 0)*100:.1f}%")
-            
-            # Show all probabilities
-            for haz_name, prob_val in probs.items():
-                st.metric(f"{haz_name.capitalize()}", f"{prob_val*100:.1f}%")
+            selected_probability = probs.get(default_hazard.lower(), 0.0) if default_hazard != "All" else probs.get(hazard_type.lower(), 0.0)
+            display_hazard = default_hazard if default_hazard != "All" else hazard_type
+            st.metric("Selected Hazard" if default_hazard != "All" else "Primary Hazard", display_hazard, delta=f"{selected_probability*100:.1f}%")
+
+            if default_hazard == "All":
+                for haz_name, prob_val in probs.items():
+                    st.metric(f"{haz_name.capitalize()}", f"{prob_val*100:.1f}%")
+            else:
+                st.metric(default_hazard, f"{selected_probability*100:.1f}%")
         
         with col3:
             st.subheader("📏 Impact Assessment")
