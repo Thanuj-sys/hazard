@@ -160,6 +160,23 @@ if india_boundary:
             style_function=lambda _: {"color": "#8a5a16", "weight": 1.4, "fillOpacity": 0},
             tooltip=folium.GeoJsonTooltip(fields=["ST_NM"], aliases=["State"]),
         ).add_to(m)
+        for feature in state_boundaries.get("features", []):
+            state_name = feature.get("properties", {}).get("ST_NM")
+            geometry = feature.get("geometry")
+            if not state_name or not geometry:
+                continue
+            label_point = shape(geometry).representative_point()
+            folium.Marker(
+                location=[label_point.y, label_point.x],
+                icon=folium.DivIcon(
+                    html=(
+                        f'<div style="font-size:10px;font-weight:700;color:#3d2b12;'
+                        f'text-shadow:0 1px 2px #f5f1e8,1px 0 #f5f1e8,-1px 0 #f5f1e8;'
+                        f'white-space:nowrap;">{state_name}</div>'
+                    )
+                ),
+                tooltip=state_name,
+            ).add_to(m)
 
 # Display stored prediction on map if available
 if st.session_state.prediction_data:
