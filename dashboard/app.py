@@ -100,12 +100,12 @@ m.fit_bounds(INDIA_BOUNDS, padding=(12, 12))
 
 if india_boundary:
     india_shape = shape(india_boundary)
-    map_extent = box(INDIA_BOUNDS[0][1], INDIA_BOUNDS[0][0], INDIA_BOUNDS[1][1], INDIA_BOUNDS[1][0])
+    map_extent = box(-180.0, -90.0, 180.0, 90.0)
     outside_india = map_extent.difference(india_shape)
     folium.GeoJson(
         mapping(outside_india),
         name="Outside India mask",
-        style_function=lambda _: {"fillColor": "#0b0d12", "color": "#0b0d12", "weight": 0, "fillOpacity": 1.0},
+        style_function=lambda _: {"fillColor": "#8ecae6", "color": "#8ecae6", "weight": 0, "fillOpacity": 1.0},
     ).add_to(m)
     folium.GeoJson(
         india_boundary,
