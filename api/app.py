@@ -17,6 +17,7 @@ import torch
 import torch.nn.functional as F
 import uvicorn
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from loguru import logger
 from pydantic import BaseModel
@@ -35,6 +36,12 @@ app = FastAPI(
     title="MultiHazard-VLM API Gateway with DB & Cache",
     description="REST API for multi-hazard mapping with PostgreSQL, Redis, and Prometheus monitoring.",
     version="2.0.0"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8503", "http://127.0.0.1:8503"],
+    allow_methods=["GET"],
+    allow_headers=["*"],
 )
 
 @app.on_event("startup")

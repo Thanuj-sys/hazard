@@ -178,12 +178,41 @@ if india_boundary:
             tooltip=folium.GeoJsonTooltip(fields=["ST_NM"], aliases=["State"]),
         ).add_to(m)
     if district_boundaries:
+        district_map_data = json.loads(json.dumps(district_boundaries))
+        for feature in district_map_data.get("features", []):
+            district_geometry = feature.get("geometry")
+            if district_geometry:
+                district_point = shape(district_geometry).representative_point()
+                feature.setdefault("properties", {})["_lat"] = district_point.y
+                feature.setdefault("properties", {})["_lon"] = district_point.x
         district_layer = folium.GeoJson(
-            district_boundaries,
+            district_map_data,
             name="District boundaries",
             style_function=lambda _: {"color": "#8b8178", "weight": 0.35, "fillOpacity": 0},
             tooltip=folium.GeoJsonTooltip(fields=["DISTRICT", "ST_NM"], aliases=["District", "State"]),
         ).add_to(m)
+        m.get_root().script.add_child(Element(f"""
+            <script>
+            (function() {{
+                var districts = {district_layer.get_name()};
+                districts.eachLayer(function(layer) {{
+                    layer.on('mouseover', function(event) {{
+                        var properties = event.target.feature.properties;
+                        var tooltip = event.target.getTooltip();
+                        tooltip.setContent('<b>District</b>&nbsp; ' + properties.DISTRICT + '<br><b>State</b>&nbsp; ' + properties.ST_NM + '<br><b>Temperature</b>&nbsp; loading...').openTooltip();
+                        fetch('http://127.0.0.1:8001/api/v1/weather?latitude=' + properties._lat + '&longitude=' + properties._lon)
+                            .then(function(response) {{ return response.json(); }})
+                            .then(function(weather) {{
+                                tooltip.setContent('<b>District</b>&nbsp; ' + properties.DISTRICT + '<br><b>State</b>&nbsp; ' + properties.ST_NM + '<br><b>Temperature</b>&nbsp; ' + weather.temperature_c + ' °C');
+                            }})
+                            .catch(function() {{
+                                tooltip.setContent('<b>District</b>&nbsp; ' + properties.DISTRICT + '<br><b>State</b>&nbsp; ' + properties.ST_NM + '<br><b>Temperature</b>&nbsp; unavailable');
+                            }});
+                    }});
+                }});
+            }})();
+            </script>
+        """))
         m.get_root().script.add_child(Element(f"""
             <script>
             (function() {{
@@ -216,22 +245,6 @@ if india_boundary:
                 ),
                 tooltip=state_name,
             ).add_to(m)
-
-if st.session_state.weather_data and st.session_state.weather_location:
-    weather = st.session_state.weather_data
-    weather_lat, weather_lon = st.session_state.weather_location
-    district_name, state_name = find_district(weather_lat, weather_lon)
-    folium.Marker(
-        location=[weather_lat, weather_lon],
-        icon=folium.DivIcon(html="<div style='width:1px;height:1px;'></div>"),
-        popup=folium.Popup(
-            f"<b>District</b>&nbsp; {district_name}<br>"
-            f"<b>State</b>&nbsp; {state_name}<br>"
-            f"<b>Temperature</b>&nbsp; {weather['temperature_c']} °C",
-            max_width=220,
-            show=True,
-        ),
-    ).add_to(m)
 
 # Display stored prediction on map if available
 if st.session_state.prediction_data:
