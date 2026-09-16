@@ -13,7 +13,8 @@ import json
 import math
 import os
 
-from shapely.geometry import Point, box, mapping, shape
+from branca.element import Element
+from shapely.geometry import Point, mapping, shape
 from shapely.ops import unary_union
 
 # Configuration
@@ -88,7 +89,7 @@ def fetch_prediction(lat: float, lon: float):
 m = folium.Map(
     location=[20.5937, 78.9629],  # India center
     zoom_start=5,
-    tiles="OpenStreetMap",
+    tiles=None,
     click=True,
     min_zoom=5,
     max_zoom=10,
@@ -97,20 +98,14 @@ m = folium.Map(
     max_bounds_viscosity=1.0,
 )
 m.fit_bounds(INDIA_BOUNDS, padding=(12, 12))
+m.get_root().header.add_child(Element("<style>.leaflet-container { background: #8ecae6; }</style>"))
 
 if india_boundary:
     india_shape = shape(india_boundary)
-    map_extent = box(-180.0, -90.0, 180.0, 90.0)
-    outside_india = map_extent.difference(india_shape)
-    folium.GeoJson(
-        mapping(outside_india),
-        name="Outside India mask",
-        style_function=lambda _: {"fillColor": "#8ecae6", "color": "#8ecae6", "weight": 0, "fillOpacity": 1.0},
-    ).add_to(m)
     folium.GeoJson(
         india_boundary,
         name="India boundary",
-        style_function=lambda _: {"color": "#f4c95d", "weight": 2, "fillOpacity": 0},
+        style_function=lambda _: {"color": "#b7791f", "weight": 2, "fillColor": "#d9ead3", "fillOpacity": 1},
     ).add_to(m)
 
 # Display stored prediction on map if available
