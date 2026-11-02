@@ -1,0 +1,22 @@
+{
+  "scored_cases": {
+    "overall": 248,
+    "flood": 82,
+    "wildfire": 100,
+    "landslide": 66
+  },
+  "acquired_pairs": {
+    "flood": 90,
+    "wildfire": 100,
+    "landslide": 100
+  },
+  "excluded_cases": 42,
+  "new_scored_cases": 173,
+  "baseline_report_sha256": "d2013498c70ea1c7f8211fa476e2f5aec0733713251d4ee6bdaf6d450c9764b2",
+  "expanded_report_sha256": "b643ae647ad8dab1f9d2145a55944872a1e8eb16600f87cc3752b2c430a27995",
+  "expanded_manifest_sha256": "db035b2333f3f2a8c6cb344c828338c6bcf0b6f98e1fd84b36855673e81aca7d",
+  "checkpoint_sha256": "9ab2119cda7e85e056f37dd5c8d494737acf2822dd78074af76b4768be6a11b1",
+  "independent_sklearn_metric_check": "passed",
+  "adapter_and_comparison_tests": "6 passed",
+  "changed_argmax_on_repeated_cases": []
+}

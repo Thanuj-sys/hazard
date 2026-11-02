@@ -8,33 +8,130 @@ Verifies that:
 import torch
 import sys
 import os
+import asyncio
+import json
+import numpy as np
+import rasterio
+from rasterio.transform import from_origin
 from pathlib import Path
 
 # Add the project root to the python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from models.multihazard_vlm import MultiHazardVLM
-from data.datasets import S1S2WaterDataset, HLSBurnScarDataset
+from data.datasets import (
+    CASLandslideDataset,
+    CombinedHazardDataset,
+    HLSBurnScarDataset,
+    S1S2WaterDataset,
+)
+
+UNIFIED_SAMPLE_KEYS = {
+    'image',
+    'geospatial_features',
+    'target_mask',
+    'severity_mask',
+    'event_id',
+    'hazard',
+    'metadata',
+}
 
 
 def test_dataset_loaders_read_real_sample_tiffs():
-    flood = S1S2WaterDataset()
-    wildfire = HLSBurnScarDataset()
+    loaders = [
+        ('flood', S1S2WaterDataset),
+        ('wildfire', HLSBurnScarDataset),
+        ('landslide', CASLandslideDataset),
+    ]
+    for hazard, loader_type in loaders:
+        dataset = loader_type()
+        sample = dataset[0]
+        assert set(sample) == UNIFIED_SAMPLE_KEYS
+        assert sample['hazard'] == hazard
+        assert sample['image'].shape == (10, 512, 512)
+        assert sample['image'].abs().max().item() > 1e-6
+        assert sample['target_mask'] is not None
+        assert sample['target_mask'].shape == (512, 512)
+        assert sample['severity_mask'] is None
+        assert sample['event_id'] is None
+        if hazard == 'flood':
+            assert sample['metadata']['target_semantics'].startswith('water_mask;')
+        elif hazard == 'wildfire':
+            assert sample['metadata']['target_semantics'] == 'burned_area'
+        else:
+            assert sample['metadata']['target_semantics'] == 'not_verified'
+            assert 'runout_mask' not in sample
 
-    flood_tensor, _, flood_mask, flood_meta = flood[0]
-    wildfire_tensor, _, wildfire_mask, wildfire_meta = wildfire[0]
+        mask_path = dataset.data[0]['mask_path']
+        with rasterio.open(mask_path) as source:
+            expected_mask = torch.from_numpy(source.read(1))
+            assert torch.equal(sample['target_mask'], expected_mask)
+            target_metadata = sample['metadata']['raster']['target_mask']
+            assert target_metadata['crs'] == (source.crs.to_string() if source.crs else None)
+            assert target_metadata['transform'] == source.transform
+            assert target_metadata['resolution'] == tuple(float(value) for value in source.res)
+            assert target_metadata['width'] == source.width
+            assert target_metadata['height'] == source.height
 
-    assert flood_tensor.shape == (10, 512, 512)
-    assert wildfire_tensor.shape == (10, 512, 512)
-    assert flood_mask.shape == (512, 512)
-    assert wildfire_mask.shape == (512, 512)
-    assert flood_tensor.abs().max().item() > 1e-6
-    assert wildfire_tensor.abs().max().item() > 1e-6
+        assert sample['metadata']['event'] is None
+        assert sample['metadata']['timestamp'] is None
 
-    assert flood_meta['georeferenced'] is True
-    assert wildfire_meta['georeferenced'] is True
-    assert 6.5 <= flood_meta['lat'] <= 35.5
-    assert 68.0 <= flood_meta['lon'] <= 97.5
+
+def test_missing_target_mask_remains_unavailable(tmp_path):
+    image_path = tmp_path / 'sample_s1.tif'
+    image = np.ones((2, 4, 4), dtype=np.uint16)
+    with rasterio.open(
+        image_path,
+        'w',
+        driver='GTiff',
+        height=4,
+        width=4,
+        count=2,
+        dtype=image.dtype,
+        crs='EPSG:32643',
+        transform=from_origin(68.0, 10.0, 10.0, 10.0),
+    ) as destination:
+        destination.write(image)
+
+    sample = S1S2WaterDataset(data_dir=str(tmp_path))[0]
+
+    assert sample['target_mask'] is None
+    assert sample['metadata']['source_paths']['target_mask'] is None
+    assert sample['metadata']['raster']['target_mask']['transform'] is None
+
+
+def test_event_manifest_only_populates_verified_metadata():
+    from data.datasets import _load_event_metadata
+
+    event = _load_event_metadata('F1', 'flood')
+
+    assert event['event_id'] == 'F1'
+    assert event['hazard'] == 'Flood'
+    assert event['event_name'] == 'Upper Assam flood'
+    assert event['event_date'] is None
+    assert event['location'] is None
+    assert event['source'] is None
+    assert event['ground_truth'] is None
+
+
+def test_reconstruction_sample_keeps_mask_out_of_legacy_targets():
+    dataset = CombinedHazardDataset(split='train', dataset_order=['flood'])
+    legacy_sample = dataset[0]
+    reconstruction_sample = dataset.get_reconstruction_sample(0)
+
+    assert torch.equal(legacy_sample['target_mask'], legacy_sample['hazard_mask'])
+    assert legacy_sample['legacy_targets']['radius_target'].item() == 15.0
+    assert set(reconstruction_sample) == UNIFIED_SAMPLE_KEYS
+    assert reconstruction_sample['target_mask'] is not None
+    assert 'radius_target' not in reconstruction_sample
+    assert 'coords_target' not in reconstruction_sample
+    assert 'target_tokens' not in reconstruction_sample
+    assert reconstruction_sample['geospatial_features'] is None
+
+    reconstruction_dataset = CombinedHazardDataset(
+        split='train', dataset_order=['flood'], sample_format='reconstruction'
+    )
+    assert set(reconstruction_dataset[0]) == UNIFIED_SAMPLE_KEYS
 
 
 def test_combined_dataset_has_train_val_split():
@@ -195,8 +292,40 @@ def test_api_dashboard_route_returns_successful_payload():
     assert 'hazard_probabilities' in payload
     assert set(payload['hazard_probabilities'].keys()) == {'flood', 'wildfire', 'landslide'}
     assert payload['radius_km'] > 0
-    assert payload['inference_mode'] == 'demo_synthetic'
-    assert payload['data_source'] == 'Synthetic demo tensors'
+    expected_mode = os.getenv('INFERENCE_MODE', 'planetary_computer')
+    assert payload['inference_mode'] == expected_mode
+    if expected_mode == 'demo_synthetic':
+        assert payload['data_source'] == 'Synthetic demo tensors'
+    else:
+        assert payload['data_source'].startswith('Microsoft Planetary Computer')
+
+
+def test_evaluation_metrics_endpoint_reports_not_run_or_saved_results(tmp_path, monkeypatch):
+    from api.app import get_evaluation_metrics
+
+    report_path = tmp_path / 'metrics_report.json'
+    monkeypatch.setenv('EVALUATION_RESULTS_PATH', str(report_path))
+
+    missing_report = asyncio.run(get_evaluation_metrics())
+    assert missing_report['status'] == 'not_run'
+    assert missing_report['results_available'] is False
+    assert missing_report['results_by_hazard'] == {}
+
+    report_path.write_text(json.dumps({
+        'results_by_hazard': {
+            'overall': {'accuracy': 0.75, 'haversine_dist_km': 1.25},
+            'wildfire': {'accuracy': 0.8},
+        },
+        'sample_counts': {'overall': 12, 'wildfire': 4},
+        'metadata': {'run_id': 'test-run'},
+    }), encoding='utf-8')
+
+    saved_report = asyncio.run(get_evaluation_metrics())
+    assert saved_report['status'] == 'available'
+    assert saved_report['results_available'] is True
+    assert saved_report['results_by_hazard']['overall']['accuracy'] == 0.75
+    assert saved_report['sample_counts']['wildfire'] == 4
+    assert saved_report['metadata']['run_id'] == 'test-run'
 
 
 def test_checkpoint_positional_embedding_is_adapted():

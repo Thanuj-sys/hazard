@@ -1,0 +1,6 @@
+﻿# Additional dependency for exporting saved evaluation charts. No training required.
+matplotlib>=3.8.0
+
+# Real public-data transfer evaluation (HDF5 and official Parquet assets).
+h5py
+pyarrow

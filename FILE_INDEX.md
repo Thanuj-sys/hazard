@@ -45,7 +45,10 @@
 | File | Status | Purpose |
 |------|--------|---------|
 | **api/app.py** | ✏️ Modified | FastAPI with DB/cache/metrics |
-| **dashboard/app.py** | ✓ Unchanged | Streamlit interactive map |
+| **web/src/App.jsx** | New | React hazard map and assessment UI |
+| **web/vite.config.js** | New | Vite frontend server and FastAPI proxy |
+| **web/Dockerfile** | New | React static build and Nginx container |
+| **dashboard/** | Legacy data | Retained boundary assets from the former dashboard; the active UI is React under `web/` |
 
 ---
 
@@ -288,7 +291,6 @@ d:\sem7\hazard\
 - [x] data/metrics.py - Syntax verified
 - [x] init_database.py - Syntax verified
 - [x] api/app.py - Modified and verified
-- [x] dashboard/app.py - No changes needed
 
 ### Infrastructure
 - [x] docker-compose.yml - YAML validated

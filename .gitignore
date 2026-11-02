@@ -6,6 +6,8 @@ venv/
 __pycache__/
 .pytest_cache/
 *.py[cod]
+web/node_modules/
+web/dist/
 
 # Runtime output
 logs/
@@ -17,10 +19,49 @@ logs/
 
 # Large model artifacts and downloaded datasets
 checkpoints/
-dataset/
+# Keep the benchmark contract, registries, splits and audit reports reviewable.
+/dataset/images/
+/dataset/masks/
+/dataset/validity/
+/dataset/raw/
 datasets/*/train/*.tif
 *.pt
 *.pth
 
 # Notebook/runtime artifacts
 .ipynb_checkpoints/
+
+# Saved evaluation figure exports
+/evaluation/figures/
+
+# Generated image explanations
+/evaluation/explanations/
+
+# Locally saved point analysis PDFs
+/reports/analyses/
+
+# Expanded validation: keep manifests, exclude downloaded raster/container bytes
+/dataset/real_holdout_expanded/**/*.tif
+/dataset/real_holdout_expanded/**/*.h5
+/dataset/real_holdout_expanded/**/*.parquet
+/dataset/real_holdout_expanded/**/*.partial
+
+# Local environment overrides and credentials
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Downloaded holdout raster and container data
+/dataset/real_holdout/**/*.tif
+/dataset/real_holdout/**/*.h5
+/dataset/real_holdout/**/*.parquet
+/dataset/real_holdout/**/*.partial
+
+# Local document archives and assessment uploads
+/Thesis_Template___Amrita_AIE.zip
+/Thesis_Template___Amrita_AIE/
+/area.geojson
+/area_geojson_uid.zip
+/area_geojson_uid/
+/assessment_footprint.png

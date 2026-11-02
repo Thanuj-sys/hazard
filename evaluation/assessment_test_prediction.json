@@ -1,0 +1,20 @@
+﻿{
+    "hazard_type":  "landslide",
+    "hazard_probabilities":  {
+                                 "flood":  0.23235732316970825,
+                                 "wildfire":  0.3088040351867676,
+                                 "landslide":  0.45883867144584656
+                             },
+    "predicted_coordinates":  [
+                                  17.756181296780575,
+                                  76.68880039367238
+                              ],
+    "radius_km":  9.2,
+    "affected_area_km2":  265.90440219985754,
+    "model_version":  "v2.0",
+    "inference_mode":  null,
+    "data_source":  null,
+    "source_acquired_at":  null,
+    "original_prediction_created_at":  "2026-10-12T15:31:34.833799Z",
+    "provenance_note":  "Existing saved model prediction from evaluation/prediction_history.json, record 0. Source imagery and inference mode were not recorded in that entry. This is an upload-format conversion, not a new inference or verified event label."
+}

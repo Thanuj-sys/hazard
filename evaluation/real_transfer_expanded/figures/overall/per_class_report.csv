@@ -1,0 +1,4 @@
+class,support,predicted_count,tp,fp,fn,tn,precision,recall,f1,specificity,negative_predictive_value
+flood,82,0,0,0,82,166,,0.0,0.0,1.0,0.6693548387096774
+wildfire,100,182,100,82,0,66,0.5494505494505495,1.0,0.7092198581560284,0.44594594594594594,1.0
+landslide,66,66,66,0,0,182,1.0,1.0,1.0,1.0,1.0

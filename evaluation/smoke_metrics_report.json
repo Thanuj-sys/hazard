@@ -1,0 +1,1071 @@
+{
+  "results_by_hazard": {
+    "overall": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "flood": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "wildfire": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "landslide": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "sample_counts": {
+    "overall": 3,
+    "flood": 1,
+    "wildfire": 1,
+    "landslide": 1
+  },
+  "metadata": {
+    "run_id": "20261022T171147Z",
+    "evaluation_kind": "generated_sample_smoke_test",
+    "benchmark_status": "not_a_historical_event_benchmark",
+    "ground_truth_status": "UNVERIFIED generated sample files; all scores are software smoke diagnostics only",
+    "checkpoint": "D:\\sem7\\hazard\\checkpoints\\model_epoch_9.pt",
+    "device": "cpu",
+    "datasets": {
+      "flood": "S1S2WaterDataset",
+      "wildfire": "HLSBurnScarDataset",
+      "landslide": "CASLandslideDataset"
+    },
+    "segmentation_status": "not_evaluated",
+    "segmentation_note": "Skipped because the selected checkpoint has no trained segmentation_head weights.",
+    "geospatial_regression_status": "not_evaluated",
+    "geospatial_regression_note": "No verified event coordinates or radii are present in the local event manifest; coordinate and radius scores are intentionally omitted.",
+    "per_sample": [
+      {
+        "hazard": "flood",
+        "target_class": "flood",
+        "predicted_class": "flood",
+        "confidence": 0.8617688417434692,
+        "hazard_probabilities": {
+          "flood": 0.8617688417434692,
+          "wildfire": 0.025967521592974663,
+          "landslide": 0.11226369440555573
+        },
+        "event_id": null,
+        "ground_truth_source": "unverified generated sample; not research ground truth"
+      },
+      {
+        "hazard": "wildfire",
+        "target_class": "wildfire",
+        "predicted_class": "wildfire",
+        "confidence": 0.9288133978843689,
+        "hazard_probabilities": {
+          "flood": 0.026875251904129982,
+          "wildfire": 0.9288133978843689,
+          "landslide": 0.04431135579943657
+        },
+        "event_id": null,
+        "ground_truth_source": "unverified generated sample; not research ground truth"
+      },
+      {
+        "hazard": "landslide",
+        "target_class": "landslide",
+        "predicted_class": "landslide",
+        "confidence": 0.8719274997711182,
+        "hazard_probabilities": {
+          "flood": 0.09231419116258621,
+          "wildfire": 0.03575829043984413,
+          "landslide": 0.8719274997711182
+        },
+        "event_id": null,
+        "ground_truth_source": "unverified generated sample; not research ground truth"
+      }
+    ]
+  },
+  "detailed_evaluation": {
+    "classification": {
+      "overall": {
+        "status": "available",
+        "sample_count": 3,
+        "labels": [
+          "flood",
+          "wildfire",
+          "landslide"
+        ],
+        "confusion_matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "confusion_matrix_row_normalized": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "orientation": "Rows = true class; columns = predicted class",
+        "per_class": [
+          {
+            "class": "flood",
+            "support": 1,
+            "predicted_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "tn": 2,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          },
+          {
+            "class": "wildfire",
+            "support": 1,
+            "predicted_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "tn": 2,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          },
+          {
+            "class": "landslide",
+            "support": 1,
+            "predicted_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "tn": 2,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          }
+        ],
+        "summary": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "weighted_f1": 1.0,
+          "micro_f1": 1.0,
+          "cohens_kappa": 1.0,
+          "multiclass_mcc": 1.0,
+          "error_count": 0,
+          "correct_count": 3,
+          "accuracy_ci95": {
+            "lower": 0.4385029682449546,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Wilson score interval; assumes independent cases, not clustered event sampling"
+          }
+        },
+        "per_case": [
+          {
+            "case_id": "flood",
+            "true_hazard": "flood",
+            "predicted_hazard": "flood",
+            "hazard_probabilities": {
+              "flood": 0.8617688417434692,
+              "wildfire": 0.025967521592974663,
+              "landslide": 0.11226369440555573
+            }
+          },
+          {
+            "case_id": "wildfire",
+            "true_hazard": "wildfire",
+            "predicted_hazard": "wildfire",
+            "hazard_probabilities": {
+              "flood": 0.026875251904129982,
+              "wildfire": 0.9288133978843689,
+              "landslide": 0.04431135579943657
+            }
+          },
+          {
+            "case_id": "landslide",
+            "true_hazard": "landslide",
+            "predicted_hazard": "landslide",
+            "hazard_probabilities": {
+              "flood": 0.09231419116258621,
+              "wildfire": 0.03575829043984413,
+              "landslide": 0.8719274997711182
+            }
+          }
+        ],
+        "warnings": [
+          "Small samples do not establish generalization."
+        ],
+        "probability_diagnostics": {
+          "status": "available",
+          "eligible_count": 3,
+          "total_classified": 3,
+          "log_loss": 0.11988821135609351,
+          "multiclass_brier_score": 0.022113913550243742,
+          "expected_calibration_error": 0.11249675353368123,
+          "calibration_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 2,
+              "confidence": 0.8668481707572937,
+              "accuracy": 1.0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 1,
+              "confidence": 0.9288133978843689,
+              "accuracy": 1.0
+            }
+          ],
+          "curves": {
+            "flood": {
+              "status": "available",
+              "roc_auc": 1.0,
+              "average_precision": 1.0,
+              "positive_prevalence": 0.3333333333333333,
+              "roc": {
+                "fpr": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "tpr": [
+                  0.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "precision_recall": {
+                "precision": [
+                  0.3333333333333333,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "recall": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            },
+            "wildfire": {
+              "status": "available",
+              "roc_auc": 1.0,
+              "average_precision": 1.0,
+              "positive_prevalence": 0.3333333333333333,
+              "roc": {
+                "fpr": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "tpr": [
+                  0.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "precision_recall": {
+                "precision": [
+                  0.3333333333333333,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "recall": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            },
+            "landslide": {
+              "status": "available",
+              "roc_auc": 1.0,
+              "average_precision": 1.0,
+              "positive_prevalence": 0.3333333333333333,
+              "roc": {
+                "fpr": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "tpr": [
+                  0.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "precision_recall": {
+                "precision": [
+                  0.3333333333333333,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "recall": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            }
+          },
+          "definitions": {
+            "brier": "Mean sum of squared errors across all classes; range [0,2]",
+            "ece": "10 equal-width confidence bins; weighted absolute confidence-accuracy gap"
+          }
+        }
+      },
+      "flood": {
+        "status": "available",
+        "sample_count": 1,
+        "labels": [
+          "flood",
+          "wildfire",
+          "landslide"
+        ],
+        "confusion_matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "confusion_matrix_row_normalized": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ]
+        ],
+        "orientation": "Rows = true class; columns = predicted class",
+        "per_class": [
+          {
+            "class": "flood",
+            "support": 1,
+            "predicted_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "specificity": null,
+            "negative_predictive_value": null
+          },
+          {
+            "class": "wildfire",
+            "support": 0,
+            "predicted_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 1,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          },
+          {
+            "class": "landslide",
+            "support": 0,
+            "predicted_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 1,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          }
+        ],
+        "summary": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "weighted_f1": 1.0,
+          "micro_f1": 1.0,
+          "cohens_kappa": null,
+          "multiclass_mcc": null,
+          "error_count": 0,
+          "correct_count": 1,
+          "accuracy_ci95": {
+            "lower": 0.20654931437723745,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Wilson score interval; assumes independent cases, not clustered event sampling"
+          }
+        },
+        "per_case": [
+          {
+            "case_id": "flood",
+            "true_hazard": "flood",
+            "predicted_hazard": "flood",
+            "hazard_probabilities": {
+              "flood": 0.8617688417434692,
+              "wildfire": 0.025967521592974663,
+              "landslide": 0.11226369440555573
+            }
+          }
+        ],
+        "warnings": [
+          "Small samples do not establish generalization."
+        ],
+        "probability_diagnostics": {
+          "status": "available",
+          "eligible_count": 1,
+          "total_classified": 1,
+          "log_loss": 0.14876820931189338,
+          "multiclass_brier_score": 0.03238530237220766,
+          "expected_calibration_error": 0.13823115825653076,
+          "calibration_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 1,
+              "confidence": 0.8617688417434692,
+              "accuracy": 1.0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            }
+          ],
+          "curves": {
+            "flood": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            },
+            "wildfire": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            },
+            "landslide": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            }
+          },
+          "definitions": {
+            "brier": "Mean sum of squared errors across all classes; range [0,2]",
+            "ece": "10 equal-width confidence bins; weighted absolute confidence-accuracy gap"
+          }
+        }
+      },
+      "wildfire": {
+        "status": "available",
+        "sample_count": 1,
+        "labels": [
+          "flood",
+          "wildfire",
+          "landslide"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "confusion_matrix_row_normalized": [
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            null,
+            null,
+            null
+          ]
+        ],
+        "orientation": "Rows = true class; columns = predicted class",
+        "per_class": [
+          {
+            "class": "flood",
+            "support": 0,
+            "predicted_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 1,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          },
+          {
+            "class": "wildfire",
+            "support": 1,
+            "predicted_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "specificity": null,
+            "negative_predictive_value": null
+          },
+          {
+            "class": "landslide",
+            "support": 0,
+            "predicted_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 1,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          }
+        ],
+        "summary": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "weighted_f1": 1.0,
+          "micro_f1": 1.0,
+          "cohens_kappa": null,
+          "multiclass_mcc": null,
+          "error_count": 0,
+          "correct_count": 1,
+          "accuracy_ci95": {
+            "lower": 0.20654931437723745,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Wilson score interval; assumes independent cases, not clustered event sampling"
+          }
+        },
+        "per_case": [
+          {
+            "case_id": "wildfire",
+            "true_hazard": "wildfire",
+            "predicted_hazard": "wildfire",
+            "hazard_probabilities": {
+              "flood": 0.026875251904129982,
+              "wildfire": 0.9288133978843689,
+              "landslide": 0.04431135579943657
+            }
+          }
+        ],
+        "warnings": [
+          "Small samples do not establish generalization."
+        ],
+        "probability_diagnostics": {
+          "status": "available",
+          "eligible_count": 1,
+          "total_classified": 1,
+          "log_loss": 0.07384742376238944,
+          "multiclass_brier_score": 0.007753307738463878,
+          "expected_calibration_error": 0.0711866021156311,
+          "calibration_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 1,
+              "confidence": 0.9288133978843689,
+              "accuracy": 1.0
+            }
+          ],
+          "curves": {
+            "flood": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            },
+            "wildfire": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            },
+            "landslide": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            }
+          },
+          "definitions": {
+            "brier": "Mean sum of squared errors across all classes; range [0,2]",
+            "ece": "10 equal-width confidence bins; weighted absolute confidence-accuracy gap"
+          }
+        }
+      },
+      "landslide": {
+        "status": "available",
+        "sample_count": 1,
+        "labels": [
+          "flood",
+          "wildfire",
+          "landslide"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "confusion_matrix_row_normalized": [
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "orientation": "Rows = true class; columns = predicted class",
+        "per_class": [
+          {
+            "class": "flood",
+            "support": 0,
+            "predicted_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 1,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          },
+          {
+            "class": "wildfire",
+            "support": 0,
+            "predicted_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 1,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "specificity": 1.0,
+            "negative_predictive_value": 1.0
+          },
+          {
+            "class": "landslide",
+            "support": 1,
+            "predicted_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "specificity": null,
+            "negative_predictive_value": null
+          }
+        ],
+        "summary": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "weighted_f1": 1.0,
+          "micro_f1": 1.0,
+          "cohens_kappa": null,
+          "multiclass_mcc": null,
+          "error_count": 0,
+          "correct_count": 1,
+          "accuracy_ci95": {
+            "lower": 0.20654931437723745,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Wilson score interval; assumes independent cases, not clustered event sampling"
+          }
+        },
+        "per_case": [
+          {
+            "case_id": "landslide",
+            "true_hazard": "landslide",
+            "predicted_hazard": "landslide",
+            "hazard_probabilities": {
+              "flood": 0.09231419116258621,
+              "wildfire": 0.03575829043984413,
+              "landslide": 0.8719274997711182
+            }
+          }
+        ],
+        "warnings": [
+          "Small samples do not establish generalization."
+        ],
+        "probability_diagnostics": {
+          "status": "available",
+          "eligible_count": 1,
+          "total_classified": 1,
+          "log_loss": 0.13704900099399772,
+          "multiclass_brier_score": 0.026203130540059696,
+          "expected_calibration_error": 0.12807250022888184,
+          "calibration_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 1,
+              "confidence": 0.8719274997711182,
+              "accuracy": 1.0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 0,
+              "confidence": null,
+              "accuracy": null
+            }
+          ],
+          "curves": {
+            "flood": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            },
+            "wildfire": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            },
+            "landslide": {
+              "status": "not_evaluated",
+              "reason": "Both positive and negative references are required."
+            }
+          },
+          "definitions": {
+            "brier": "Mean sum of squared errors across all classes; range [0,2]",
+            "ece": "10 equal-width confidence bins; weighted absolute confidence-accuracy gap"
+          }
+        }
+      }
+    },
+    "metric_distributions": {},
+    "provenance": "generated_sample_smoke_test",
+    "notice": "GENERATED-DATA DIAGNOSTICS ONLY. Not independent benchmark evidence."
+  }
+}

@@ -1,10 +1,20 @@
 """Microsoft Planetary Computer STAC API Interface."""
 import time
 from typing import Dict, Any, List, Optional
-import pystac_client
-import planetary_computer
+
 from loguru import logger
 import numpy as np
+
+try:
+    import pystac_client
+    import planetary_computer
+except ModuleNotFoundError as exc:  # pragma: no cover - handled at runtime
+    pystac_client = None
+    planetary_computer = None
+    _PLANETARY_COMPUTER_IMPORT_ERROR = exc
+else:
+    _PLANETARY_COMPUTER_IMPORT_ERROR = None
+
 
 class PlanetaryComputerClient:
     """Client for Microsoft Planetary Computer STAC API."""
@@ -15,11 +25,25 @@ class PlanetaryComputerClient:
         Args:
             collection (str): Name of the STAC collection.
         """
+        if pystac_client is None or planetary_computer is None:
+            raise RuntimeError(
+                "Planetary Computer dependencies are missing. Activate the project virtual environment and run: "
+                "python -m pip install -r requirements.txt"
+            ) from _PLANETARY_COMPUTER_IMPORT_ERROR
         self.collection = collection
         self.catalog = pystac_client.Client.open(
             "https://planetarycomputer.microsoft.com/api/stac/v1",
             modifier=planetary_computer.sign_inplace,
         )
+
+    @staticmethod
+    def _utm_crs(bbox: List[float]) -> str:
+        """Return a meter-based UTM CRS for a WGS84 bbox center."""
+        center_lon = (bbox[0] + bbox[2]) / 2.0
+        center_lat = (bbox[1] + bbox[3]) / 2.0
+        zone = int((center_lon + 180.0) // 6.0) + 1
+        hemisphere = center_lat >= 0
+        return f"EPSG:{32600 + zone if hemisphere else 32700 + zone}"
 
     def search(self, bbox: List[float], datetime_range: str, max_items: int = 100) -> List[Any]:
         """Search STAC catalog and return item list.
@@ -71,6 +95,7 @@ class PlanetaryComputerClient:
             items,
             bands=["vv", "vh"],
             bbox=bbox,
+            crs=self._utm_crs(bbox),
             resolution=10, # 10m resolution
             chunks={"x": 512, "y": 512, "time": 1},
         )
@@ -102,6 +127,7 @@ class PlanetaryComputerClient:
             items,
             bands=["B02", "B03", "B04", "B08", "B11", "B12"],
             bbox=bbox,
+            crs=self._utm_crs(bbox),
             resolution=10,
             chunks={"x": 512, "y": 512, "time": 1},
         )

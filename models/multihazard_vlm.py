@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import yaml
-from typing import Dict, Any, Optional, Tuple, List
+from typing import Dict, Any, Optional, Tuple, List, Sequence
 
 # Import sub-modules using correct paths
 from .backbone.spatiotemporal_mamba import SpatiotemporalMambaBackbone
@@ -10,6 +10,7 @@ from .fusion import CrossModalityFusionLayer
 from .heads.language_reasoner import LanguageReasonerHead
 from .heads.coordinate_regressor import GeofencedCoordinateRegressor
 from .heads.radius_estimator import FluidRadiusDynamicsEstimator, HazardClassificationHead
+from .segmentation_head import HazardSegmentationHead
 
 
 class MultiHazardVLM(nn.Module):
@@ -35,6 +36,17 @@ class MultiHazardVLM(nn.Module):
         patch_size = model_cfg.get('patch_size', 16)
         max_seq_len = model_cfg.get('max_seq_len', 30)
         img_size = model_cfg.get('img_size', 512)
+        self.patch_size = patch_size
+        self.segmentation_enabled = bool(model_cfg.get('segmentation_enabled', True))
+        self.segmentation_num_classes = int(model_cfg.get('segmentation_num_classes', 1))
+        segmentation_channels = int(model_cfg.get('segmentation_decoder_channels', 64))
+        configured_output_size = model_cfg.get('segmentation_output_size', img_size)
+        if isinstance(configured_output_size, int):
+            self.segmentation_output_size = (configured_output_size, configured_output_size)
+        elif isinstance(configured_output_size, Sequence) and len(configured_output_size) == 2:
+            self.segmentation_output_size = tuple(int(value) for value in configured_output_size)
+        else:
+            raise ValueError("segmentation_output_size must be an integer or a pair of integers.")
 
         # 1. Visual Backbone — Spatiotemporal Mamba
         self.backbone = SpatiotemporalMambaBackbone(
@@ -73,6 +85,15 @@ class MultiHazardVLM(nn.Module):
             embed_dim=embed_dim,
             num_geo_attributes=num_geo_attributes,
         )
+        self.segmentation_head = (
+            HazardSegmentationHead(
+                embed_dim=embed_dim,
+                decoder_channels=segmentation_channels,
+                num_classes=self.segmentation_num_classes,
+            )
+            if self.segmentation_enabled
+            else None
+        )
 
     def _load_config(self, config_path: Optional[str]) -> Dict[str, Any]:
         """Load configuration from YAML file or return defaults."""
@@ -85,10 +106,67 @@ class MultiHazardVLM(nn.Module):
                     'num_geo_attributes': 5,
                     'patch_size': 16,
                     'max_seq_len': 30,
+                    'segmentation_enabled': True,
+                    'segmentation_num_classes': 1,
+                    'segmentation_decoder_channels': 64,
+                    'segmentation_output_size': 512,
                 }
             }
         with open(config_path, 'r') as f:
             return yaml.safe_load(f)
+
+    def _predict_segmentation(
+        self,
+        fused_sequence: torch.Tensor,
+        visual_token_count: int,
+        temporal_mask: torch.Tensor,
+        images: torch.Tensor,
+    ) -> Optional[Dict[str, torch.Tensor]]:
+        if self.segmentation_head is None:
+            return None
+
+        batch_size, num_frames, _, height, width = images.shape
+        if height % self.patch_size != 0 or width % self.patch_size != 0:
+            raise ValueError("Image height and width must be divisible by patch_size for segmentation.")
+        grid_height = height // self.patch_size
+        grid_width = width // self.patch_size
+        expected_visual_tokens = num_frames * grid_height * grid_width
+        if visual_token_count != expected_visual_tokens:
+            raise ValueError(
+                "Visual token count does not match the input patch grid: "
+                f"got {visual_token_count}, expected {expected_visual_tokens}."
+            )
+        if fused_sequence.shape[0] != batch_size or fused_sequence.shape[1] < visual_token_count:
+            raise ValueError("Fused sequence does not contain the expected visual-token prefix.")
+        if temporal_mask.shape != (batch_size, num_frames):
+            raise ValueError("Temporal mask dimensions do not match the image batch.")
+
+        visual_tokens = fused_sequence[:, :visual_token_count]
+        spatial_tokens = visual_tokens.reshape(
+            batch_size, num_frames, grid_height, grid_width, -1
+        )
+        valid_frames = temporal_mask.to(dtype=spatial_tokens.dtype).view(
+            batch_size, num_frames, 1, 1, 1
+        )
+        frame_count = valid_frames.sum(dim=1).clamp_min(1.0)
+        spatial_features = (spatial_tokens * valid_frames).sum(dim=1) / frame_count
+        spatial_features = spatial_features.permute(0, 3, 1, 2).contiguous()
+        return self.segmentation_head(spatial_features, self.segmentation_output_size)
+
+    def load_state_dict(self, state_dict, strict: bool = True, assign: bool = False):
+        """Allow pre-segmentation checkpoints to initialize legacy weights strictly."""
+        incompatible = super().load_state_dict(state_dict, strict=False, assign=assign)
+        if not strict:
+            return incompatible
+
+        unexpected_keys = incompatible.unexpected_keys
+        missing_keys = [
+            key for key in incompatible.missing_keys
+            if not key.startswith('segmentation_head.')
+        ]
+        if missing_keys or unexpected_keys:
+            super().load_state_dict(state_dict, strict=True, assign=assign)
+        return type(incompatible)(missing_keys, unexpected_keys)
 
     def forward(
         self,
@@ -144,6 +222,9 @@ class MultiHazardVLM(nn.Module):
         language_logits, report_sections = self.language_reasoner(
             fused_sequence, geo_attributes, target_tokens
         )
+        segmentation = self._predict_segmentation(
+            fused_sequence, visual_tokens.shape[1], temporal_mask, images
+        )
 
         return {
             'hazard_logits': hazard_logits,
@@ -154,6 +235,7 @@ class MultiHazardVLM(nn.Module):
             'language_logits': language_logits,
             'report_sections': report_sections,
             'temporal_mask': temporal_mask,
+            'segmentation': segmentation,
         }
 
     @torch.no_grad()
@@ -191,6 +273,9 @@ class MultiHazardVLM(nn.Module):
         generated_tokens = self.language_reasoner.generate(
             fused_sequence, geo_attributes
         )
+        segmentation = self._predict_segmentation(
+            fused_sequence, visual_tokens.shape[1], temporal_mask, images
+        )
 
         return {
             'hazard_class': hazard_class,
@@ -199,4 +284,5 @@ class MultiHazardVLM(nn.Module):
             'epicenter_coords_geo': coords_geo,
             'impact_radius_km': radius_km,
             'report_tokens': generated_tokens,
+            'segmentation': segmentation,
         }

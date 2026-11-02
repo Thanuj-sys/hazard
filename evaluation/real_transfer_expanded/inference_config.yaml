@@ -1,0 +1,59 @@
+data:
+  bands_s1:
+  - VV
+  - VH
+  bands_s2:
+  - Blue
+  - Green
+  - Red
+  - NIR
+  - SWIR1
+  - SWIR2
+  ingestion_cadence_hours: 24
+  overlap: 64
+  rolling_window_days: 30
+  tile_size: 512
+deployment:
+  api_port: 8000
+  dashboard_port: 8503
+  docker_image: multihazard-vlm:latest
+model:
+  embed_dim: 256
+  h3_resolutions:
+  - 4
+  - 6
+  - 8
+  hazard_classes:
+  - flood
+  - wildfire
+  - landslide
+  img_size: 64
+  max_seq_len: 30
+  num_geo_attributes: 5
+  num_heads: 8
+  num_input_channels: 10
+  patch_size: 16
+  radius_clamp_max: 30.0
+  radius_clamp_min: 0.1
+  segmentation_closing_radius: 0
+  segmentation_connectivity: 4
+  segmentation_decoder_channels: 32
+  segmentation_enabled: false
+  segmentation_min_component_area_m2: 0.0
+  segmentation_min_component_pixels: 0
+  segmentation_num_classes: 1
+  segmentation_opening_radius: 0
+  segmentation_output_size:
+  - 64
+  - 64
+  segmentation_threshold: 0.5
+training:
+  batch_size: 8
+  epochs: 100
+  lr: 0.0001
+  mode: legacy
+  scheduler: cosine
+  segmentation_bce_weight: 1.0
+  segmentation_dice_weight: 1.0
+  warmup_steps: 1000
+  weight_decay: 1.0e-05

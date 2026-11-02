@@ -88,9 +88,11 @@ hazard/
    ```
    Then open: http://localhost:8000/docs
    
-   **Terminal 2 - Dashboard UI:**
+   **Terminal 2 - React Dashboard UI:**
    ```powershell
-   .venv\Scripts\python -m streamlit run dashboard/app.py --server.port 8503
+   cd web
+   npm install
+   npm run dev
    ```
    Then open: http://localhost:8503
 
@@ -100,7 +102,7 @@ hazard/
 
 The Windows startup script and Docker deployment use `planetary_computer` mode. This fetches recent public Sentinel-1/Sentinel-2 imagery around the selected map point. If a sensor or scene is unavailable, the response reports that limitation. `demo_synthetic` remains available for offline interface testing only. Set `APP_ENV=production` to prevent synthetic predictions from being served.
 
-The local API runs on port `8001` and the dashboard on port `8503`. Docker keeps the API internal port at `8000` and supplies the dashboard service URL automatically.
+The local API runs on port `8000` and the React dashboard on port `8503`. In Docker, the API is available on port `8000` and the React dashboard on port `8504`.
 
 ### Training
 ```powershell
@@ -127,6 +129,22 @@ The local API runs on port `8001` and the dashboard on port `8503`. Docker keeps
 .venv\Scripts\python -m pytest tests/test_pipeline.py -v
 ```
 
+### Run Evaluation
+```powershell
+.venv\Scripts\python scripts\run_evaluation.py
+```
+
+This evaluates only reviewed independent test cases from `dataset/` and actual
+saved predictions. It writes `evaluation/metrics_report.json`, consumed by the API
+and React Evaluation page. All 17 metrics include eligibility counts; missing
+verified truth or inference stays unavailable. The current downloaded examples
+are acquisition candidates, not a completed research benchmark.
+
+See [the dataset card and annotation protocol](dataset/README.md) for provenance,
+source limitations, split review and remaining acquisition requirements. The local
+`sample_*.tif` files correspond to a random generator and are excluded. Explicit
+`--local-smoke` writes separate software diagnostics.
+
 ### View Configuration
 ```powershell
 type configs\model_config.yaml
@@ -144,14 +162,9 @@ The framework integrates several key geospatial and hazard datasets:
 
 ## Project Status
 
-✅ **Complete and Verified**
+The current prototype uses **classification + coordinate regression + fixed-radius estimation**. The project is being upgraded toward **hazard-specific spatial footprint prediction + severity + derived area/radius + validation**. The spatial reconstruction system is not implemented yet; the model, training, inference, API, and dashboard still use the existing point/radius workflow.
 
-- All three hazards (flood, wildfire, landslide) implemented
-- Training pipeline functional with checkpoint support
-- API backend serving predictions
-- Streamlit dashboard operational
-- Test suite passing (5/5 tests)
-- Ready for demonstration and further extension
+The project is currently in the **event-data foundation phase**. The event manifest and per-event documentation track the data and independent ground truth that must be verified before historical reconstruction or quantitative validation. An event with unverified ground truth must not be reported as a quantitative benchmark result.
 
 For detailed project report, see [PROJECT_REPORT.md](PROJECT_REPORT.md).
 
@@ -163,3 +176,20 @@ For detailed project report, see [PROJECT_REPORT.md](PROJECT_REPORT.md).
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+### Output assessment and reports
+
+The **Assessment & report** page checks model output integrity, calculates
+population/infrastructure exposure from supplied GeoJSON, and exports maps and
+reports. It supports optional local Ollama wording. See
+[evaluation/OUTPUT_ASSESSMENT.md](evaluation/OUTPUT_ASSESSMENT.md) for inputs,
+commands and limits. This workflow does not substitute for independent model
+validation or claim a vulnerability score without a reviewed fragility model.
+
+## Saved analysis PDFs
+
+Every successful point analysis automatically saves a PDF in `reports/analyses/` under the project root (including results served from cache). The result panel provides **View PDF**, which opens the saved report in a new tab, and **Download PDF**. The one-page PDF includes an executive summary, coordinates, all hazard scores, and estimated radius and area. Files remain available after restarting the app. Set `ANALYSIS_REPORTS_DIR` to override the storage directory; relative paths resolve from the project root. If storage fails, the analysis remains visible with a PDF saving error.
+
+The **View reports** navbar page reads all saved PDFs directly from the local folder, including earlier reports without metadata. It supports searching, an embedded preview, opening in a new tab, and downloading. Reports are never automatically deleted. New reports contain one page with an executive summary, comparison chart, and impact estimates. A JSON snapshot is saved beside each new PDF for catalogue details and reproducibility. A failed automatic save can be retried with **Save PDF locally** without rerunning inference.
+
+The PDF follows the selected **Hazard lens**. Flood, Wildfire, and Landslide reports identify that focus while preserving the model primary signal and all model scores. Switching lenses saves a matching report without rerunning inference. Impact radius and circular area are labelled with the primary signal they describe. The report library distinguishes the selected report focus from the model primary signal.

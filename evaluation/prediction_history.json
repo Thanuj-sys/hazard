@@ -1,0 +1,614 @@
+[
+  {
+    "latitude": 17.756181296780575,
+    "longitude": 76.68880039367238,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.23235732316970825,
+      "wildfire": 0.3088040351867676,
+      "landslide": 0.45883867144584656
+    },
+    "predicted_lat": 17.756181296780575,
+    "predicted_lon": 76.68880039367238,
+    "impact_radius_km": 9.2,
+    "affected_area_km2": 265.90440219985754,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-09T05:22:41.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T15:31:34.833799Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 18.7828645026933,
+    "longitude": 79.71790590028327,
+    "hazard_type": "flood",
+    "hazard_probabilities": {
+      "flood": 0.35607603192329407,
+      "wildfire": 0.33299368619918823,
+      "landslide": 0.3109302520751953
+    },
+    "predicted_lat": 18.7828645026933,
+    "predicted_lon": 79.71790590028327,
+    "impact_radius_km": 21.3,
+    "affected_area_km2": 1425.3091710072472,
+    "language_report": "FLOOD SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-09T05:07:19.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T15:33:02.719552Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 30.423473083472825,
+    "longitude": 76.99427984380075,
+    "hazard_type": "flood",
+    "hazard_probabilities": {
+      "flood": 0.38296130299568176,
+      "wildfire": 0.3408505618572235,
+      "landslide": 0.2761881649494171
+    },
+    "predicted_lat": 30.423473083472825,
+    "predicted_lon": 76.99427984380075,
+    "impact_radius_km": 8.8,
+    "affected_area_km2": 243.28493509400965,
+    "language_report": "FLOOD SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-10T05:27:31.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T15:35:45.871558Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 20.026541348471927,
+    "longitude": 84.55014567791353,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.33404362201690674,
+      "wildfire": 0.27204886078834534,
+      "landslide": 0.3939075469970703
+    },
+    "predicted_lat": 20.026541348471927,
+    "predicted_lon": 84.55014567791353,
+    "impact_radius_km": 3.2,
+    "affected_area_km2": 32.16990877276161,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-10T04:52:31.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T18:04:44.746159Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 11.663114619934824,
+    "longitude": 77.69715108418335,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.32647809386253357,
+      "wildfire": 0.30762961506843567,
+      "landslide": 0.3658922612667084
+    },
+    "predicted_lat": 11.663114619934824,
+    "predicted_lon": 77.69715108418335,
+    "impact_radius_km": 6.1,
+    "affected_area_km2": 116.89866264008388,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-09T05:07:19.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T18:07:42.039386Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 13.806573886479384,
+    "longitude": 75.23710174284429,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.225960835814476,
+      "wildfire": 0.3607698976993561,
+      "landslide": 0.4132692515850067
+    },
+    "predicted_lat": 13.806573886479384,
+    "predicted_lon": 75.23710174284429,
+    "impact_radius_km": 5.9,
+    "affected_area_km2": 109.35884027146791,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-09T05:22:41.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T18:10:47.583299Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 20.5937,
+    "longitude": 78.9629,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.3086073696613312,
+      "wildfire": 0.35972997546195984,
+      "landslide": 0.33166268467903137
+    },
+    "predicted_lat": 20.5937,
+    "predicted_lon": 78.9629,
+    "impact_radius_km": 14.8,
+    "affected_area_km2": 688.1344548423536,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-09T05:07:19.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T18:31:30.067391Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 9.9312,
+    "longitude": 76.2673,
+    "hazard_type": "flood",
+    "hazard_probabilities": {
+      "flood": 0.41299566626548767,
+      "wildfire": 0.2867124080657959,
+      "landslide": 0.30029192566871643
+    },
+    "predicted_lat": 9.9312,
+    "predicted_lon": 76.2673,
+    "impact_radius_km": 18.7,
+    "affected_area_km2": 1098.583535033887,
+    "language_report": "FLOOD SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-09T05:22:41.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T18:33:17.307462Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 26.9124,
+    "longitude": 75.7873,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.32121410965919495,
+      "wildfire": 0.29407772421836853,
+      "landslide": 0.3847081661224365
+    },
+    "predicted_lat": 26.9124,
+    "predicted_lon": 75.7873,
+    "impact_radius_km": 8.1,
+    "affected_area_km2": 206.1198940020399,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-10T05:27:31.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T18:34:13.187584Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 31.1048,
+    "longitude": 77.1734,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.31172630190849304,
+      "wildfire": 0.2668420672416687,
+      "landslide": 0.42143160104751587
+    },
+    "predicted_lat": 31.1048,
+    "predicted_lon": 77.1734,
+    "impact_radius_km": 5.5,
+    "affected_area_km2": 95.0331777710975,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-10T05:27:31.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-12T18:35:38.418616Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 22.7,
+    "longitude": 79.2,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.3080528974533081,
+      "wildfire": 0.35850197076797485,
+      "landslide": 0.33344516158103943
+    },
+    "predicted_lat": 22.7,
+    "predicted_lon": 79.2,
+    "impact_radius_km": 18.4,
+    "affected_area_km2": 1063.6176087994302,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-19T05:08:19.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-22T16:40:57.459345Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 14.658630690527282,
+    "longitude": 77.34571546399205,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.23357076942920685,
+      "wildfire": 0.4215554893016815,
+      "landslide": 0.34487372636795044
+    },
+    "predicted_lat": 14.658630690527282,
+    "predicted_lon": 77.34571546399205,
+    "impact_radius_km": 18.5,
+    "affected_area_km2": 1075.2100856911775,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-22T05:18:49.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-23T09:22:24.383442Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 15.470948690266304,
+    "longitude": 77.60725916361473,
+    "hazard_type": "flood",
+    "hazard_probabilities": {
+      "flood": 0.36408546566963196,
+      "wildfire": 0.3618415594100952,
+      "landslide": 0.27407291531562805
+    },
+    "predicted_lat": 15.470948690266304,
+    "predicted_lon": 77.60725916361473,
+    "impact_radius_km": 15.2,
+    "affected_area_km2": 725.8335666854335,
+    "language_report": "FLOOD SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-22T05:18:49.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-23T09:25:59.240182Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 19.129500917026586,
+    "longitude": 78.4405424687523,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.3019314706325531,
+      "wildfire": 0.3687536418437958,
+      "landslide": 0.3293148875236511
+    },
+    "predicted_lat": 19.129500917026586,
+    "predicted_lon": 78.4405424687523,
+    "impact_radius_km": 25.0,
+    "affected_area_km2": 1963.4954084937501,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-22T05:18:49.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-23T09:39:20.177920Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 11.059816369150758,
+    "longitude": 77.69715108418335,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.3307572603225708,
+      "wildfire": 0.30840611457824707,
+      "landslide": 0.36083659529685974
+    },
+    "predicted_lat": 11.059816369150758,
+    "predicted_lon": 77.69715108418335,
+    "impact_radius_km": 5.8,
+    "affected_area_km2": 105.68317686676761,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-27T19:40:59.640158Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 14.320700766453827,
+    "longitude": 79.65096584285777,
+    "hazard_type": "flood",
+    "hazard_probabilities": {
+      "flood": 0.3339728116989136,
+      "wildfire": 0.33245837688446045,
+      "landslide": 0.333568811416626
+    },
+    "predicted_lat": 14.320700766453827,
+    "predicted_lon": 79.65096584285777,
+    "impact_radius_km": 16.2,
+    "affected_area_km2": 824.4795760081596,
+    "language_report": "FLOOD SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-26T04:59:09.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-27T19:43:41.687084Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 22.7,
+    "longitude": 79.2,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.3022587299346924,
+      "wildfire": 0.3556526303291321,
+      "landslide": 0.34208863973617554
+    },
+    "predicted_lat": 22.7,
+    "predicted_lon": 79.2,
+    "impact_radius_km": 18.4,
+    "affected_area_km2": 1063.6176087994302,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-27T05:19:11.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T08:17:06.637214Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 19.695817078597724,
+    "longitude": 76.11569079332251,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.3105364739894867,
+      "wildfire": 0.335810124874115,
+      "landslide": 0.3536533713340759
+    },
+    "predicted_lat": 19.695817078597724,
+    "predicted_lon": 76.11569079332251,
+    "impact_radius_km": 10.0,
+    "affected_area_km2": 314.159265359,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-27T05:19:11.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T08:17:22.248966Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 15.253142134439145,
+    "longitude": 77.96072779932679,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.28278395533561707,
+      "wildfire": 0.33099284768104553,
+      "landslide": 0.3862232267856598
+    },
+    "predicted_lat": 15.253142134439145,
+    "predicted_lon": 77.96072779932679,
+    "impact_radius_km": 8.4,
+    "affected_area_km2": 221.6707776373104,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T08:27:16.130868Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 14.913616413478163,
+    "longitude": 78.3121634195181,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.29137352108955383,
+      "wildfire": 0.3113624155521393,
+      "landslide": 0.3972640931606293
+    },
+    "predicted_lat": 14.913616413478163,
+    "predicted_lon": 78.3121634195181,
+    "impact_radius_km": 8.4,
+    "affected_area_km2": 221.6707776373104,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T13:43:25.340426Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 19.214317930153047,
+    "longitude": 75.49609551141968,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.28278201818466187,
+      "wildfire": 0.4489790201187134,
+      "landslide": 0.26823902130126953
+    },
+    "predicted_lat": 19.214317930153047,
+    "predicted_lon": 75.49609551141968,
+    "impact_radius_km": 22.6,
+    "affected_area_km2": 1604.5998637476287,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-25T05:29:09.024000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T13:57:23.879368Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 14.4884900163817,
+    "longitude": 78.66359903970941,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.335111528635025,
+      "wildfire": 0.3122038245201111,
+      "landslide": 0.3526846468448639
+    },
+    "predicted_lat": 14.4884900163817,
+    "predicted_lon": 78.66359903970941,
+    "impact_radius_km": 8.4,
+    "affected_area_km2": 221.6707776373104,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T14:19:22.167742Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 22.7,
+    "longitude": 79.2,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.3022587299346924,
+      "wildfire": 0.3556526303291321,
+      "landslide": 0.34208863973617554
+    },
+    "predicted_lat": 22.7,
+    "predicted_lon": 79.2,
+    "impact_radius_km": 18.4,
+    "affected_area_km2": 1063.6176087994302,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-27T05:19:11.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T14:29:30.488894Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 22.7,
+    "longitude": 79.2,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.3022587299346924,
+      "wildfire": 0.3556526303291321,
+      "landslide": 0.34208863973617554
+    },
+    "predicted_lat": 22.7,
+    "predicted_lon": 79.2,
+    "impact_radius_km": 18.4,
+    "affected_area_km2": 1063.6176087994302,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-27T05:19:11.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T14:36:54.906194Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 22.7,
+    "longitude": 79.2,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.3022587299346924,
+      "wildfire": 0.3556526303291321,
+      "landslide": 0.34208863973617554
+    },
+    "predicted_lat": 22.7,
+    "predicted_lon": 79.2,
+    "impact_radius_km": 18.4,
+    "affected_area_km2": 1063.6176087994302,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-27T05:19:11.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T14:52:28.448264Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 12.093233628217419,
+    "longitude": 77.52143327408768,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.25506430864334106,
+      "wildfire": 0.40777909755706787,
+      "landslide": 0.33715662360191345
+    },
+    "predicted_lat": 12.093233628217419,
+    "predicted_lon": 77.52143327408768,
+    "impact_radius_km": 14.9,
+    "affected_area_km2": 697.464985023516,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T15:03:06.332159Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 14.489052217030943,
+    "longitude": 74.63763218407617,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.25493746995925903,
+      "wildfire": 0.4404618442058563,
+      "landslide": 0.3046007752418518
+    },
+    "predicted_lat": 14.489052217030943,
+    "predicted_lon": 74.63763218407617,
+    "impact_radius_km": 14.2,
+    "affected_area_km2": 633.4707426698876,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-27T05:19:11.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T15:06:14.473703Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 11.862960540607721,
+    "longitude": 77.47998046455906,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.22141534090042114,
+      "wildfire": 0.37862682342529297,
+      "landslide": 0.3999578058719635
+    },
+    "predicted_lat": 11.862960540607721,
+    "predicted_lon": 77.47998046455906,
+    "impact_radius_km": 6.1,
+    "affected_area_km2": 116.89866264008388,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T16:04:38.447949Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 18.953156861475122,
+    "longitude": 79.1367187164724,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.31167295575141907,
+      "wildfire": 0.3392629325389862,
+      "landslide": 0.3490641713142395
+    },
+    "predicted_lat": 18.953156861475122,
+    "predicted_lon": 79.1367187164724,
+    "impact_radius_km": 11.4,
+    "affected_area_km2": 408.28138126055643,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T16:06:35.023203Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 16.268343793759726,
+    "longitude": 78.66359903970941,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.25679582357406616,
+      "wildfire": 0.33287420868873596,
+      "landslide": 0.4103299677371979
+    },
+    "predicted_lat": 16.268343793759726,
+    "predicted_lon": 78.66359903970941,
+    "impact_radius_km": 9.5,
+    "affected_area_km2": 283.5287369864975,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-28T16:26:18.494125Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 15.8896014802932,
+    "longitude": 79.34253186658921,
+    "hazard_type": "flood",
+    "hazard_probabilities": {
+      "flood": 0.38771361112594604,
+      "wildfire": 0.24416549503803253,
+      "landslide": 0.3681209087371826
+    },
+    "predicted_lat": 15.8896014802932,
+    "predicted_lon": 79.34253186658921,
+    "impact_radius_km": 17.6,
+    "affected_area_km2": 973.1397403760386,
+    "language_report": "FLOOD SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-29T06:29:04.018748Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 16.352697140950877,
+    "longitude": 78.92717575485285,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.3095315396785736,
+      "wildfire": 0.3722079396247864,
+      "landslide": 0.31826052069664
+    },
+    "predicted_lat": 16.352697140950877,
+    "predicted_lon": 78.92717575485285,
+    "impact_radius_km": 23.4,
+    "affected_area_km2": 1720.2104733997403,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-29T08:05:39.649218Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 10.800897345984618,
+    "longitude": 77.43357436903986,
+    "hazard_type": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.26748231053352356,
+      "wildfire": 0.37563973665237427,
+      "landslide": 0.3568779528141022
+    },
+    "predicted_lat": 10.800897345984618,
+    "predicted_lon": 77.43357436903986,
+    "impact_radius_km": 12.9,
+    "affected_area_km2": 522.7924334839119,
+    "language_report": "WILDFIRE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-29T08:49:04.754850Z",
+    "storage": "local_json_fallback"
+  },
+  {
+    "latitude": 15.083439478523053,
+    "longitude": 77.872868894279,
+    "hazard_type": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.28608497977256775,
+      "wildfire": 0.3450808525085449,
+      "landslide": 0.36883413791656494
+    },
+    "predicted_lat": 15.083439478523053,
+    "predicted_lon": 77.872868894279,
+    "impact_radius_km": 8.3,
+    "affected_area_km2": 216.42431790581514,
+    "language_report": "LANDSLIDE SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: 2026-10-24T05:08:51.025000. Validate before operational use.",
+    "model_version": "v2.0",
+    "created_at": "2026-10-29T08:50:53.112622Z",
+    "storage": "local_json_fallback"
+  }
+]

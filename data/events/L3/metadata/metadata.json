@@ -1,0 +1,12 @@
+{
+  "event_id": "L3",
+  "hazard": "Landslide",
+  "event_name": "Kedarnath disaster",
+  "benchmark_year_supplied": 2013,
+  "event_start_date": null,
+  "event_end_date": null,
+  "aoi": null,
+  "source_verification": "unverified",
+  "inputs": [],
+  "ground_truth": null
+}

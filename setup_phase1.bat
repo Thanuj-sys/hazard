@@ -68,7 +68,7 @@ echo.
 echo Choose what to do:
 echo   1) Start API server (Uvicorn)
 echo   2) Start API server (Gunicorn)
-echo   3) Start Streamlit Dashboard
+echo   3) Start React Dashboard
 echo   4) Start both API and Dashboard
 echo   5) View API Health
 echo   6) View Database Status
@@ -84,13 +84,14 @@ if "%choice%"=="1" (
     echo Starting FastAPI (Gunicorn)...
     gunicorn -c gunicorn_config.py api.app:app
 ) else if "%choice%"=="3" (
-    echo Starting Streamlit Dashboard...
-    python -m streamlit run dashboard/app.py --server.port 8503
+    echo Starting React Dashboard...
+    cd web
+    call npm run dev
 ) else if "%choice%"=="4" (
     echo Starting both API and Dashboard...
     echo Make sure to run these in separate terminals:
     echo   Terminal 1: python -m uvicorn api.app:app --reload
-    echo   Terminal 2: python -m streamlit run dashboard/app.py --server.port 8503
+    echo   Terminal 2: cd web ^&^& npm run dev
     pause
 ) else if "%choice%"=="5" (
     echo Checking API Health...

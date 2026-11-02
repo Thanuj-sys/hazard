@@ -1,0 +1,75 @@
+{
+  "event_id": "L1",
+  "hazard": "landslide",
+  "event_name": "Wayanad debris-flow disaster",
+  "historical_event_date": "2024-07-30",
+  "event_date": "2024-07-30",
+  "location": "Meppadi panchayat, Wayanad district, Kerala, India",
+  "aoi": "approximate Chooralmala/Mundakkai impact area, map-reference only",
+  "pre_event_sensor": "Cartosat-3",
+  "pre_event_acquisition_date": "2023-05-22",
+  "post_event_sensor": "RISAT SAR",
+  "post_event_acquisition_date": "2024-07-31",
+  "input_contract": {
+    "pre_event_remote_sensing": "Cartosat-3",
+    "post_event_remote_sensing": "RISAT SAR"
+  },
+  "ground_truth_source": "NRSC Chooralmala impact map / official disaster map product",
+  "ground_truth_source_url": "https://ndem.nrsc.gov.in/documents/Disaster_Document/2024/klwayanadlandslide_31072024.pdf",
+  "ground_truth_status": "map_reference_only",
+  "inputs": [],
+  "ground_truth": {
+    "status": "map_reference_only",
+    "source": "NRSC Chooralmala impact map / official disaster map product",
+    "source_url": "https://ndem.nrsc.gov.in/documents/Disaster_Document/2024/klwayanadlandslide_31072024.pdf",
+    "mask_format": "pdf_map_reference",
+    "crs": "unverified",
+    "resolution": "unverified"
+  },
+  "sources": [
+    {
+      "title": "NRSC NDEM Wayanad landslide disaster product (July 30, 2024)",
+      "source": "NRSC/NDEM",
+      "source_url": "https://ndem.nrsc.gov.in/documents/Disaster_Document/2024/klwayanadlandslide_31072024.pdf",
+      "verified": true,
+      "purpose": "official disaster documentation confirming the event and affected area"
+    },
+    {
+      "title": "NRSC NDEM Wayanad landslide VAP product (August 5, 2024)",
+      "source": "NRSC/NDEM",
+      "source_url": "https://ndem.nrsc.gov.in/documents/Disaster_Document/2024/KL/kllandslide50dsc05082024/kllandslide50dsc05082024_vap1.pdf",
+      "verified": true,
+      "purpose": "official disaster assessment map; not a machine-readable independent landslide mask"
+    },
+    {
+      "title": "Bhuvan Charter Call 1029 VAP 3 - Chooralmala, Wayanad (31 July 2024)",
+      "source": "Bhuvan/NRSC",
+      "source_url": "https://bhuvan-app1.nrsc.gov.in/disaster/usrtasks/landslide/doc/Charter_1029_VAP_3_31july2024.pdf",
+      "verified": true,
+      "purpose": "official disaster map product for the event; map-level context only"
+    },
+    {
+      "title": "Bhuvan Charter Call 1029 VAP 7 - Chooralmala, Wayanad (6 August 2024)",
+      "source": "Bhuvan/NRSC",
+      "source_url": "https://bhuvan-app1.nrsc.gov.in/disaster/usrtasks/landslide/doc/Charter_1029_VAP_7_6Aug2024.pdf",
+      "verified": true,
+      "purpose": "official disaster map product for the event; map-level context only"
+    },
+    {
+      "title": "Report on Wayanad landslide",
+      "source": "Kerala Institute of Land and Disaster Management (ILDM)",
+      "source_url": "https://ildm.kerala.gov.in/wp-content/uploads/2025/04/Report-on-wayanad-landslide-1.pdf",
+      "verified": true,
+      "purpose": "official narrative report on the event chronology and affected villages"
+    }
+  ],
+  "verification_status": "not_ready",
+  "blockers": [
+    "No verified local pre-event Sentinel-2 raster exists for the event window.",
+    "No verified local post-event Sentinel-2 raster exists for the event window.",
+    "No verified DEM or slope layer was downloaded and staged into this repository.",
+    "No machine-readable independent landslide mask or polygon boundary was located for the event.",
+    "Official PDFs confirm the event and affected zone, but they do not provide a georeferenced mask suitable for quantitative validation."
+  ],
+  "notes": "This repository is intentionally fail-closed: the event is confirmed by official disaster documentation, but no verified geospatial inputs or independent ground-truth mask are available for L1 reconstruction."
+}

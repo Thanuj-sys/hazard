@@ -1,0 +1,12 @@
+{
+  "event_id": "W1",
+  "hazard": "Wildfire",
+  "event_name": "Rajouri/J&K fire event cluster",
+  "benchmark_year_supplied": 2026,
+  "event_start_date": null,
+  "event_end_date": null,
+  "aoi": null,
+  "source_verification": "unverified",
+  "inputs": [],
+  "ground_truth": null
+}

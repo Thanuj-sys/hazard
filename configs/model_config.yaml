@@ -3,20 +3,34 @@ model:
   num_heads: 8
   patch_size: 16
   num_input_channels: 10
+  hazard_classes: [flood, wildfire, landslide]
   max_seq_len: 30
   img_size: 64
   h3_resolutions: [4, 6, 8]
   num_geo_attributes: 5
   radius_clamp_min: 0.1
   radius_clamp_max: 30.0
+  segmentation_enabled: true
+  segmentation_num_classes: 1
+  segmentation_decoder_channels: 32
+  segmentation_output_size: [64, 64]
+  segmentation_threshold: 0.5
+  segmentation_min_component_pixels: 0
+  segmentation_min_component_area_m2: 0.0
+  segmentation_opening_radius: 0
+  segmentation_closing_radius: 0
+  segmentation_connectivity: 4
 
 training:
+  mode: legacy
   lr: 0.0001
   batch_size: 8
   epochs: 100
   weight_decay: 0.00001
   warmup_steps: 1000
   scheduler: "cosine"
+  segmentation_bce_weight: 1.0
+  segmentation_dice_weight: 1.0
 
 data:
   tile_size: 512
@@ -37,4 +51,4 @@ data:
 deployment:
   docker_image: "multihazard-vlm:latest"
   api_port: 8000
-  dashboard_port: 8501
+  dashboard_port: 8503

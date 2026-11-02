@@ -1,0 +1,4 @@
+actual,flood,wildfire,landslide
+flood,0,25,0
+wildfire,0,30,0
+landslide,0,0,20

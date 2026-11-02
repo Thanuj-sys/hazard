@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-22T16:30:03.517681+00:00",
+  "valid": true,
+  "research_ready": false,
+  "case_count": 5,
+  "split_counts": {
+    "train": {
+      "flood": 0,
+      "wildfire": 0,
+      "landslide": 0
+    },
+    "validation": {
+      "flood": 0,
+      "wildfire": 0,
+      "landslide": 0
+    },
+    "test": {
+      "flood": 0,
+      "wildfire": 0,
+      "landslide": 0
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "sen1floods11_india_1017769: candidate excluded from all benchmark splits",
+    "sen1floods11_india_1018317: candidate excluded from all benchmark splits",
+    "landslide4sense_test_1: candidate excluded from all benchmark splits",
+    "landslide4sense_test_10: candidate excluded from all benchmark splits",
+    "hls_subsetted_512x512_hls.s30.t12svd.2018168.v1.4: candidate excluded from all benchmark splits"
+  ],
+  "readiness_blockers": [
+    "flood: 0/100 recommended test cases",
+    "wildfire: 0/100 recommended test cases",
+    "landslide: 0/100 recommended test cases",
+    "flood: no verified negative/non-event test cases",
+    "flood: fewer than two test regions",
+    "flood: fewer than two test events",
+    "flood: fewer than two verified severity levels",
+    "wildfire: no verified negative/non-event test cases",
+    "wildfire: fewer than two test regions",
+    "wildfire: fewer than two test events",
+    "wildfire: fewer than two verified severity levels",
+    "landslide: no verified negative/non-event test cases",
+    "landslide: fewer than two test regions",
+    "landslide: fewer than two test events",
+    "landslide: fewer than two verified severity levels",
+    "train: no reviewed cases",
+    "validation: no reviewed cases"
+  ]
+}

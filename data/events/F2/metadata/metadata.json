@@ -1,0 +1,12 @@
+{
+  "event_id": "F2",
+  "hazard": "Flood",
+  "event_name": "Assam flood",
+  "benchmark_year_supplied": 2022,
+  "event_start_date": null,
+  "event_end_date": null,
+  "aoi": null,
+  "source_verification": "unverified",
+  "inputs": [],
+  "ground_truth": null
+}

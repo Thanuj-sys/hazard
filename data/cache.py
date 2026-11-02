@@ -33,7 +33,8 @@ try:
         password=REDIS_PASSWORD,
         protocol=2,
         decode_responses=True,
-        socket_connect_timeout=5,
+        socket_connect_timeout=1,
+        socket_timeout=1,
         socket_keepalive=True,
     )
     # Test connection

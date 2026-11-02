@@ -61,6 +61,10 @@ services:
       PYTHON_UNBUFFERED: 1
       APP_ENV: production
       INFERENCE_MODE: planetary_computer
+      REALTIME_MONITOR_ENABLED: "true"
+      REALTIME_MONITOR_INTERVAL_SECONDS: 900
+      REALTIME_PREDICTION_TIMEOUT_SECONDS: 600
+      REALTIME_MONITOR_POINTS: "20.5937,78.9629"
     ports:
       - "8000:8000"
     depends_on:
@@ -83,26 +87,16 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Streamlit Dashboard
+  # React Dashboard
   dashboard:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: web/Dockerfile
     container_name: hazard_dashboard
-    environment:
-      DATABASE_URL: postgresql://postgres:hazard_password@postgres:5432/hazard_db
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_PASSWORD: hazard_redis_password
-      STREAMLIT_SERVER_PORT: 8503
-      MULTIHAZARD_API_URL: http://api:8000/api/v1
     ports:
-      - "8503:8503"
+      - "8504:80"
     depends_on:
       - api
-    volumes:
-      - .:/app
-    command: python -m streamlit run dashboard/app.py --server.port 8503
     networks:
       - hazard_network
     logging:

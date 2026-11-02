@@ -1,0 +1,96 @@
+schema_version: 1
+model_input_channels: 10
+optional_channel_fill_value: 0.0
+status_aliases:
+  not_ready: incomplete
+  data_ready: ready
+  validation_ready: validated
+  demo_only: prediction_only
+required_raster_provenance:
+  - source
+  - source_url
+  - acquisition_date
+  - event_date
+  - sensor
+  - license
+require_band_descriptions: true
+require_full_valid_coverage: true
+hazards:
+  flood:
+    raw_source_requirements:
+      required: [sentinel_1_sar, dem]
+      optional: [sentinel_2_optical, rainfall, slope, landcover]
+      unsupported: [rainfall_data, landcover_data]
+    required_inputs: [pre_event_data, during_event_data, dem_data, slope_data]
+    optional_inputs: [geology_data]
+    unsupported_declared_inputs: [rainfall_data, landcover_data]
+    reference_input: pre_event_data
+    channels:
+      - {name: pre_vv, source: {field: pre_event_data, band: VV}, required: true, feature_type: radar, scale: 100.0}
+      - {name: pre_vh, source: {field: pre_event_data, band: VH}, required: true, feature_type: radar, scale: 100.0}
+      - {name: during_vv, source: {field: during_event_data, band: VV}, required: true, feature_type: radar, scale: 100.0}
+      - {name: during_vh, source: {field: during_event_data, band: VH}, required: true, feature_type: radar, scale: 100.0}
+      - {name: during_b02, source: {field: during_event_data, band: B02}, required: false, feature_type: reflectance, scale: 10000.0}
+      - {name: during_b03, source: {field: during_event_data, band: B03}, required: false, feature_type: reflectance, scale: 10000.0}
+      - {name: during_b04, source: {field: during_event_data, band: B04}, required: false, feature_type: reflectance, scale: 10000.0}
+      - {name: during_b08, source: {field: during_event_data, band: B08}, required: false, feature_type: reflectance, scale: 10000.0}
+      - {name: dem, source: {field: dem_data, band_index: 1}, required: true, feature_type: continuous, scale: 1000.0}
+      - {name: slope, source: {field: slope_data, band_index: 1}, required: true, feature_type: continuous, scale: 90.0}
+    geospatial_features:
+      elevation: {source: {field: dem_data, band_index: 1}, required: true, scale: 1.0}
+      slope: {source: {field: slope_data, band_index: 1}, required: true, scale: 1.0}
+      ndvi: {derive: ndvi, inputs: [during_b08, during_b04], required: false}
+      aspect: {derive: aspect_from_dem, source: {field: dem_data, band_index: 1}, required: false}
+      lithology_class: {source: {field: geology_data, band_index: 1}, required: false, categorical: true}
+  landslide:
+    raw_source_requirements:
+      required: [satellite_imagery, dem]
+      optional: [rainfall, slope, geology, soil, aspect, deformation_signal, landcover]
+      unsupported: [rainfall_data, landcover_data]
+    required_inputs: [pre_event_data, post_event_data, dem_data, slope_data]
+    optional_inputs: [geology_data]
+    unsupported_declared_inputs: [rainfall_data, landcover_data]
+    reference_input: pre_event_data
+    channels:
+      - {name: pre_b02, source: {field: pre_event_data, band: B02}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: pre_b03, source: {field: pre_event_data, band: B03}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: pre_b04, source: {field: pre_event_data, band: B04}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: pre_b08, source: {field: pre_event_data, band: B08}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: post_b02, source: {field: post_event_data, band: B02}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: post_b03, source: {field: post_event_data, band: B03}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: post_b04, source: {field: post_event_data, band: B04}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: post_b08, source: {field: post_event_data, band: B08}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: dem, source: {field: dem_data, band_index: 1}, required: true, feature_type: continuous, scale: 1000.0}
+      - {name: slope, source: {field: slope_data, band_index: 1}, required: true, feature_type: continuous, scale: 90.0}
+    geospatial_features:
+      elevation: {source: {field: dem_data, band_index: 1}, required: true, scale: 1.0}
+      slope: {source: {field: slope_data, band_index: 1}, required: true, scale: 1.0}
+      ndvi: {derive: ndvi, inputs: [post_b08, post_b04], required: false}
+      aspect: {derive: aspect_from_dem, source: {field: dem_data, band_index: 1}, required: false}
+      lithology_class: {source: {field: geology_data, band_index: 1}, required: false, categorical: true}
+  wildfire:
+    raw_source_requirements:
+      required: [pre_fire_satellite, post_fire_satellite]
+      optional: [nbr, dnbr, ndvi, dem, slope, weather, active_fire, landcover_fuel]
+      unsupported: [rainfall_data, landcover_data]
+    required_inputs: [pre_event_data, post_event_data, dem_data, slope_data]
+    optional_inputs: [geology_data]
+    unsupported_declared_inputs: [rainfall_data, landcover_data]
+    reference_input: pre_event_data
+    channels:
+      - {name: pre_b04, source: {field: pre_event_data, band: B04}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: pre_b08, source: {field: pre_event_data, band: B08}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: pre_b12, source: {field: pre_event_data, band: B12}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: post_b04, source: {field: post_event_data, band: B04}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: post_b08, source: {field: post_event_data, band: B08}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: post_b12, source: {field: post_event_data, band: B12}, required: true, feature_type: reflectance, scale: 10000.0}
+      - {name: pre_nbr, derive: nbr, inputs: [pre_b08, pre_b12], required: true}
+      - {name: post_nbr, derive: nbr, inputs: [post_b08, post_b12], required: true}
+      - {name: dnbr, derive: difference, inputs: [pre_nbr, post_nbr], required: true}
+      - {name: dem, source: {field: dem_data, band_index: 1}, required: true, feature_type: continuous, scale: 1000.0}
+    geospatial_features:
+      elevation: {source: {field: dem_data, band_index: 1}, required: true, scale: 1.0}
+      slope: {source: {field: slope_data, band_index: 1}, required: true, scale: 1.0}
+      ndvi: {derive: ndvi, inputs: [post_b08, post_b04], required: true}
+      aspect: {derive: aspect_from_dem, source: {field: dem_data, band_index: 1}, required: false}
+      lithology_class: {source: {field: geology_data, band_index: 1}, required: false, categorical: true}

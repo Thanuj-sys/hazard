@@ -20,7 +20,7 @@ The system uses a vision-language model that integrates satellite imagery (Senti
 - Training pipeline functional with checkpoint support
 - Inference engine working
 - FastAPI backend serving predictions
-- Streamlit dashboard operational
+- React dashboard operational (Vite + React Leaflet)
 - Test suite passing (5/5 tests)
 - Demo output generated successfully
 
@@ -72,7 +72,7 @@ Geospatial Context: Microsoft Planetary Computer (DEM, slope, NDVI, lithology)
 
 - **Framework**: PyTorch 2.1+
 - **Backend**: FastAPI + Uvicorn
-- **Frontend**: Streamlit + Folium
+- **Frontend**: React + Vite + React Leaflet
 - **Geospatial**: Rasterio, H3, Planetary Computer API
 - **Config**: YAML
 - **Testing**: Pytest
@@ -87,9 +87,12 @@ d:\sem7\hazard/
 ├── api/
 │   ├── __init__.py
 │   └── app.py                 # FastAPI backend with model inference
+├── web/
+│   ├── src/App.jsx            # React map and assessment dashboard
+│   ├── vite.config.js         # Vite development API proxy
+│   └── Dockerfile             # Static React + Nginx image
 ├── dashboard/
-│   ├── __init__.py
-│   └── app.py                 # Streamlit UI with hazard visualization
+│   └── app.py                 # Legacy Streamlit implementation
 ├── data/
 │   ├── __init__.py
 │   ├── datasets.py            # Dataset loaders for all three hazards
@@ -166,9 +169,11 @@ pip install -r requirements.txt
 ```
 Open: http://localhost:8000/docs
 
-### 7. Dashboard
+### 7. React Dashboard
 ```powershell
-.\.venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.port 8503
+cd web
+npm install
+npm run dev
 ```
 Open: http://localhost:8503
 
@@ -283,3 +288,9 @@ For issues or questions, refer to the project README.md or contact the developme
 
 **Project Completion Date**: 2026-08-17
 **Status**: ✅ Complete and Verified
+
+## Measured real-data classifier results (27 October 2026)
+
+The existing model_epoch_9.pt checkpoint achieved 66.67% accuracy and 56.86% macro F1 on 75 eligible real-public-data patches (90 acquired; 15 mask-empty exclusions). All 25 flood-source patches were classified as wildfire; 30 burn-scar and 20 landslide patches were classified correctly. This is a limited positive-only transfer test with incomplete historical training lineage and source/input confounding, not an operational or certified unseen benchmark. The generated three-case 100% scores remain separate smoke diagnostics.
+
+[Actual confusion matrix and all result plots](evaluation/real_transfer/figures/overall/index.html) | [Protocol](evaluation/REAL_TRANSFER_PROTOCOL.md)

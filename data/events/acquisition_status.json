@@ -1,0 +1,194 @@
+{
+  "status_vocabulary": [
+    "verified",
+    "available",
+    "missing",
+    "unverified",
+    "not_applicable"
+  ],
+  "readiness_states": [
+    "not_ready",
+    "data_ready",
+    "validation_ready",
+    "demo_only"
+  ],
+  "events": [
+    {
+      "event_id": "F1",
+      "hazard": "flood",
+      "event_name": "Upper Assam flood",
+      "status": "not_ready",
+      "inputs": {
+        "satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "rainfall": "missing",
+        "landcover": "missing"
+      },
+      "ground_truth": "missing",
+      "blocking_reasons": [
+        "Exact event dates, AOI, source provenance, and event-specific satellite inputs remain unverified."
+      ]
+    },
+    {
+      "event_id": "F2",
+      "hazard": "flood",
+      "event_name": "Assam flood",
+      "status": "not_ready",
+      "inputs": {
+        "satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "rainfall": "missing",
+        "landcover": "missing"
+      },
+      "ground_truth": "missing",
+      "blocking_reasons": [
+        "Exact event dates, AOI, source provenance, and event-specific satellite inputs remain unverified."
+      ]
+    },
+    {
+      "event_id": "F3",
+      "hazard": "flood",
+      "event_name": "Kerala flood",
+      "status": "not_ready",
+      "inputs": {
+        "satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "rainfall": "missing",
+        "landcover": "missing"
+      },
+      "ground_truth": "missing",
+      "blocking_reasons": [
+        "Exact event dates, AOI, source provenance, and event-specific satellite inputs remain unverified."
+      ]
+    },
+    {
+      "event_id": "L1",
+      "hazard": "landslide",
+      "event_name": "Wayanad debris-flow disaster",
+      "status": "not_ready",
+      "event_date": "2024-07-30",
+      "location": "Wayanad district, Kerala, India",
+      "inputs": {
+        "satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "rainfall": "missing",
+        "geology": "missing",
+        "soil": "missing"
+      },
+      "ground_truth": "map_reference_only",
+      "official_sources": [
+        "https://ndem.nrsc.gov.in/documents/Disaster_Document/2024/klwayanadlandslide_31072024.pdf",
+        "https://ndem.nrsc.gov.in/documents/Disaster_Document/2024/KL/kllandslide50dsc05082024/kllandslide50dsc05082024_vap1.pdf",
+        "https://bhuvan-app1.nrsc.gov.in/disaster/usrtasks/landslide/doc/Charter_1029_VAP_3_31july2024.pdf",
+        "https://bhuvan-app1.nrsc.gov.in/disaster/usrtasks/landslide/doc/Charter_1029_VAP_7_6Aug2024.pdf",
+        "https://ildm.kerala.gov.in/wp-content/uploads/2025/04/Report-on-wayanad-landslide-1.pdf"
+      ],
+      "verified_contract": {
+        "historical_event_date": "2024-07-30",
+        "pre_event_sensor": "Cartosat-3",
+        "pre_event_acquisition_date": "2023-05-22",
+        "post_event_sensor": "RISAT SAR",
+        "post_event_acquisition_date": "2024-07-31",
+        "ground_truth_status": "map_reference_only"
+      },
+      "blocking_reasons": [
+        "Official NRSC/NDEM and Kerala ILDM documents confirm the event and impacted villages, but no machine-readable independent landslide boundary or local verified raster stack was staged in this repository.",
+        "No verified local Cartosat-3 or RISAT georeferenced rasters, DEM, slope layer, or spatial ground truth exist for L1."
+      ]
+    },
+    {
+      "event_id": "L2",
+      "hazard": "landslide",
+      "event_name": "Chamoli disaster",
+      "status": "not_ready",
+      "inputs": {
+        "satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "rainfall": "missing",
+        "geology": "missing",
+        "soil": "missing"
+      },
+      "ground_truth": "missing",
+      "blocking_reasons": [
+        "Exact dates, AOI, pre/post imagery, DEM/slope/geology provenance, and independent landslide mask remain unverified."
+      ]
+    },
+    {
+      "event_id": "L3",
+      "hazard": "landslide",
+      "event_name": "Kedarnath disaster",
+      "status": "not_ready",
+      "inputs": {
+        "satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "rainfall": "missing",
+        "geology": "missing",
+        "soil": "missing"
+      },
+      "ground_truth": "missing",
+      "blocking_reasons": [
+        "Exact dates, AOI, pre/post imagery, DEM/slope/geology provenance, and independent landslide mask remain unverified."
+      ]
+    },
+    {
+      "event_id": "W1",
+      "hazard": "wildfire",
+      "event_name": "Rajouri/J&K fire event cluster",
+      "status": "not_ready",
+      "inputs": {
+        "pre_fire_satellite": "missing",
+        "post_fire_satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "weather": "missing",
+        "active_fire": "missing"
+      },
+      "ground_truth": "missing",
+      "blocking_reasons": [
+        "Event-specific dates, AOI, pre/post fire imagery, burn-area mask, and provenance remain unverified."
+      ]
+    },
+    {
+      "event_id": "W2",
+      "hazard": "wildfire",
+      "event_name": "Bandipur wildfire",
+      "status": "not_ready",
+      "inputs": {
+        "pre_fire_satellite": "missing",
+        "post_fire_satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "weather": "missing",
+        "active_fire": "missing"
+      },
+      "ground_truth": "missing",
+      "blocking_reasons": [
+        "Event-specific dates, AOI, pre/post fire imagery, burn-area mask, and provenance remain unverified."
+      ]
+    },
+    {
+      "event_id": "W3",
+      "hazard": "wildfire",
+      "event_name": "Uttarakhand wildfire",
+      "status": "not_ready",
+      "inputs": {
+        "pre_fire_satellite": "missing",
+        "post_fire_satellite": "missing",
+        "dem": "missing",
+        "slope": "missing",
+        "weather": "missing",
+        "active_fire": "missing"
+      },
+      "ground_truth": "missing",
+      "blocking_reasons": [
+        "Event-specific dates, AOI, pre/post fire imagery, burn-area mask, and provenance remain unverified."
+      ]
+    }
+  ]
+}

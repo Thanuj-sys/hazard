@@ -1,0 +1,12 @@
+{
+  "event_id": "L2",
+  "hazard": "Landslide",
+  "event_name": "Chamoli disaster",
+  "benchmark_year_supplied": 2021,
+  "event_start_date": null,
+  "event_end_date": null,
+  "aoi": null,
+  "source_verification": "unverified",
+  "inputs": [],
+  "ground_truth": null
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/cloudtostreet/Sen1Floods11/master/README.md",
+    "path": "metadata/evidence/sen1floods11_README.md",
+    "sha256": "ecac99942ca1a6404f651fd28fc05e6074e8a1a82b5a141d86827c968b52c1f9",
+    "retrieved_at": "2026-10-22T16:18:57.900157+00:00"
+  },
+  {
+    "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/raw/main/README.md",
+    "path": "metadata/evidence/hls_burn_scars_README.md",
+    "sha256": "faed1d086eefda6e19bc3060468fb44614e389f7e2b9f5a5aae71097294dce15",
+    "retrieved_at": "2026-10-22T16:18:58.719046+00:00"
+  },
+  {
+    "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/raw/main/README.md",
+    "path": "metadata/evidence/landslide4sense_README.md",
+    "sha256": "0804ea1451b06e550fccd613839b0b187eda6491b9302dbeff13d0c5e0f19135",
+    "retrieved_at": "2026-10-22T16:18:59.055134+00:00"
+  }
+]

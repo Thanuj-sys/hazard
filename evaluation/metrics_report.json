@@ -1,0 +1,536 @@
+{
+  "results_by_hazard": {
+    "overall": {
+      "accuracy": null,
+      "macro_precision": null,
+      "macro_recall": null,
+      "macro_f1": null,
+      "haversine_distance_km": null,
+      "radius_absolute_error_km": null,
+      "radius_relative_error": null,
+      "direct_assessment_precision": null,
+      "direct_discovery_recall": null,
+      "factual_correctness": null,
+      "recovery_necessity": null,
+      "strategic_completeness": null,
+      "action_priority_precision": null,
+      "average_reasoning_score": null,
+      "pixel_accuracy": null,
+      "intersection_over_union": null,
+      "dice_score": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "haversine_dist_km": null,
+      "radius_abs_err_km": null,
+      "radius_rel_err": null,
+      "dap": null,
+      "ddr": null,
+      "average_score": null,
+      "iou": null,
+      "dice": null
+    },
+    "flood": {
+      "accuracy": null,
+      "macro_precision": null,
+      "macro_recall": null,
+      "macro_f1": null,
+      "haversine_distance_km": null,
+      "radius_absolute_error_km": null,
+      "radius_relative_error": null,
+      "direct_assessment_precision": null,
+      "direct_discovery_recall": null,
+      "factual_correctness": null,
+      "recovery_necessity": null,
+      "strategic_completeness": null,
+      "action_priority_precision": null,
+      "average_reasoning_score": null,
+      "pixel_accuracy": null,
+      "intersection_over_union": null,
+      "dice_score": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "haversine_dist_km": null,
+      "radius_abs_err_km": null,
+      "radius_rel_err": null,
+      "dap": null,
+      "ddr": null,
+      "average_score": null,
+      "iou": null,
+      "dice": null
+    },
+    "wildfire": {
+      "accuracy": null,
+      "macro_precision": null,
+      "macro_recall": null,
+      "macro_f1": null,
+      "haversine_distance_km": null,
+      "radius_absolute_error_km": null,
+      "radius_relative_error": null,
+      "direct_assessment_precision": null,
+      "direct_discovery_recall": null,
+      "factual_correctness": null,
+      "recovery_necessity": null,
+      "strategic_completeness": null,
+      "action_priority_precision": null,
+      "average_reasoning_score": null,
+      "pixel_accuracy": null,
+      "intersection_over_union": null,
+      "dice_score": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "haversine_dist_km": null,
+      "radius_abs_err_km": null,
+      "radius_rel_err": null,
+      "dap": null,
+      "ddr": null,
+      "average_score": null,
+      "iou": null,
+      "dice": null
+    },
+    "landslide": {
+      "accuracy": null,
+      "macro_precision": null,
+      "macro_recall": null,
+      "macro_f1": null,
+      "haversine_distance_km": null,
+      "radius_absolute_error_km": null,
+      "radius_relative_error": null,
+      "direct_assessment_precision": null,
+      "direct_discovery_recall": null,
+      "factual_correctness": null,
+      "recovery_necessity": null,
+      "strategic_completeness": null,
+      "action_priority_precision": null,
+      "average_reasoning_score": null,
+      "pixel_accuracy": null,
+      "intersection_over_union": null,
+      "dice_score": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "haversine_dist_km": null,
+      "radius_abs_err_km": null,
+      "radius_rel_err": null,
+      "dap": null,
+      "ddr": null,
+      "average_score": null,
+      "iou": null,
+      "dice": null
+    }
+  },
+  "sample_counts": {},
+  "metric_coverage": {
+    "overall": {
+      "accuracy": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_recall": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_f1": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "haversine_distance_km": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "radius_absolute_error_km": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "radius_relative_error": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "direct_assessment_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "direct_discovery_recall": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "factual_correctness": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "recovery_necessity": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "strategic_completeness": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "action_priority_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "average_reasoning_score": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "pixel_accuracy": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "intersection_over_union": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "dice_score": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      }
+    },
+    "flood": {
+      "accuracy": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_recall": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_f1": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "haversine_distance_km": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "radius_absolute_error_km": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "radius_relative_error": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "direct_assessment_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "direct_discovery_recall": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "factual_correctness": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "recovery_necessity": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "strategic_completeness": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "action_priority_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "average_reasoning_score": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "pixel_accuracy": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "intersection_over_union": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "dice_score": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      }
+    },
+    "wildfire": {
+      "accuracy": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_recall": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_f1": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "haversine_distance_km": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "radius_absolute_error_km": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "radius_relative_error": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "direct_assessment_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "direct_discovery_recall": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "factual_correctness": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "recovery_necessity": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "strategic_completeness": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "action_priority_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "average_reasoning_score": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "pixel_accuracy": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "intersection_over_union": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "dice_score": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      }
+    },
+    "landslide": {
+      "accuracy": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_recall": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "macro_f1": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "haversine_distance_km": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "radius_absolute_error_km": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "radius_relative_error": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "direct_assessment_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "direct_discovery_recall": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "factual_correctness": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "recovery_necessity": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "strategic_completeness": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "action_priority_precision": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "average_reasoning_score": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "pixel_accuracy": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "intersection_over_union": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      },
+      "dice_score": {
+        "eligible_count": 0,
+        "test_count": 0,
+        "reason": "No test cases with verified required annotations and completed predictions."
+      }
+    }
+  },
+  "metadata": {
+    "evaluation_kind": "independent_evidence_benchmark",
+    "generated_at": "2026-10-22T16:20:19.248821+00:00",
+    "benchmark_status": "incomplete",
+    "ground_truth_status": "Only field-level verified references are scored",
+    "dataset_sha256": "edea7438f86d67df006aa7d9724ad76ca6b2d1d3a1a5a1c5c62b5d33a05d3b1c",
+    "predictions_sha256": "18219930b38933235133538d6773365947a4ab21ac1ae48412c1a8956ff31dfe",
+    "aggregation": "Case-macro mean; classification macro uses flood/wildfire/landslide/none",
+    "skipped_predictions": [],
+    "validation": {
+      "schema_version": 1,
+      "generated_at": "2026-10-22T16:20:19.245978+00:00",
+      "valid": true,
+      "research_ready": false,
+      "case_count": 5,
+      "split_counts": {
+        "train": {
+          "flood": 0,
+          "wildfire": 0,
+          "landslide": 0
+        },
+        "validation": {
+          "flood": 0,
+          "wildfire": 0,
+          "landslide": 0
+        },
+        "test": {
+          "flood": 0,
+          "wildfire": 0,
+          "landslide": 0
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "sen1floods11_india_1017769: candidate excluded from all benchmark splits",
+        "sen1floods11_india_1018317: candidate excluded from all benchmark splits",
+        "landslide4sense_test_1: candidate excluded from all benchmark splits",
+        "landslide4sense_test_10: candidate excluded from all benchmark splits",
+        "hls_subsetted_512x512_hls.s30.t12svd.2018168.v1.4: candidate excluded from all benchmark splits"
+      ],
+      "readiness_blockers": [
+        "flood: 0/100 recommended test cases",
+        "wildfire: 0/100 recommended test cases",
+        "landslide: 0/100 recommended test cases",
+        "flood: no verified negative/non-event test cases",
+        "flood: fewer than two test regions",
+        "flood: fewer than two test events",
+        "flood: fewer than two verified severity levels",
+        "wildfire: no verified negative/non-event test cases",
+        "wildfire: fewer than two test regions",
+        "wildfire: fewer than two test events",
+        "wildfire: fewer than two verified severity levels",
+        "landslide: no verified negative/non-event test cases",
+        "landslide: fewer than two test regions",
+        "landslide: fewer than two test events",
+        "landslide: fewer than two verified severity levels",
+        "train: no reviewed cases",
+        "validation: no reviewed cases"
+      ]
+    }
+  }
+}

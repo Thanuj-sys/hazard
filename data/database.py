@@ -9,8 +9,14 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 import logging
+import json
+from pathlib import Path
+from threading import Lock
+from typing import Optional
 
 logger = logging.getLogger(__name__)
+LOCAL_PREDICTIONS_PATH = Path(__file__).resolve().parents[1] / "evaluation" / "prediction_history.json"
+LOCAL_PREDICTIONS_LOCK = Lock()
 
 # Database URL - configurable via environment variable
 DATABASE_URL = os.getenv(
@@ -25,6 +31,7 @@ engine = create_engine(
     pool_size=20,
     max_overflow=40,
     pool_pre_ping=True,  # Verify connections before using
+    connect_args={"connect_timeout": 3},
 )
 
 # Session factory
@@ -147,7 +154,7 @@ def save_prediction(
     affected_area_km2: float,
     language_report: str,
     model_version: str = "v1.0"
-) -> Prediction:
+) -> Optional[Prediction]:
     """Save a prediction to the database."""
     db = SessionLocal()
     try:
@@ -166,12 +173,41 @@ def save_prediction(
         db.add(prediction)
         db.commit()
         db.refresh(prediction)
+        _save_local_prediction({
+            "id": prediction.id,
+            "latitude": latitude,
+            "longitude": longitude,
+            "hazard_type": hazard_type,
+            "hazard_probabilities": hazard_probabilities,
+            "predicted_lat": predicted_lat,
+            "predicted_lon": predicted_lon,
+            "impact_radius_km": impact_radius_km,
+            "affected_area_km2": affected_area_km2,
+            "language_report": language_report,
+            "model_version": model_version,
+            "created_at": prediction.created_at.isoformat() + "Z",
+            "storage": "database",
+        })
         logger.info(f"✅ Prediction saved: ID={prediction.id}, Hazard={hazard_type}")
         return prediction
     except Exception as e:
         db.rollback()
         logger.error(f"❌ Error saving prediction: {e}")
-        raise
+        _save_local_prediction({
+            "latitude": latitude,
+            "longitude": longitude,
+            "hazard_type": hazard_type,
+            "hazard_probabilities": hazard_probabilities,
+            "predicted_lat": predicted_lat,
+            "predicted_lon": predicted_lon,
+            "impact_radius_km": impact_radius_km,
+            "affected_area_km2": affected_area_km2,
+            "language_report": language_report,
+            "model_version": model_version,
+            "created_at": datetime.utcnow().isoformat() + "Z",
+            "storage": "local_json_fallback",
+        })
+        return None
     finally:
         db.close()
 
@@ -223,3 +259,29 @@ def get_prediction_stats() -> dict:
         }
     finally:
         db.close()
+
+
+def _read_local_predictions() -> list[dict]:
+    if not LOCAL_PREDICTIONS_PATH.is_file():
+        return []
+    try:
+        payload = json.loads(LOCAL_PREDICTIONS_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    return payload if isinstance(payload, list) else []
+
+
+def _save_local_prediction(prediction: dict) -> None:
+    LOCAL_PREDICTIONS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with LOCAL_PREDICTIONS_LOCK:
+        predictions = _read_local_predictions()
+        predictions.append(prediction)
+        LOCAL_PREDICTIONS_PATH.write_text(
+            json.dumps(predictions[-500:], indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+
+def get_local_prediction_history(limit: int = 100) -> list[dict]:
+    """Return recent predictions when PostgreSQL is unavailable."""
+    return list(reversed(_read_local_predictions()[-max(1, min(limit, 500)):]))

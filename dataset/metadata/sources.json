@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-22T16:07:15.851693+00:00",
+  "sources": [
+    {
+      "source_id": "sen1floods11",
+      "organization": "Cloud to Street / dataset authors",
+      "url": "https://github.com/cloudtostreet/Sen1Floods11",
+      "data_url": "https://storage.googleapis.com/sen1floods11/v1.1/",
+      "license": "See upstream license; retain downloaded source documentation",
+      "label_method": "Published hand-labeled water masks",
+      "independence": "Human labels; exclude Otsu and weak model labels",
+      "limitations": [
+        "Water includes permanent water; cannot establish flood presence or inundation footprint.",
+        "Not accepted as flood truth without independent event-water verification."
+      ]
+    },
+    {
+      "source_id": "hls_burn_scars",
+      "organization": "NASA IMPACT / IBM-NASA dataset authors",
+      "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "license": "CC-BY-4.0",
+      "doi": "10.57967/hf/0956",
+      "label_method": "MTBS burn scar polygons; manual image and scar screening",
+      "independence": "MTBS reference labels; no project model output used",
+      "limitations": [
+        "Burn scars describe past burning, not active fire or response urgency.",
+        "Upstream random train/validation split is not an independent event holdout.",
+        "Severity, event radius, expert response labels require further evidence."
+      ]
+    },
+    {
+      "source_id": "landslide4sense",
+      "organization": "IARAI / Landslide4Sense authors; IBM-NASA mirror",
+      "url": "https://github.com/iarai/Landslide4Sense-2022",
+      "data_url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "license": "Not declared in mirror card; confirm upstream data redistribution terms",
+      "label_method": "Published pixel-level landslide inventory labels",
+      "independence": "Published annotations; no project model output used",
+      "limitations": [
+        "HDF5 patches do not supply reliable per-patch CRS/transform in the card.",
+        "No guessed georeferencing is assigned; patches stay outside geospatial benchmark.",
+        "Event and region identities require upstream recovery before split allocation."
+      ]
+    },
+    {
+      "source_id": "nrsc_wayanad",
+      "organization": "NRSC / ISRO / NDEM",
+      "url": "https://ndem.nrsc.gov.in/documents/Disaster_Document/2024/klwayanadlandslide_31072024.pdf",
+      "license": "Confirm official product terms before redistribution",
+      "label_method": "Official event documentation; not a pixel label",
+      "limitations": [
+        "Narrative/map evidence alone cannot supply aligned raster masks."
+      ]
+    }
+  ]
+}

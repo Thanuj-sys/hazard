@@ -1,0 +1,1577 @@
+[
+  {
+    "case_id": "flood_Spain_7370579",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.06466750800609589,
+      "wildfire": 0.8526748418807983,
+      "landslide": 0.08265777677297592
+    },
+    "confidence": 0.8526748418807983,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 70035,
+      "valid_label_pixels": 262045,
+      "positive_fraction": 0.26726325631093895,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.470604807138443,
+      "input_max": 0.538100004196167
+    }
+  },
+  {
+    "case_id": "flood_Mekong_382276",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.0787750631570816,
+      "wildfire": 0.8420116305351257,
+      "landslide": 0.07921328395605087
+    },
+    "confidence": 0.8420116305351257,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 9808,
+      "valid_label_pixels": 262111,
+      "positive_fraction": 0.037419261305324844,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.46940773725509644,
+      "input_max": 0.614300012588501
+    }
+  },
+  {
+    "case_id": "flood_Sri-Lanka_1049830",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.040052831172943115,
+      "wildfire": 0.9040104150772095,
+      "landslide": 0.05593676492571831
+    },
+    "confidence": 0.9040104150772095,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 2577,
+      "valid_label_pixels": 190233,
+      "positive_fraction": 0.01354654555203356,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.4764445126056671,
+      "input_max": 0.3240000009536743
+    }
+  },
+  {
+    "case_id": "flood_Pakistan_849790",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.045695140957832336,
+      "wildfire": 0.8814111948013306,
+      "landslide": 0.07289370149374008
+    },
+    "confidence": 0.8814111948013306,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 171908,
+      "valid_label_pixels": 257239,
+      "positive_fraction": 0.6682812481777647,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.49526265263557434,
+      "input_max": 0.33230000734329224
+    }
+  },
+  {
+    "case_id": "flood_India_952728",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.05925014242529869,
+      "wildfire": 0.8735933899879456,
+      "landslide": 0.06715644150972366
+    },
+    "confidence": 0.8735933899879456,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 5848,
+      "valid_label_pixels": 188716,
+      "positive_fraction": 0.03098836346679667,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.48283687233924866,
+      "input_max": 0.927299976348877
+    }
+  },
+  {
+    "case_id": "flood_India_592446",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.06720953434705734,
+      "wildfire": 0.8656365871429443,
+      "landslide": 0.0671539232134819
+    },
+    "confidence": 0.8656365871429443,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 9044,
+      "valid_label_pixels": 224355,
+      "positive_fraction": 0.04031111408259232,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.4843824505805969,
+      "input_max": 0.79830002784729
+    }
+  },
+  {
+    "case_id": "flood_Mekong_1443339",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.05526214838027954,
+      "wildfire": 0.8620752096176147,
+      "landslide": 0.08266270905733109
+    },
+    "confidence": 0.8620752096176147,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 192783,
+      "valid_label_pixels": 262135,
+      "positive_fraction": 0.7354340320827055,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.5233989953994751,
+      "input_max": 0.5579000115394592
+    }
+  },
+  {
+    "case_id": "flood_USA_527077",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.09501704573631287,
+      "wildfire": 0.8128789067268372,
+      "landslide": 0.09210395812988281
+    },
+    "confidence": 0.8128789067268372,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 1646,
+      "valid_label_pixels": 262127,
+      "positive_fraction": 0.006279398917318704,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.49599823355674744,
+      "input_max": 0.5482000112533569
+    }
+  },
+  {
+    "case_id": "flood_Sri-Lanka_649970",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.056238409131765366,
+      "wildfire": 0.8774785399436951,
+      "landslide": 0.06628300994634628
+    },
+    "confidence": 0.8774785399436951,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 17343,
+      "valid_label_pixels": 260855,
+      "positive_fraction": 0.06648521209100841,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.4146037995815277,
+      "input_max": 0.5365999937057495
+    }
+  },
+  {
+    "case_id": "flood_Paraguay_651904",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.0707416832447052,
+      "wildfire": 0.8439344763755798,
+      "landslide": 0.08532386273145676
+    },
+    "confidence": 0.8439344763755798,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 27156,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.1035919189453125,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.5190384984016418,
+      "input_max": 0.46650001406669617
+    }
+  },
+  {
+    "case_id": "flood_India_79637",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.06931839883327484,
+      "wildfire": 0.8561733365058899,
+      "landslide": 0.07450834661722183
+    },
+    "confidence": 0.8561733365058899,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 5165,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.019702911376953125,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.47405487298965454,
+      "input_max": 0.5640000104904175
+    }
+  },
+  {
+    "case_id": "flood_Spain_6860600",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.09166969358921051,
+      "wildfire": 0.8303866386413574,
+      "landslide": 0.07794369012117386
+    },
+    "confidence": 0.8303866386413574,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 246,
+      "valid_label_pixels": 261969,
+      "positive_fraction": 0.0009390424057808366,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.35802051424980164,
+      "input_max": 0.7998999953269958
+    }
+  },
+  {
+    "case_id": "flood_Spain_7387658",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.07734127342700958,
+      "wildfire": 0.8115987777709961,
+      "landslide": 0.11105996370315552
+    },
+    "confidence": 0.8115987777709961,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 153006,
+      "valid_label_pixels": 262057,
+      "positive_fraction": 0.5838653422728644,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.5089105367660522,
+      "input_max": 0.4973999857902527
+    }
+  },
+  {
+    "case_id": "flood_Paraguay_271769",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.1351393163204193,
+      "wildfire": 0.7678029537200928,
+      "landslide": 0.0970577597618103
+    },
+    "confidence": 0.7678029537200928,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 2613,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.009967803955078125,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.47375690937042236,
+      "input_max": 0.4690000116825104
+    }
+  },
+  {
+    "case_id": "flood_Mekong_424793",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.08444880694150925,
+      "wildfire": 0.8406378030776978,
+      "landslide": 0.07491336762905121
+    },
+    "confidence": 0.8406378030776978,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 4003,
+      "valid_label_pixels": 258487,
+      "positive_fraction": 0.015486272036891603,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.4561718702316284,
+      "input_max": 0.7401000261306763
+    }
+  },
+  {
+    "case_id": "flood_Sri-Lanka_450918",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.10960745066404343,
+      "wildfire": 0.6980453133583069,
+      "landslide": 0.1923472285270691
+    },
+    "confidence": 0.6980453133583069,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 2795,
+      "valid_label_pixels": 74534,
+      "positive_fraction": 0.0374996645826066,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.3236654996871948,
+      "input_max": 0.8758999705314636
+    }
+  },
+  {
+    "case_id": "flood_Somalia_322855",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.07784707844257355,
+      "wildfire": 0.834380567073822,
+      "landslide": 0.08777226507663727
+    },
+    "confidence": 0.834380567073822,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 44737,
+      "valid_label_pixels": 255044,
+      "positive_fraction": 0.17540894904408652,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.47679802775382996,
+      "input_max": 0.4499000012874603
+    }
+  },
+  {
+    "case_id": "flood_Paraguay_790830",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.07414158433675766,
+      "wildfire": 0.8441663980484009,
+      "landslide": 0.08169201016426086
+    },
+    "confidence": 0.8441663980484009,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 31947,
+      "valid_label_pixels": 261199,
+      "positive_fraction": 0.12230904406219013,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.4710315465927124,
+      "input_max": 0.5414999723434448
+    }
+  },
+  {
+    "case_id": "flood_USA_778194",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.09257430583238602,
+      "wildfire": 0.8190957903862,
+      "landslide": 0.08832984417676926
+    },
+    "confidence": 0.8190957903862,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 3838,
+      "valid_label_pixels": 262070,
+      "positive_fraction": 0.014644942191017666,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.4704112708568573,
+      "input_max": 0.6013000011444092
+    }
+  },
+  {
+    "case_id": "flood_Ghana_1078550",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.060283929109573364,
+      "wildfire": 0.8704813718795776,
+      "landslide": 0.06923464685678482
+    },
+    "confidence": 0.8704813718795776,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 1407,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.005367279052734375,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.3361295461654663,
+      "input_max": 0.43479999899864197
+    }
+  },
+  {
+    "case_id": "flood_Ghana_319168",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.05633944272994995,
+      "wildfire": 0.876956582069397,
+      "landslide": 0.06670402735471725
+    },
+    "confidence": 0.876956582069397,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 39521,
+      "valid_label_pixels": 171624,
+      "positive_fraction": 0.2302766512842027,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.47367727756500244,
+      "input_max": 0.6884999871253967
+    }
+  },
+  {
+    "case_id": "flood_Paraguay_232281",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.06407644599676132,
+      "wildfire": 0.8486360907554626,
+      "landslide": 0.08728740364313126
+    },
+    "confidence": 0.8486360907554626,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 29404,
+      "valid_label_pixels": 261391,
+      "positive_fraction": 0.11249048360502083,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.49222078919410706,
+      "input_max": 0.40119999647140503
+    }
+  },
+  {
+    "case_id": "flood_Nigeria_417184",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.10091636329889297,
+      "wildfire": 0.7793110013008118,
+      "landslide": 0.11977267265319824
+    },
+    "confidence": 0.7793110013008118,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 1384,
+      "valid_label_pixels": 50135,
+      "positive_fraction": 0.027605465243841627,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.5669090151786804,
+      "input_max": 0.45260000228881836
+    }
+  },
+  {
+    "case_id": "flood_India_900498",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.06424057483673096,
+      "wildfire": 0.8440262675285339,
+      "landslide": 0.09173323214054108
+    },
+    "confidence": 0.8440262675285339,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 123953,
+      "valid_label_pixels": 261992,
+      "positive_fraction": 0.4731174997709854,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.5373948812484741,
+      "input_max": 0.3756999969482422
+    }
+  },
+  {
+    "case_id": "flood_Sri-Lanka_377277",
+    "true_hazard": "flood",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.0443556047976017,
+      "wildfire": 0.8956447839736938,
+      "landslide": 0.05999959260225296
+    },
+    "confidence": 0.8956447839736938,
+    "upstream_split": "official_test",
+    "source": "https://github.com/cloudtostreet/Sen1Floods11",
+    "label_details": {
+      "positive_pixels": 8603,
+      "valid_label_pixels": 259388,
+      "positive_fraction": 0.033166530448594383,
+      "input_adapter": "VV,VH/100 in slots 0:2; S2 B2,B3,B4,B8,B11,B12/10000 in slots 2:8; remaining slots zero.",
+      "input_min": -0.41786912083625793,
+      "input_max": 0.3765000104904175
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T12SVC.2019280.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.04326566681265831,
+      "wildfire": 0.8841556310653687,
+      "landslide": 0.07257866859436035
+    },
+    "confidence": 0.8841556310653687,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 34018,
+      "valid_label_pixels": 181956,
+      "positive_fraction": 0.1869572863769263,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5676000118255615
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T16TGQ.2018133.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.03339405730366707,
+      "wildfire": 0.9204640984535217,
+      "landslide": 0.04614190757274628
+    },
+    "confidence": 0.9204640984535217,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 15687,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.059841156005859375,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.9656000137329102
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T14RKV.2018213.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.027340887114405632,
+      "wildfire": 0.9350482821464539,
+      "landslide": 0.03761080279946327
+    },
+    "confidence": 0.9350482821464539,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 5633,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.021488189697265625,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.6628000140190125
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T10SFG.2020215.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.028204401955008507,
+      "wildfire": 0.9311167001724243,
+      "landslide": 0.04067893698811531
+    },
+    "confidence": 0.9311167001724243,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 26062,
+      "valid_label_pixels": 262132,
+      "positive_fraction": 0.09942319136923382,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.7699000239372253
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T12RXV.2018182.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.024692727252840996,
+      "wildfire": 0.9374856948852539,
+      "landslide": 0.03782154619693756
+    },
+    "confidence": 0.9374856948852539,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 19568,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.07464599609375,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.43939998745918274
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T12TVM.2018246.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.05148548632860184,
+      "wildfire": 0.8697398900985718,
+      "landslide": 0.07877462357282639
+    },
+    "confidence": 0.8697398900985718,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 18645,
+      "valid_label_pixels": 159741,
+      "positive_fraction": 0.11672019080887186,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5174000263214111
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T12TXK.2018215.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.030024182051420212,
+      "wildfire": 0.9264085292816162,
+      "landslide": 0.04356734827160835
+    },
+    "confidence": 0.9264085292816162,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 25633,
+      "valid_label_pixels": 261996,
+      "positive_fraction": 0.09783737156292463,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.7190999984741211
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T11SLV.2021216.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.03728890419006348,
+      "wildfire": 0.907964825630188,
+      "landslide": 0.05474625527858734
+    },
+    "confidence": 0.907964825630188,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 10409,
+      "valid_label_pixels": 207503,
+      "positive_fraction": 0.050163130171611975,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5184000134468079
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T11SLV.2018249.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.025185201317071915,
+      "wildfire": 0.9369902014732361,
+      "landslide": 0.03782457858324051
+    },
+    "confidence": 0.9369902014732361,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 22346,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.08524322509765625,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.6430000066757202
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T11TNJ.2018217.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.029404813423752785,
+      "wildfire": 0.929088294506073,
+      "landslide": 0.04150693863630295
+    },
+    "confidence": 0.929088294506073,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 20395,
+      "valid_label_pixels": 262143,
+      "positive_fraction": 0.07780104751986511,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5065000057220459
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T12UXU.2021250.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.050443463027477264,
+      "wildfire": 0.8743143081665039,
+      "landslide": 0.07524215430021286
+    },
+    "confidence": 0.8743143081665039,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 36020,
+      "valid_label_pixels": 184291,
+      "positive_fraction": 0.19545175836041911,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 1.0
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T17SKT.2018107.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.03309054672718048,
+      "wildfire": 0.9224340915679932,
+      "landslide": 0.04447546228766441
+    },
+    "confidence": 0.9224340915679932,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 5582,
+      "valid_label_pixels": 262142,
+      "positive_fraction": 0.021293802595539823,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.7279000282287598
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T14SKB.2019268.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.028787048533558846,
+      "wildfire": 0.9312334656715393,
+      "landslide": 0.03997938334941864
+    },
+    "confidence": 0.9312334656715393,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 8736,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.0333251953125,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.8565999865531921
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T11TQG.2018291.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.027882169932127,
+      "wildfire": 0.9319681525230408,
+      "landslide": 0.04014970362186432
+    },
+    "confidence": 0.9319681525230408,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 60125,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.22935867309570312,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5601000189781189
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T13TDK.2020217.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.027340982109308243,
+      "wildfire": 0.934047520160675,
+      "landslide": 0.038611508905887604
+    },
+    "confidence": 0.934047520160675,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 49665,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.18945693969726562,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5771999955177307
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T13SBT.2019202.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.027476400136947632,
+      "wildfire": 0.9334386587142944,
+      "landslide": 0.039084989577531815
+    },
+    "confidence": 0.9334386587142944,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 14807,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.056484222412109375,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.48669999837875366
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T10TGR.2018215.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.0278305746614933,
+      "wildfire": 0.9307425022125244,
+      "landslide": 0.04142696037888527
+    },
+    "confidence": 0.9307425022125244,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 6981,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.026630401611328125,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 1.0
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T12SUC.2019223.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.02915545552968979,
+      "wildfire": 0.9298767447471619,
+      "landslide": 0.04096785560250282
+    },
+    "confidence": 0.9298767447471619,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 33830,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.12905120849609375,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.4348999857902527
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T16REV.2021129.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.03367995098233223,
+      "wildfire": 0.9209910035133362,
+      "landslide": 0.045329101383686066
+    },
+    "confidence": 0.9209910035133362,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 9623,
+      "valid_label_pixels": 262046,
+      "positive_fraction": 0.036722560161193074,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.557699978351593
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T12SUF.2020183.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.029687242582440376,
+      "wildfire": 0.9285070300102234,
+      "landslide": 0.04180574417114258
+    },
+    "confidence": 0.9285070300102234,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 130199,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.4966697692871094,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5127000212669373
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T13TEE.2020249.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.026150338351726532,
+      "wildfire": 0.9371649026870728,
+      "landslide": 0.03668471798300743
+    },
+    "confidence": 0.9371649026870728,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 7096,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.027069091796875,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5074999928474426
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T14SND.2018125.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.029102744534611702,
+      "wildfire": 0.9314655065536499,
+      "landslide": 0.03943178802728653
+    },
+    "confidence": 0.9314655065536499,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 22250,
+      "valid_label_pixels": 262140,
+      "positive_fraction": 0.08487830930037385,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.4975000023841858
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T16SDC.2018098.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.03257070854306221,
+      "wildfire": 0.9224159121513367,
+      "landslide": 0.045013345777988434
+    },
+    "confidence": 0.9224159121513367,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 4384,
+      "valid_label_pixels": 262143,
+      "positive_fraction": 0.016723696608339722,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.8291000127792358
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T10SGG.2020247.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.03066825307905674,
+      "wildfire": 0.9256803393363953,
+      "landslide": 0.04365130513906479
+    },
+    "confidence": 0.9256803393363953,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 14173,
+      "valid_label_pixels": 262125,
+      "positive_fraction": 0.05406962327134001,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 1.0
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T10TFM.2018110.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.02845907211303711,
+      "wildfire": 0.9280084371566772,
+      "landslide": 0.043532487004995346
+    },
+    "confidence": 0.9280084371566772,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 10195,
+      "valid_label_pixels": 262132,
+      "positive_fraction": 0.03889261898585446,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5156000256538391
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T14SLD.2018163.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.02667292021214962,
+      "wildfire": 0.9354490041732788,
+      "landslide": 0.03787802532315254
+    },
+    "confidence": 0.9354490041732788,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 16338,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.06232452392578125,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5006999969482422
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T10TFQ.2018183.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.028371861204504967,
+      "wildfire": 0.9296504855155945,
+      "landslide": 0.041977595537900925
+    },
+    "confidence": 0.9296504855155945,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 9459,
+      "valid_label_pixels": 262107,
+      "positive_fraction": 0.03608831507743021,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.6104000210762024
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T13TEE.2020214.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.027117334306240082,
+      "wildfire": 0.935200572013855,
+      "landslide": 0.03768211975693703
+    },
+    "confidence": 0.935200572013855,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 9896,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.037750244140625,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.6672999858856201
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T15RVQ.2021063.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.03295795992016792,
+      "wildfire": 0.9205189347267151,
+      "landslide": 0.046523138880729675
+    },
+    "confidence": 0.9205189347267151,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 13418,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.05118560791015625,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.5552999973297119
+    }
+  },
+  {
+    "case_id": "wildfire_subsetted_512x512_HLS.S30.T10TFR.2018188.v1.4_merged",
+    "true_hazard": "wildfire",
+    "predicted_hazard": "wildfire",
+    "hazard_probabilities": {
+      "flood": 0.027206256985664368,
+      "wildfire": 0.9314685463905334,
+      "landslide": 0.041325151920318604
+    },
+    "confidence": 0.9314685463905334,
+    "upstream_split": "official_validation",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "label_details": {
+      "positive_pixels": 72313,
+      "valid_label_pixels": 262144,
+      "positive_fraction": 0.2758522033691406,
+      "input_adapter": "Published HLS already-reflectance six bands in slots 0:6 without double scaling; remaining slots zero.",
+      "input_min": 0.0,
+      "input_max": 0.4214000105857849
+    }
+  },
+  {
+    "case_id": "landslide_519",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.058505866676568985,
+      "wildfire": 0.1878778338432312,
+      "landslide": 0.7536163330078125
+    },
+    "confidence": 0.7536163330078125,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 128,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.0078125,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.24819999933242798
+    }
+  },
+  {
+    "case_id": "landslide_639",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.060273587703704834,
+      "wildfire": 0.18536752462387085,
+      "landslide": 0.7543588876724243
+    },
+    "confidence": 0.7543588876724243,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 1102,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.0672607421875,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.22269999980926514
+    }
+  },
+  {
+    "case_id": "landslide_5",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.06406652182340622,
+      "wildfire": 0.20235572755336761,
+      "landslide": 0.7335777282714844
+    },
+    "confidence": 0.7335777282714844,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 967,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.05902099609375,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.289900004863739
+    }
+  },
+  {
+    "case_id": "landslide_660",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05996750667691231,
+      "wildfire": 0.20298705995082855,
+      "landslide": 0.7370454668998718
+    },
+    "confidence": 0.7370454668998718,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 327,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.01995849609375,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.2240999937057495
+    }
+  },
+  {
+    "case_id": "landslide_457",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.06158022582530975,
+      "wildfire": 0.20745305716991425,
+      "landslide": 0.7309667468070984
+    },
+    "confidence": 0.7309667468070984,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 46,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.0028076171875,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.17310000956058502
+    }
+  },
+  {
+    "case_id": "landslide_71",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05728430300951004,
+      "wildfire": 0.17609061300754547,
+      "landslide": 0.7666251063346863
+    },
+    "confidence": 0.7666251063346863,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 217,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.01324462890625,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.1817999929189682
+    }
+  },
+  {
+    "case_id": "landslide_658",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.061906322836875916,
+      "wildfire": 0.2033378928899765,
+      "landslide": 0.7347557544708252
+    },
+    "confidence": 0.7347557544708252,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 216,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.01318359375,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.2921000123023987
+    }
+  },
+  {
+    "case_id": "landslide_137",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.06032159924507141,
+      "wildfire": 0.20743608474731445,
+      "landslide": 0.7322423458099365
+    },
+    "confidence": 0.7322423458099365,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 179,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.01092529296875,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.2054000198841095
+    }
+  },
+  {
+    "case_id": "landslide_564",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05894932523369789,
+      "wildfire": 0.18928155303001404,
+      "landslide": 0.7517691254615784
+    },
+    "confidence": 0.7517691254615784,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 442,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.0269775390625,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.1843000054359436
+    }
+  },
+  {
+    "case_id": "landslide_576",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05802763253450394,
+      "wildfire": 0.192457377910614,
+      "landslide": 0.7495149970054626
+    },
+    "confidence": 0.7495149970054626,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 161,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.00982666015625,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.1761000156402588
+    }
+  },
+  {
+    "case_id": "landslide_615",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.06005093455314636,
+      "wildfire": 0.187124565243721,
+      "landslide": 0.7528245449066162
+    },
+    "confidence": 0.7528245449066162,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 753,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.04595947265625,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.24070000648498535
+    }
+  },
+  {
+    "case_id": "landslide_274",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05957214534282684,
+      "wildfire": 0.18685418367385864,
+      "landslide": 0.7535736560821533
+    },
+    "confidence": 0.7535736560821533,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 55,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.00335693359375,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.18980000913143158
+    }
+  },
+  {
+    "case_id": "landslide_359",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.058365125209093094,
+      "wildfire": 0.18143485486507416,
+      "landslide": 0.760200023651123
+    },
+    "confidence": 0.760200023651123,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 139,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.00848388671875,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.19939999282360077
+    }
+  },
+  {
+    "case_id": "landslide_412",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.062330570071935654,
+      "wildfire": 0.1871238499879837,
+      "landslide": 0.7505456209182739
+    },
+    "confidence": 0.7505456209182739,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 400,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.0244140625,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.23360000550746918
+    }
+  },
+  {
+    "case_id": "landslide_450",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05801208317279816,
+      "wildfire": 0.18506866693496704,
+      "landslide": 0.7569192051887512
+    },
+    "confidence": 0.7569192051887512,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 263,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.01605224609375,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.21090002357959747
+    }
+  },
+  {
+    "case_id": "landslide_745",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05842674523591995,
+      "wildfire": 0.1838255077600479,
+      "landslide": 0.7577477693557739
+    },
+    "confidence": 0.7577477693557739,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 949,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.05792236328125,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.24410001933574677
+    }
+  },
+  {
+    "case_id": "landslide_500",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05695279315114021,
+      "wildfire": 0.18503595888614655,
+      "landslide": 0.7580112218856812
+    },
+    "confidence": 0.7580112218856812,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 84,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.005126953125,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.210999995470047
+    }
+  },
+  {
+    "case_id": "landslide_261",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.05823417007923126,
+      "wildfire": 0.19007326662540436,
+      "landslide": 0.7516925930976868
+    },
+    "confidence": 0.7516925930976868,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 63,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.00384521484375,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.15189999341964722
+    }
+  },
+  {
+    "case_id": "landslide_198",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.06279014050960541,
+      "wildfire": 0.17706678807735443,
+      "landslide": 0.7601431012153625
+    },
+    "confidence": 0.7601431012153625,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 40,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.00244140625,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.18660001456737518
+    }
+  },
+  {
+    "case_id": "landslide_16",
+    "true_hazard": "landslide",
+    "predicted_hazard": "landslide",
+    "hazard_probabilities": {
+      "flood": 0.061814337968826294,
+      "wildfire": 0.2210610955953598,
+      "landslide": 0.7171245217323303
+    },
+    "confidence": 0.7171245217323303,
+    "upstream_split": "official_test",
+    "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+    "label_details": {
+      "positive_pixels": 2,
+      "valid_label_pixels": 16384,
+      "positive_fraction": 0.0001220703125,
+      "input_adapter": "L4S RGB B4/B3/B2: undo published mean division (445.17289745,663.41636217,824.63171476), then divide recovered DN by 10000; other slots zero. Source: authors issue 4 comment 1195457420. Transfer adapter, not known historical training transform.",
+      "input_min": 0.0,
+      "input_max": 0.415800005197525
+    }
+  }
+]

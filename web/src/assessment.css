@@ -1,0 +1,34 @@
+﻿.assessment-page { width:min(1260px,calc(100% - 64px)); margin:32px auto 60px; color:#233a2d; }
+.as-heading h1 { font:600 32px "Space Grotesk",sans-serif; margin:12px 0; }
+.as-heading>p,.as-panel>p { color:#627369; font-size:13px; line-height:1.7; }
+.as-input-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:24px; }
+.as-panel { border:1px solid #dbe4dc; background:white; padding:24px; border-radius:10px; margin-bottom:20px; min-width:0; }
+.as-panel h2 { font-size:20px; margin:12px 0; }.as-panel h3 { font-size:16px; margin-top:24px; }
+.as-controls { display:flex; flex-wrap:wrap; gap:9px; margin:15px 0; }
+.as-controls button,.as-file,.as-run>button { border:1px solid #c9d9cd; background:#f4f8f4; color:#245d40; border-radius:6px; padding:10px 13px; font-size:12px; cursor:pointer; }
+.as-file input { display:block; max-width:230px; font-size:10px; margin-top:7px; }
+.as-controls button:disabled,.as-run>button:disabled { opacity:.5; cursor:default; }
+.as-input-summary { display:grid; grid-template-columns:110px 1fr; gap:9px; font-size:12px; }
+.as-input-summary dt { color:#6b7d70; }.as-input-summary dd { margin:0; overflow-wrap:anywhere; }
+.as-field { display:flex; flex-direction:column; gap:6px; margin:14px 0; font-size:12px; color:#5a6f60; }
+.as-field input { padding:10px; border:1px solid #d4dfd6; border-radius:5px; color:#263d2d; background:white; }
+.as-panel details { font-size:12px; line-height:1.7; margin-top:14px; }.as-panel details p { overflow-wrap:anywhere; }
+.as-run { display:flex; align-items:center; flex-wrap:wrap; gap:14px; padding:18px; margin:0 0 20px; background:#eaf2ed; border-radius:8px; }
+.as-run label { font-size:13px; }.as-run small { font-size:11px; color:#617568; max-width:330px; }
+.as-run>button { margin-left:auto; background:#246f50; color:white; border-color:#246f50; }
+.as-stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:18px 0; }
+.as-stats article { background:#f4f7f4; padding:16px; border-radius:7px; display:flex; flex-direction:column; gap:10px; }
+.as-stats span { font-size:11px; color:#6b7c70; }.as-stats strong { font-size:19px; overflow-wrap:anywhere; }
+.as-table-wrap { overflow:auto; }.as-table-wrap table { width:100%; border-collapse:collapse; font-size:12px; }
+.as-table-wrap td,.as-table-wrap th { text-align:left; padding:12px 10px; border-bottom:1px solid #e8ede8; }
+.as-table-wrap th { font-weight:600; }.as-table-wrap thead { color:#718074; }
+.as-badge { display:inline-block; padding:4px 7px; border-radius:5px; background:#edf1ed; font-size:10px; white-space:nowrap; }
+.as-pass { background:#dfefe4; color:#266141; }.as-fail { background:#fbe5df; color:#aa452b; }.as-warning { background:#fff4de; color:#8a5924!important; border-radius:6px; padding:12px; font-size:12px; line-height:1.7; }
+.as-empty { padding:20px; color:#6c7e70; background:#edf2ed; border-radius:8px; font-size:13px; line-height:1.7; }
+.as-error { padding:16px; color:#9f3e28; background:#fce9e3; border-radius:6px; font-size:13px; }
+.as-map { display:block; width:100%; max-height:580px; object-fit:contain; border:1px solid #e0e8df; border-radius:8px; margin-top:18px; }
+.as-type-counts { display:flex; flex-wrap:wrap; gap:10px; }.as-type-counts>span { padding:8px 12px; background:#edf4ef; border-radius:5px; font-size:12px; }
+.as-note { font-size:11px!important; color:#748175!important; overflow-wrap:anywhere; line-height:1.7; }
+.as-fact { padding:14px 0; border-bottom:1px solid #edf0eb; font-size:13px; }.as-fact p { margin:7px 0; overflow-wrap:anywhere; }.as-fact small { color:#758275; font-size:11px; }
+.as-llm { padding:16px; background:#eef4ef; border-left:3px solid #2c7953; line-height:1.8; font-size:14px; }.as-llm small { color:#477f58; }.as-panel li { font-size:12px; margin:9px 0; }
+@media(max-width:850px) { .assessment-page { width:calc(100% - 28px); }.as-input-grid { grid-template-columns:1fr; gap:0; }.as-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }.as-run>button { margin-left:0; }.as-panel { padding:16px; }.as-heading h1 { font-size:25px; } }

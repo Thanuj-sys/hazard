@@ -4,11 +4,16 @@ Implements the API Fallback Matrix and end-to-end inference triggers.
 With PostgreSQL, Redis caching, and Prometheus monitoring.
 """
 
+import asyncio
 import glob
+import json
 import math
 import os
 import sys
+import time
 from datetime import datetime, timedelta, timezone
+from functools import lru_cache
+from threading import Lock
 from typing import Dict, Any, List, Optional
 
 import numpy as np
@@ -16,14 +21,25 @@ import requests
 import torch
 import torch.nn.functional as F
 import uvicorn
+import yaml
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from loguru import logger
 from pydantic import BaseModel
+from shapely.geometry import Point, shape
+from shapely.ops import unary_union
 
+from api.analysis_reports import attach_analysis_pdf, router as analysis_reports_router
+from api.assessment import router as assessment_router
 from models.multihazard_vlm import MultiHazardVLM
-from data.database import init_db, save_prediction, get_prediction_stats, Prediction
+from data.database import (
+    init_db,
+    save_prediction,
+    get_prediction_stats,
+    get_local_prediction_history,
+    Prediction,
+)
 from data.cache import cache_prediction, get_cached_prediction, cache_stats, get_cached_stats, invalidate_stats_cache
 from data.metrics import track_request_time, track_prediction_time, get_metrics, predictions_total
 
@@ -39,8 +55,15 @@ app = FastAPI(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8503", "http://127.0.0.1:8503"],
-    allow_methods=["GET"],
+    allow_origins=[
+        "http://localhost:8501",
+        "http://127.0.0.1:8501",
+        "http://localhost:8503",
+        "http://127.0.0.1:8503",
+        "http://localhost:8504",
+        "http://127.0.0.1:8504",
+    ],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -56,6 +79,22 @@ async def startup_event():
         logger.info("[Model] Model pre-loaded successfully!")
     except Exception as e:
         logger.warning(f"[Model] Failed to pre-load model: {e}")
+    global REALTIME_MONITOR_TASK
+    if REALTIME_MONITOR_ENABLED:
+        REALTIME_MONITOR_TASK = asyncio.create_task(realtime_monitor_loop())
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    if REALTIME_MONITOR_TASK is not None:
+        REALTIME_MONITOR_TASK.cancel()
+        try:
+            await REALTIME_MONITOR_TASK
+        except asyncio.CancelledError:
+            pass
+
+app.include_router(assessment_router)
+app.include_router(analysis_reports_router)
 
 # --- Pydantic Models ---
 
@@ -83,8 +122,52 @@ class DashboardDataResponse(BaseModel):
     data_source: str
 
 MODEL_CACHE: Optional[MultiHazardVLM] = None
-INFERENCE_MODE = os.getenv("INFERENCE_MODE", "demo_synthetic")
+INFERENCE_MODE = os.getenv("INFERENCE_MODE", "planetary_computer")
 APP_ENV = os.getenv("APP_ENV", "development").lower()
+ALLOW_SYNTHETIC_INFERENCE = os.getenv("ALLOW_SYNTHETIC_INFERENCE", "false").lower() in {"1", "true", "yes", "on"}
+MODEL_CONFIG_PATH = os.path.join("configs", "model_config.yaml")
+with open(MODEL_CONFIG_PATH, encoding="utf-8") as config_file:
+    MODEL_HAZARD_CLASSES = [
+        str(label).lower()
+        for label in yaml.safe_load(config_file).get("model", {}).get(
+            "hazard_classes", ["flood", "wildfire", "landslide"]
+        )
+    ]
+REALTIME_MONITOR_ENABLED = os.getenv("REALTIME_MONITOR_ENABLED", "false").lower() in {"1", "true", "yes", "on"}
+REALTIME_MONITOR_INTERVAL_SECONDS = max(300, int(os.getenv("REALTIME_MONITOR_INTERVAL_SECONDS", "900")))
+REALTIME_PREDICTION_TIMEOUT_SECONDS = max(300, float(os.getenv("REALTIME_PREDICTION_TIMEOUT_SECONDS", "600")))
+REALTIME_MONITOR_POINTS = os.getenv("REALTIME_MONITOR_POINTS", "20.5937,78.9629")
+REALTIME_MONITOR_TASK: Optional[asyncio.Task] = None
+MONITOR_STATE: Dict[str, Any] = {
+    "enabled": REALTIME_MONITOR_ENABLED,
+    "status": "disabled" if not REALTIME_MONITOR_ENABLED else "starting",
+    "interval_seconds": REALTIME_MONITOR_INTERVAL_SECONDS,
+    "points": [],
+    "last_started_at": None,
+    "last_completed_at": None,
+    "last_success_at": None,
+    "last_error": None,
+    "latest_predictions": {},
+}
+INDIA_BOUNDS = (6.5, 68.0, 35.5, 97.5)
+INDIA_BOUNDARY_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)), "dashboard", "boundaries", "india_states.geojson"
+)
+
+
+@lru_cache(maxsize=1)
+def load_india_boundary():
+    """Load the bundled administrative boundary used to geofence predictions."""
+    try:
+        with open(INDIA_BOUNDARY_PATH, encoding="utf-8") as boundary_file:
+            payload = json.load(boundary_file)
+        geometries = [shape(feature["geometry"]) for feature in payload.get("features", [])]
+        if not geometries:
+            raise ValueError("boundary file contains no geometries")
+        return unary_union(geometries)
+    except (OSError, KeyError, TypeError, ValueError) as exc:
+        logger.error(f"India boundary could not be loaded: {exc}")
+        raise RuntimeError("India boundary data is unavailable; refusing an unverified prediction.") from exc
 
 WEATHER_CODES = {
     0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
@@ -94,6 +177,9 @@ WEATHER_CODES = {
     81: "Moderate rain showers", 82: "Violent rain showers", 95: "Thunderstorm",
     96: "Thunderstorm with slight hail", 99: "Thunderstorm with heavy hail",
 }
+WEATHER_CACHE_TTL_SECONDS = int(os.getenv("WEATHER_CACHE_TTL_SECONDS", "300"))
+WEATHER_CACHE = {}
+WEATHER_CACHE_LOCK = Lock()
 
 
 def validate_aoi_bounds(aoi_bounds: List[float]) -> List[float]:
@@ -110,13 +196,18 @@ def validate_aoi_bounds(aoi_bounds: List[float]) -> List[float]:
 
 
 def validate_point(latitude: float, longitude: float) -> tuple[float, float]:
-    """Validate a geographic point before using it for inference or persistence."""
+    """Validate a prediction point inside India's supported geographic domain."""
     latitude = float(latitude)
     longitude = float(longitude)
     if not (math.isfinite(latitude) and math.isfinite(longitude)):
         raise HTTPException(status_code=422, detail="latitude and longitude must be finite numbers.")
     if not (-90 <= latitude <= 90 and -180 <= longitude <= 180):
         raise HTTPException(status_code=422, detail="latitude or longitude is outside geographic limits.")
+    min_lat, min_lon, max_lat, max_lon = INDIA_BOUNDS
+    if not (min_lat <= latitude <= max_lat and min_lon <= longitude <= max_lon):
+        raise HTTPException(status_code=422, detail="This service currently supports locations within India only.")
+    if not load_india_boundary().covers(Point(longitude, latitude)):
+        raise HTTPException(status_code=422, detail="The selected location is outside India's mapped boundary.")
     return latitude, longitude
 
 
@@ -133,6 +224,13 @@ def h3_token(latitude: float, longitude: float, resolution: int) -> int:
 
 def fetch_live_weather(latitude: float, longitude: float) -> Dict[str, Any]:
     """Fetch current weather for a map point from Open-Meteo."""
+    cache_key = (round(latitude, 3), round(longitude, 3))
+    now = time.monotonic()
+    with WEATHER_CACHE_LOCK:
+        cached = WEATHER_CACHE.get(cache_key)
+        if cached and now - cached[0] < WEATHER_CACHE_TTL_SECONDS:
+            return {**cached[1], "cached": True}
+
     try:
         response = requests.get(
             "https://api.open-meteo.com/v1/forecast",
@@ -153,7 +251,7 @@ def fetch_live_weather(latitude: float, longitude: float) -> Dict[str, Any]:
         payload = response.json()
         current = payload.get("current", {})
         code = int(current.get("weather_code", -1))
-        return {
+        weather = {
             "status": "success",
             "source": "Open-Meteo",
             "latitude": latitude,
@@ -171,6 +269,9 @@ def fetch_live_weather(latitude: float, longitude: float) -> Dict[str, Any]:
             "weather_code": code,
             "condition": WEATHER_CODES.get(code, "Unknown conditions"),
         }
+        with WEATHER_CACHE_LOCK:
+            WEATHER_CACHE[cache_key] = (time.monotonic(), weather)
+        return {**weather, "cached": False}
     except (requests.RequestException, ValueError, KeyError) as exc:
         logger.warning(f"Live weather lookup failed: {exc}")
         raise HTTPException(status_code=503, detail="Live weather is temporarily unavailable.") from exc
@@ -227,6 +328,10 @@ def load_model() -> MultiHazardVLM:
             logger.info(f"Loaded checkpoint: {checkpoint_path}")
         except RuntimeError as exc:
             logger.warning(f"Checkpoint mismatch for {checkpoint_path}: {exc}")
+            if INFERENCE_MODE == "planetary_computer":
+                raise RuntimeError(
+                    "Realtime inference requires a checkpoint matching the configured model architecture."
+                ) from exc
             logger.warning("Falling back to current model config and continuing with initialized weights.")
             current_state = model.state_dict()
             filtered = {}
@@ -237,6 +342,8 @@ def load_model() -> MultiHazardVLM:
                 model.load_state_dict(filtered, strict=False)
     else:
         logger.warning("No checkpoint found; using freshly initialized model weights.")
+        if INFERENCE_MODE == "planetary_computer":
+            raise RuntimeError("Realtime inference requires a trained checkpoint; none was found.")
 
     model.eval()
     MODEL_CACHE = model
@@ -292,7 +399,7 @@ def build_demo_prediction(aoi_bounds: Optional[List[float]] = None) -> Dict[str,
             aoi_bounds=aoi_tensor,
         )
 
-    hazard_names = ["Flood", "Wildfire", "Landslide"]
+    hazard_names = MODEL_HAZARD_CLASSES
     hazard_idx = int(torch.argmax(outputs['hazard_logits'][0]).item())
     hazard_name = hazard_names[min(hazard_idx, len(hazard_names) - 1)]
     prob_values = torch.softmax(outputs['hazard_logits'][0], dim=-1).detach().cpu().tolist()
@@ -307,12 +414,11 @@ def build_demo_prediction(aoi_bounds: Optional[List[float]] = None) -> Dict[str,
         'status': 'success',
         'inference_mode': INFERENCE_MODE,
         'data_source': 'Synthetic demo tensors' if INFERENCE_MODE == 'demo_synthetic' else INFERENCE_MODE,
-        'hazard_type': hazard_name,
+            'hazard_type': hazard_name,
         'predicted_coordinates': coords,
         'hazard_probabilities': {
-            'flood': float(prob_values[0]),
-            'wildfire': float(prob_values[1]),
-            'landslide': float(prob_values[2]),
+            label: float(probability)
+            for label, probability in zip(MODEL_HAZARD_CLASSES, prob_values)
         },
         'predicted_coordinates': coords,
         'radius_km': location_aware_radius,
@@ -344,7 +450,13 @@ def _latest_band_arrays(dataset: Any, band_names: List[str]) -> List[np.ndarray]
 
 def build_planetary_computer_prediction(latitude: float, longitude: float) -> Dict[str, Any]:
     """Run inference from the latest public Sentinel scenes around a point."""
-    from data.planetary_computer import PlanetaryComputerClient
+    try:
+        from data.planetary_computer import PlanetaryComputerClient
+    except ModuleNotFoundError as exc:
+        raise HTTPException(
+            status_code=503,
+            detail="Realtime prediction dependencies are missing. Use the project virtual environment and run: python -m pip install -r requirements.txt",
+        ) from exc
 
     half_size = float(os.getenv("REALTIME_AOI_DEGREES", "0.025"))
     bbox = [longitude - half_size, latitude - half_size, longitude + half_size, latitude + half_size]
@@ -357,12 +469,10 @@ def build_planetary_computer_prediction(latitude: float, longitude: float) -> Di
     sentinel2 = client.load_sentinel2(bbox, date_range)
     s1_arrays = _latest_band_arrays(sentinel1, ["vv", "vh"])
     s2_arrays = _latest_band_arrays(sentinel2, ["B02", "B03", "B04", "B08", "B11", "B12"])
+    if not s1_arrays:
+        raise HTTPException(status_code=503, detail="No recent Sentinel-1 scene covers this location.")
     if not s2_arrays:
         raise HTTPException(status_code=503, detail="No recent Sentinel-2 scene covers this location.")
-    missing_sensors = []
-    if not s1_arrays:
-        s1_arrays = [np.zeros_like(s2_arrays[0]), np.zeros_like(s2_arrays[0])]
-        missing_sensors.append("Sentinel-1")
 
     bands = s1_arrays + s2_arrays
     resized_bands = [
@@ -400,26 +510,96 @@ def build_planetary_computer_prediction(latitude: float, longitude: float) -> Di
             aoi_bounds=aoi_tensor,
         )
 
-    hazard_names = ["Flood", "Wildfire", "Landslide"]
+    hazard_names = MODEL_HAZARD_CLASSES
     probabilities = torch.softmax(outputs["hazard_logits"][0], dim=-1).cpu().tolist()
+    if len(probabilities) != len(hazard_names):
+        raise HTTPException(status_code=503, detail="Model hazard classes do not match model output dimensions.")
     hazard_name = hazard_names[int(torch.argmax(outputs["hazard_logits"][0]).item())]
     raw_coords = outputs["coords_geo"][0].cpu().tolist()
     radius = float(torch.clamp(outputs["radius_km"][0, 0], min=0.5, max=30.0).item())
     acquisition = getattr(sentinel2, "time", None)
-    acquisition_date = str(acquisition.values[-1]) if acquisition is not None else "unknown"
+    acquisition_value = acquisition.values[-1] if acquisition is not None else None
+    acquisition_date = (
+        np.datetime_as_string(acquisition_value, unit="us")
+        if isinstance(acquisition_value, np.datetime64)
+        else str(acquisition_value or "")
+    )
+    if not acquisition_date:
+        raise HTTPException(status_code=503, detail="Satellite scene has no acquisition timestamp.")
+    try:
+        acquisition_timestamp = datetime.fromisoformat(acquisition_date.replace("Z", "+00:00"))
+        if acquisition_timestamp.tzinfo is None:
+            acquisition_timestamp = acquisition_timestamp.replace(tzinfo=timezone.utc)
+        source_age_hours = round((datetime.now(timezone.utc) - acquisition_timestamp).total_seconds() / 3600, 1)
+    except ValueError as exc:
+        raise HTTPException(status_code=503, detail="Satellite acquisition timestamp is invalid.") from exc
     source = f"Microsoft Planetary Computer Sentinel-1/Sentinel-2, latest acquisition {acquisition_date}"
-    if missing_sensors:
-        source += f"; unavailable sensors: {', '.join(missing_sensors)}"
     return {
         "status": "success",
         "inference_mode": "planetary_computer",
         "data_source": source,
+        "source_acquired_at": acquisition_date,
+        "source_age_hours": max(0.0, source_age_hours),
+        "data_freshness": "satellite_latest_available",
         "hazard_type": hazard_name,
-        "hazard_probabilities": {"flood": probabilities[0], "wildfire": probabilities[1], "landslide": probabilities[2]},
+        "hazard_probabilities": {
+            label: float(probability)
+            for label, probability in zip(MODEL_HAZARD_CLASSES, probabilities)
+        },
         "predicted_coordinates": [float(raw_coords[0]), float(raw_coords[1])],
         "radius_km": compute_location_based_radius(latitude, longitude, hazard_name, radius),
-        "language_report": f"{hazard_name.upper()} ALERT: Latest satellite imagery was analyzed for the selected location. This result requires validation before operational use.",
+        "language_report": f"{hazard_name.upper()} SIGNAL: Latest available satellite imagery was analyzed for the selected location. Acquisition: {acquisition_date}. Validate before operational use.",
     }
+
+
+def parse_monitor_points() -> List[tuple[float, float]]:
+    """Parse monitored points from LAT,LON;LAT,LON environment syntax."""
+    points = []
+    for raw_point in REALTIME_MONITOR_POINTS.split(";"):
+        try:
+            latitude, longitude = (float(value.strip()) for value in raw_point.split(","))
+            validate_point(latitude, longitude)
+            points.append((latitude, longitude))
+        except (ValueError, HTTPException):
+            logger.warning(f"Skipping invalid realtime monitor point: {raw_point}")
+    return points
+
+
+async def realtime_monitor_loop() -> None:
+    """Poll fresh satellite scenes and retain the latest successful result per point."""
+    points = parse_monitor_points()
+    MONITOR_STATE["points"] = [{"latitude": lat, "longitude": lon} for lat, lon in points]
+    while True:
+        cycle_started = datetime.now(timezone.utc).isoformat()
+        MONITOR_STATE["status"] = "running"
+        MONITOR_STATE["last_started_at"] = cycle_started
+        successes = 0
+        errors = []
+        for latitude, longitude in points:
+            key = f"{latitude:.4f},{longitude:.4f}"
+            try:
+                prediction = await asyncio.wait_for(
+                    asyncio.to_thread(build_planetary_computer_prediction, latitude, longitude),
+                    timeout=REALTIME_PREDICTION_TIMEOUT_SECONDS,
+                )
+                MONITOR_STATE["latest_predictions"][key] = {
+                    "checked_at": datetime.now(timezone.utc).isoformat(),
+                    "latitude": latitude,
+                    "longitude": longitude,
+                    "hazard_type": prediction["hazard_type"],
+                    "data_source": prediction["data_source"],
+                    "inference_mode": prediction["inference_mode"],
+                }
+                successes += 1
+            except Exception as exc:
+                logger.warning(f"Realtime monitor failed for ({latitude}, {longitude}): {exc}")
+                errors.append(f"{key}: {exc}")
+
+        MONITOR_STATE["last_completed_at"] = datetime.now(timezone.utc).isoformat()
+        MONITOR_STATE["last_success_at"] = MONITOR_STATE["last_completed_at"] if successes else MONITOR_STATE["last_success_at"]
+        MONITOR_STATE["last_error"] = "; ".join(errors) if errors else None
+        MONITOR_STATE["status"] = "healthy" if successes == len(points) and points else "degraded"
+        await asyncio.sleep(REALTIME_MONITOR_INTERVAL_SECONDS)
 
 
 # --- Dummy Service Functions (To be replaced with actual module calls) ---
@@ -501,9 +681,9 @@ def compute_location_based_radius(lat: float, lon: float, hazard_type: str, base
     
     # Hazard-specific base multipliers
     hazard_multipliers = {
-        'Flood': 1.5,      # Floods typically larger impact zones
-        'Wildfire': 2.0,   # Wildfires can spread over large areas
-        'Landslide': 0.8   # Landslides typically smaller impact zones
+        'flood': 1.5,
+        'wildfire': 2.0,
+        'landslide': 0.8,
     }
     
     multiplier = hazard_multipliers.get(hazard_type, 1.0)
@@ -522,9 +702,13 @@ async def ingest_data(request: IngestRequest, background_tasks: BackgroundTasks)
     """
     Triggers rolling 30-day ingestion with API Fallback Matrix.
     """
+    aoi_bounds = validate_aoi_bounds(request.aoi_bounds)
+    center_lat = (aoi_bounds[0] + aoi_bounds[2]) / 2.0
+    center_lon = (aoi_bounds[1] + aoi_bounds[3]) / 2.0
+    validate_point(center_lat, center_lon)
     background_tasks.add_task(
         run_ingestion_with_fallback,
-        request.aoi_bounds,
+        aoi_bounds,
         request.date_start,
         request.date_end
     )
@@ -549,17 +733,22 @@ async def handle_predict(request: Request):
                 pass
 
         aoi_bounds = validate_aoi_bounds(aoi_bounds)
+        center_lat = (aoi_bounds[0] + aoi_bounds[2]) / 2.0
+        center_lon = (aoi_bounds[1] + aoi_bounds[3]) / 2.0
+        validate_point(center_lat, center_lon)
         logger.info(f"Running prediction for AOI: {aoi_bounds}")
 
         if INFERENCE_MODE == "planetary_computer":
-            prediction = build_planetary_computer_prediction((aoi_bounds[0] + aoi_bounds[2]) / 2.0, (aoi_bounds[1] + aoi_bounds[3]) / 2.0)
-        else:
+            prediction = build_planetary_computer_prediction(center_lat, center_lon)
+        elif ALLOW_SYNTHETIC_INFERENCE:
             prediction = build_demo_prediction(aoi_bounds)
+        else:
+            raise HTTPException(
+                status_code=503,
+                detail="Real satellite inference is not configured; synthetic inference is disabled.",
+            )
         
         # Use AOI center as clicked point
-        center_lat = (aoi_bounds[0] + aoi_bounds[2]) / 2.0
-        center_lon = (aoi_bounds[1] + aoi_bounds[3]) / 2.0
-        
         clamped_lat = max(-90.0, min(90.0, center_lat))
         clamped_lon = max(-180.0, min(180.0, center_lon))
 
@@ -573,6 +762,9 @@ async def handle_predict(request: Request):
             "status": "success",
             "inference_mode": prediction["inference_mode"],
             "data_source": prediction["data_source"],
+            "source_acquired_at": prediction.get("source_acquired_at"),
+            "source_age_hours": prediction.get("source_age_hours"),
+            "data_freshness": prediction.get("data_freshness", "model_generated"),
             "predicted_coordinates": [clamped_lat, clamped_lon],
             "radius_km": radius_km,
             "affected_area_km2": round(affected_area_km2, 2),
@@ -605,6 +797,7 @@ async def handle_predict_point(request: Request):
         latitude = None
         longitude = None
         country_boundary = None
+        selected_hazard = request.query_params.get("selected_hazard", "all")
         
         if request.method == "POST":
             try:
@@ -613,6 +806,7 @@ async def handle_predict_point(request: Request):
                     latitude = body.get("latitude", latitude)
                     longitude = body.get("longitude", longitude)
                     country_boundary = body.get("country_boundary")
+                    selected_hazard = body.get("selected_hazard", selected_hazard)
             except Exception:
                 pass
 
@@ -633,6 +827,8 @@ async def handle_predict_point(request: Request):
         if longitude is None:
             longitude = 78.9629
 
+        if selected_hazard not in ("all", "flood", "wildfire", "landslide"):
+            raise HTTPException(status_code=422, detail="selected_hazard must be all, flood, wildfire, or landslide.")
         latitude, longitude = validate_point(latitude, longitude)
 
         logger.info(f"Running point prediction for: {latitude}, {longitude}")
@@ -647,7 +843,7 @@ async def handle_predict_point(request: Request):
                     "Synthetic demo tensors" if INFERENCE_MODE == "demo_synthetic" else INFERENCE_MODE,
                 )
                 logger.info(f"Cache hit for location ({latitude}, {longitude})")
-                return cached_result
+                return await asyncio.to_thread(attach_analysis_pdf, cached_result, selected_hazard)
         
         # Create AOI bounds around clicked point (0.5 degree buffer)
         aoi_bounds = [
@@ -658,9 +854,37 @@ async def handle_predict_point(request: Request):
         ]
         
         if INFERENCE_MODE == "planetary_computer":
-            prediction = build_planetary_computer_prediction(latitude, longitude)
+            try:
+                prediction = await asyncio.wait_for(
+                    asyncio.to_thread(
+                        build_planetary_computer_prediction, latitude, longitude
+                    ),
+                    timeout=REALTIME_PREDICTION_TIMEOUT_SECONDS,
+                )
+            except asyncio.TimeoutError as exc:
+                logger.error(
+                    "Satellite prediction timed out after %.0f seconds",
+                    REALTIME_PREDICTION_TIMEOUT_SECONDS,
+                )
+                raise HTTPException(
+                    status_code=504,
+                    detail="Satellite prediction timed out while downloading or processing fresh imagery.",
+                ) from exc
+            except HTTPException:
+                raise
+            except Exception as exc:
+                logger.error("Satellite prediction unavailable: %s", exc)
+                raise HTTPException(
+                    status_code=503,
+                    detail="Fresh satellite prediction is temporarily unavailable; no synthetic result was returned.",
+                ) from exc
+        elif ALLOW_SYNTHETIC_INFERENCE:
+            prediction = await asyncio.to_thread(build_demo_prediction, aoi_bounds)
         else:
-            prediction = build_demo_prediction(aoi_bounds)
+            raise HTTPException(
+                status_code=503,
+                detail="Real satellite inference is not configured; synthetic inference is disabled.",
+            )
         
         # Use clicked point as-is
         clamped_lat = max(-90.0, min(90.0, latitude))
@@ -676,6 +900,9 @@ async def handle_predict_point(request: Request):
             "status": "success",
             "inference_mode": prediction["inference_mode"],
             "data_source": prediction["data_source"],
+            "source_acquired_at": prediction.get("source_acquired_at"),
+            "source_age_hours": prediction.get("source_age_hours"),
+            "data_freshness": prediction.get("data_freshness", "model_generated"),
             "predicted_coordinates": [clamped_lat, clamped_lon],
             "radius_km": radius_km,
             "affected_area_km2": round(affected_area_km2, 2),
@@ -717,7 +944,7 @@ async def handle_predict_point(request: Request):
         except Exception as e:
             logger.warning(f"[Metrics] Error updating metrics: {e}")
         
-        return response
+        return await asyncio.to_thread(attach_analysis_pdf, response, selected_hazard)
     except HTTPException:
         raise
     except Exception as exc:
@@ -770,6 +997,22 @@ async def get_stats():
             "error": str(e)
         }
 
+
+@app.get("/api/v1/prediction-history")
+async def get_prediction_history(limit: int = 100):
+    """Return locally persisted prediction analyses for the evaluation workspace."""
+    history = get_local_prediction_history(limit)
+    return {
+        "status": "available",
+        "storage": "local_json_fallback",
+        "count": len(history),
+        "predictions": history,
+        "detail": (
+            "History contains model analyses without verified reference labels. "
+            "These records are not benchmark accuracy results."
+        ),
+    }
+
 @app.get("/metrics")
 async def get_prometheus_metrics():
     """
@@ -777,6 +1020,72 @@ async def get_prometheus_metrics():
     Use: http://localhost:8000/metrics
     """
     return Response(content=get_metrics(), media_type="text/plain")
+
+
+@app.get("/api/v1/evaluation/metrics")
+async def get_evaluation_metrics():
+    """Return a saved evaluation report, or an explicit not-run status."""
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    configured_path = os.getenv("EVALUATION_RESULTS_PATH", "evaluation/metrics_report.json")
+    report_path = configured_path if os.path.isabs(configured_path) else os.path.join(project_root, configured_path)
+    response = {
+        "status": "not_run",
+        "results_available": False,
+        "results_by_hazard": {},
+        "sample_counts": {},
+        "metadata": {},
+        "report_name": os.path.basename(report_path),
+        "detail": "No saved evaluation report is available. Save verified EvaluationRunner results to evaluation/metrics_report.json or set EVALUATION_RESULTS_PATH.",
+    }
+    if not os.path.isfile(report_path):
+        return response
+
+    try:
+        with open(report_path, encoding="utf-8") as report_file:
+            report = json.load(report_file)
+    except (OSError, json.JSONDecodeError) as exc:
+        logger.warning("Evaluation report could not be loaded from %s: %s", report_path, exc)
+        return {**response, "status": "invalid_report", "detail": "The configured evaluation report could not be read as valid JSON."}
+
+    if not isinstance(report, dict):
+        return {**response, "status": "invalid_report", "detail": "The evaluation report must contain a JSON object."}
+
+    raw_results = report.get("results_by_hazard")
+    if raw_results is None:
+        raw_results = {key: value for key, value in report.items() if isinstance(value, dict)}
+    if not isinstance(raw_results, dict):
+        return {**response, "status": "invalid_report", "detail": "results_by_hazard must be a JSON object."}
+
+    clean_results = {}
+    for hazard, metrics in raw_results.items():
+        if not isinstance(metrics, dict):
+            continue
+        clean_metrics = {
+            str(name): float(value)
+            for name, value in metrics.items()
+            if isinstance(value, (int, float))
+            and not isinstance(value, bool)
+            and math.isfinite(float(value))
+        }
+        if clean_metrics:
+            clean_results[str(hazard).lower()] = clean_metrics
+
+    sample_counts = report.get("sample_counts", {})
+    metadata = report.get("metadata", {})
+    from evaluation.diagnostics import report_diagnostics
+    diagnostics = report_diagnostics(report)
+    available = bool(clean_results)
+    return {
+        **response,
+        "status": "available" if available else "not_run",
+        "results_available": available,
+        "results_by_hazard": clean_results,
+        "sample_counts": sample_counts if isinstance(sample_counts, dict) else {},
+        "metadata": metadata if isinstance(metadata, dict) else {},
+        "detailed_evaluation": diagnostics,
+        "metric_coverage": report.get("metric_coverage", {}),
+        "detail": "Saved evaluation metrics loaded." if available else response["detail"],
+    }
 
 @app.get("/api/v1/health")
 async def health_check():
@@ -799,7 +1108,13 @@ async def health_check():
 @app.get("/api/v1/weather")
 async def weather_get(latitude: float = 20.5937, longitude: float = 78.9629):
     latitude, longitude = validate_point(latitude, longitude)
-    return fetch_live_weather(latitude, longitude)
+    return await asyncio.to_thread(fetch_live_weather, latitude, longitude)
+
+
+@app.get("/api/v1/monitor/status")
+async def monitor_status():
+    """Return monitor health, poll timestamps, and latest successful points."""
+    return MONITOR_STATE
 
 async def handle_dashboard_data(request: Request):
     """
@@ -807,7 +1122,10 @@ async def handle_dashboard_data(request: Request):
     and reports for rendering in the dashboard.
     """
     try:
-        prediction = build_demo_prediction()
+        if INFERENCE_MODE == "planetary_computer":
+            prediction = build_planetary_computer_prediction(20.5937, 78.9629)
+        else:
+            prediction = build_demo_prediction()
         return DashboardDataResponse(
             h3_hexagons=["863d68b67ffffff", "863d68b6fffffff"],
             predicted_coordinates=prediction['predicted_coordinates'],

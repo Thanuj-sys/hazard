@@ -1,0 +1,2324 @@
+{
+  "created_at": "2026-10-27T18:19:36.919786+00:00",
+  "seed": 20261027,
+  "requested_per_hazard": 30,
+  "selection": "Fixed-seed sample of upstream split; no model predictions used in selection",
+  "records": [
+    {
+      "case_id": "flood_Ghana_97059",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Ghana_97059_S1Hand.tif",
+        "s2": "flood\\Ghana_97059_S2Hand.tif",
+        "mask": "flood\\Ghana_97059_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "9a5a69c8e48e75cdacab88616517ac537962616f36bfba450ce00b057a74f2b2",
+          "bytes": 1791086,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Ghana_97059_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "3796055b2a41a5365044702dd99278346787cc5af2d5555781188f23ef23495d",
+          "bytes": 2235609,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Ghana_97059_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "0763674773d153069073b7674ff5cc438144c53d2b5bee6447a1c6004e03c8fd",
+          "bytes": 2003,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Ghana_97059_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Spain_7370579",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Spain_7370579_S1Hand.tif",
+        "s2": "flood\\Spain_7370579_S2Hand.tif",
+        "mask": "flood\\Spain_7370579_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "6c24bf791372da5e93450195eac8d676a7ef917884dfb479dafe4a565543b19a",
+          "bytes": 1507705,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Spain_7370579_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "16e997e6a7159fa11160faf00591da763eb37ac82faf806f7fe733991944a048",
+          "bytes": 2320690,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Spain_7370579_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "b81224e01540b262faffd82cb42762c3c77df2ba084a5fb82d49bae421dd12d4",
+          "bytes": 14901,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Spain_7370579_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Mekong_382276",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Mekong_382276_S1Hand.tif",
+        "s2": "flood\\Mekong_382276_S2Hand.tif",
+        "mask": "flood\\Mekong_382276_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "a0a63fe99584a50541d1baab2745803133aff5a8b33992bf25cd1d75711aa3cb",
+          "bytes": 1778401,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Mekong_382276_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "3065622535054f19f5c517dcfe2308dea0a71825e2a86479d914be4932c9b31f",
+          "bytes": 2268452,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Mekong_382276_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "9ff60aa49161aec241227fd6e9fed2c89a6f22ec839ef9dbf76268d399996631",
+          "bytes": 2201,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Mekong_382276_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Paraguay_40936",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Paraguay_40936_S1Hand.tif",
+        "s2": "flood\\Paraguay_40936_S2Hand.tif",
+        "mask": "flood\\Paraguay_40936_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "59056f7dfe3a19baa65b6eaf1479eab473ca60f614ae8bafe1df05d09d6bbfd2",
+          "bytes": 1676579,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Paraguay_40936_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "c7d5ecfbf394426175f642b30d93b4f0ee808517b9312e3571c33d4bac694eba",
+          "bytes": 2107106,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Paraguay_40936_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "249fb6d4e057c9c6dd22e9c20a120fd67d154d954a439cbeaa90061addec73a3",
+          "bytes": 2688,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Paraguay_40936_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Sri-Lanka_1049830",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Sri-Lanka_1049830_S1Hand.tif",
+        "s2": "flood\\Sri-Lanka_1049830_S2Hand.tif",
+        "mask": "flood\\Sri-Lanka_1049830_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "e82f3c2780d62a5651c62446ad24920c9833e4a9f0f0704fe465ebb7ea75e53a",
+          "bytes": 1796614,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Sri-Lanka_1049830_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "7fc267479e95174b3a407e275c359dfca5213d8d7f0f2c38a415532c6847a123",
+          "bytes": 2110927,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Sri-Lanka_1049830_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "c805545a4b7f69133ad24be229dafaa463f8970e03ea6da22d4a47e587881544",
+          "bytes": 3352,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Sri-Lanka_1049830_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Pakistan_849790",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Pakistan_849790_S1Hand.tif",
+        "s2": "flood\\Pakistan_849790_S2Hand.tif",
+        "mask": "flood\\Pakistan_849790_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "ff1f7b9afce78918808ced5d648d4df28a2047a05f934f649e728bad38533007",
+          "bytes": 1588159,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Pakistan_849790_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "facb36e9d7ad50bce80d8af8be7a95af3ad20c696b77896120db86d460cc8dce",
+          "bytes": 2179387,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Pakistan_849790_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "669bcd99f5cedcf37db82c7eff7dc0c20036588eb1462321cf8fecf727945586",
+          "bytes": 17848,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Pakistan_849790_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_India_952728",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\India_952728_S1Hand.tif",
+        "s2": "flood\\India_952728_S2Hand.tif",
+        "mask": "flood\\India_952728_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "ccd39d95515ed60d19b0e6c767581545b4ea5fd6044624440b1159402ad55e6c",
+          "bytes": 1663255,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/India_952728_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "55dca19c550154c560dcee7df23f7866eff90b96856e7c5f931f0d704c4a9b47",
+          "bytes": 2612711,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/India_952728_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "45edbf83b77d384bff6a15dd23d8a4e3ff5ddc3df28efe0704be843ca7b0583b",
+          "bytes": 11069,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/India_952728_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_India_592446",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\India_592446_S1Hand.tif",
+        "s2": "flood\\India_592446_S2Hand.tif",
+        "mask": "flood\\India_592446_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "a56299df37160745abd570528ad50d29de2bc5a3e3b4d2369db5ac6359c5f552",
+          "bytes": 1673280,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/India_592446_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "4a041b3f3f28e5219da53c56d3715bc7a75925b235b69a5d1628951fd9e5805c",
+          "bytes": 2418725,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/India_592446_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "23cf1fcd9882fac00552bc25ec4202e95d58421eff597c9cf659c4f733c49cd0",
+          "bytes": 5708,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/India_592446_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Mekong_1443339",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Mekong_1443339_S1Hand.tif",
+        "s2": "flood\\Mekong_1443339_S2Hand.tif",
+        "mask": "flood\\Mekong_1443339_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "cee6ea28c9f700f7d04b16f036fe504e0e836eab9f1b00420fe332366c985ab3",
+          "bytes": 1783090,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Mekong_1443339_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "afbc01a747e5c6d7b6b51c733c92c187323f25d7a24f8f7411836a326b09201b",
+          "bytes": 2349634,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Mekong_1443339_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "e306812aaf1587c46f9b2a0c63e4af4fe46ac9fd46a9e6286dd41d70f824454e",
+          "bytes": 13991,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Mekong_1443339_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_USA_527077",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\USA_527077_S1Hand.tif",
+        "s2": "flood\\USA_527077_S2Hand.tif",
+        "mask": "flood\\USA_527077_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "c07ad61e2736333cb552c363335e17a52477769e32fec1e0e3638b46bb2a8090",
+          "bytes": 1474054,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/USA_527077_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "8f1ced1aae5de69803f4e54fbf9790bc1bf6b60394eb7002120a2fdfed4fbc80",
+          "bytes": 2144593,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/USA_527077_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "903f28338ff4ea357729047d91b9e3abf99db8c7db44973e79ee0cd548fa5026",
+          "bytes": 1857,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/USA_527077_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Sri-Lanka_649970",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Sri-Lanka_649970_S1Hand.tif",
+        "s2": "flood\\Sri-Lanka_649970_S2Hand.tif",
+        "mask": "flood\\Sri-Lanka_649970_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "fe77bf2aa42f3c5f238415efe88923b3243ad08d3469e2b2cbba845b1c402e98",
+          "bytes": 1798693,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Sri-Lanka_649970_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "ea8a1788c248cfcd4217189cb67eefc30d0b3bc8235cd79b067b41fb70f743f6",
+          "bytes": 2344414,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Sri-Lanka_649970_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "d9ad0a6879b7a507e4030e7228ca021ee96666c15eb72e6b7700b7243ac5bc78",
+          "bytes": 8972,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Sri-Lanka_649970_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Paraguay_651904",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Paraguay_651904_S1Hand.tif",
+        "s2": "flood\\Paraguay_651904_S2Hand.tif",
+        "mask": "flood\\Paraguay_651904_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "0b2635e40584ea1f016f4ffc503748afcd2431cf9330db63eacf900c15eed30c",
+          "bytes": 1680335,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Paraguay_651904_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "180ab057b125584b7e83581e79be763b9e8b3368909ab388587b5f4119aa0fa9",
+          "bytes": 2090599,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Paraguay_651904_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "44d1514eeef21b3a0c04aa0fa7c1c49ef780f4c4835c734bfa2db172b455d289",
+          "bytes": 3472,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Paraguay_651904_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_India_79637",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\India_79637_S1Hand.tif",
+        "s2": "flood\\India_79637_S2Hand.tif",
+        "mask": "flood\\India_79637_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "550231c166d2592eeffb50e26cee6197c7adbd74cb6b84269843d0a268b5ca55",
+          "bytes": 1668777,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/India_79637_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "a4d4f44f80385eaf92ce39a91ea97db3a5397a5c4210a20c396365b9c7b2d1dc",
+          "bytes": 2247425,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/India_79637_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "8e33736ec8e68d7dddf9eb4e45bdd2533e929e0e2c1300dbbc74546b1dbb293d",
+          "bytes": 4148,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/India_79637_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_India_44475",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\India_44475_S1Hand.tif",
+        "s2": "flood\\India_44475_S2Hand.tif",
+        "mask": "flood\\India_44475_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "8f37aec1f4c623f6e7ba2c5a6f5340016aad1edb07b4a33a3dfaa66fb7588a08",
+          "bytes": 1678954,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/India_44475_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "2dbd91c4139219897ce278ee9df0d0969d2a1441e013bc9c98f233f76fd042ac",
+          "bytes": 2153859,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/India_44475_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "6bac2a7734377a8721f38c8abe4c66f267375f88b780dee75fad552bb24e4b85",
+          "bytes": 1572,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/India_44475_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Spain_6860600",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Spain_6860600_S1Hand.tif",
+        "s2": "flood\\Spain_6860600_S2Hand.tif",
+        "mask": "flood\\Spain_6860600_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "5ffd422a0375aa9113e078d7481643355aa9109dbaa459e03b659c0bde503787",
+          "bytes": 1490744,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Spain_6860600_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "9d9068dc0db5959536fe54f588f7a2d58091e8f52ee4d81e919ecd5f34791611",
+          "bytes": 2347279,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Spain_6860600_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "ebf990071fcaa4f20a86d141b4cb25df0ce9a310178740b697dde22b4af4ea7b",
+          "bytes": 1374,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Spain_6860600_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Spain_7387658",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Spain_7387658_S1Hand.tif",
+        "s2": "flood\\Spain_7387658_S2Hand.tif",
+        "mask": "flood\\Spain_7387658_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "2a69a686bdb5aa7ed0736d8a428a18fdf819f2b2862db75ff3e5f7b902b25207",
+          "bytes": 1509867,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Spain_7387658_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "80b0abea99212e477d4925d04df7226b98d151218598631282dd6fb6d6da3d8d",
+          "bytes": 2192267,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Spain_7387658_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "d7f6c03457e5191733d46f9d52f8342af1d73cfbeafeeba100794443b01f79fd",
+          "bytes": 19124,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Spain_7387658_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Paraguay_271769",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Paraguay_271769_S1Hand.tif",
+        "s2": "flood\\Paraguay_271769_S2Hand.tif",
+        "mask": "flood\\Paraguay_271769_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "a8d1f64cc7d9f07e7c6250907c8061c9a4ca1f6a7e603e8fd4d6325eabb7dc84",
+          "bytes": 1686648,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Paraguay_271769_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "d10ee7e00c28f044dc2b41dd1fc20e244a64a094eec1063d07da68917206ff09",
+          "bytes": 2189295,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Paraguay_271769_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "c14f99ad696048e5aec9dcec37d106061d1ee189e56c730cbfee02ba172d6932",
+          "bytes": 1930,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Paraguay_271769_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Mekong_424793",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Mekong_424793_S1Hand.tif",
+        "s2": "flood\\Mekong_424793_S2Hand.tif",
+        "mask": "flood\\Mekong_424793_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "a75c863aba464e9e6a39e5a72a602d3afc079e95a798eedf4c061b23be87a435",
+          "bytes": 1779797,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Mekong_424793_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "195ce1d132746ad6a26257672fb1771e583daf074a09a4d14785818e5b1d7373",
+          "bytes": 2482330,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Mekong_424793_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "b0dbcf26ae252bf3b08bee0c21e1e5db1ddaa24e930ce1fa4962cb57970178ef",
+          "bytes": 3526,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Mekong_424793_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Sri-Lanka_450918",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Sri-Lanka_450918_S1Hand.tif",
+        "s2": "flood\\Sri-Lanka_450918_S2Hand.tif",
+        "mask": "flood\\Sri-Lanka_450918_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "e16e21f19409fae3daa3b4bc7c4c2932e1733a86a5207f20fb417180c312af95",
+          "bytes": 863129,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Sri-Lanka_450918_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "a2983509cf871d35db23869ffeaa28ef3ec1e10685fb21b79cef4dcd7ad5eb2d",
+          "bytes": 1175351,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Sri-Lanka_450918_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "3c8072f419372cae4c475772227e3520da35cb61738e86917f561224724b566a",
+          "bytes": 6471,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Sri-Lanka_450918_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Somalia_322855",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Somalia_322855_S1Hand.tif",
+        "s2": "flood\\Somalia_322855_S2Hand.tif",
+        "mask": "flood\\Somalia_322855_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "a9c284e8e99bd544383d0a455882b221bb95f7f05be81b98f51442b19570f678",
+          "bytes": 1800396,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Somalia_322855_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "908f9600f5d9537542656315f3dc1f79f5f6c92ca9fb72d53b2722f1d81e42af",
+          "bytes": 2319134,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Somalia_322855_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "c38f887de34306b7a40e8a0edbbc756f5dad289ee52c41f559cae9b29dcf4e43",
+          "bytes": 11099,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Somalia_322855_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Paraguay_790830",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Paraguay_790830_S1Hand.tif",
+        "s2": "flood\\Paraguay_790830_S2Hand.tif",
+        "mask": "flood\\Paraguay_790830_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "ded24ef657d3fad062f38a2d4c22f8beb0fb88ad469c8341716e5805cceb0938",
+          "bytes": 1693511,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Paraguay_790830_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "8bba3ef74cefe2f53d05043a5fd8dac50c1f94642b78ea5e58039706021d6189",
+          "bytes": 2213654,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Paraguay_790830_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "256861e8f5e55203471d81b6dcdfe70c2ec9a915dc52eb3805fdd540f950a435",
+          "bytes": 3950,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Paraguay_790830_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_USA_778194",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\USA_778194_S1Hand.tif",
+        "s2": "flood\\USA_778194_S2Hand.tif",
+        "mask": "flood\\USA_778194_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "0745bc1a71a7b2ad4248a979dac866c6615f28d3d6a5d6e1df726825ed9abf6f",
+          "bytes": 1468889,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/USA_778194_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "617434c0bb6d50321ed866888ce6b63dfb74229899bc9be35b788674651a2a2c",
+          "bytes": 2173384,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/USA_778194_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "34deaea946483609529ed2093b2790bb84fb2729564f7d650b8d818689ff7760",
+          "bytes": 2304,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/USA_778194_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Ghana_1078550",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Ghana_1078550_S1Hand.tif",
+        "s2": "flood\\Ghana_1078550_S2Hand.tif",
+        "mask": "flood\\Ghana_1078550_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "8ce880a2236c57b3a4ef9b6c575648d21813e8a10bab2c7bc82cb1fee197e027",
+          "bytes": 1773589,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Ghana_1078550_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "34ed826c9e19dfe667b89f541259698d2ed6826bf6883c7a4c05cb8df3393f81",
+          "bytes": 2126664,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Ghana_1078550_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "a4cdde6d206b3e151171f37cf8a287d6ded59a3d6da5a848a5cc79b38772d111",
+          "bytes": 2220,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Ghana_1078550_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Ghana_319168",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Ghana_319168_S1Hand.tif",
+        "s2": "flood\\Ghana_319168_S2Hand.tif",
+        "mask": "flood\\Ghana_319168_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "d503a6f14f4ad6c65f4799172d3cd698aaf03303ad7afb97903b2c45da6815ec",
+          "bytes": 1788399,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Ghana_319168_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "2a46104f1a75903ce2b0dd98b82e3e20236ea997071c6e4e801af903ad9d0445",
+          "bytes": 2552380,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Ghana_319168_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "da46da70d9b18f8851a58c3868a4a4b6262ebfa4433ff9306feaa101b634f33e",
+          "bytes": 11209,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Ghana_319168_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Paraguay_232281",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Paraguay_232281_S1Hand.tif",
+        "s2": "flood\\Paraguay_232281_S2Hand.tif",
+        "mask": "flood\\Paraguay_232281_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "285b324cfb02da2b5b707d1fe5ff8c4c870e2c3b3f17b49ebdbbe50fcf48bf32",
+          "bytes": 1669138,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Paraguay_232281_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "b03027bb22e7940e541ec74b5a0f50a6a2c4d9a5d28cbe5610e3a017acab9fdd",
+          "bytes": 2009196,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Paraguay_232281_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "ce0d15ffd97158c4340641268b31f7e73687c81ec3e2184c0a7d6881fd7e2f06",
+          "bytes": 6469,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Paraguay_232281_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Pakistan_528249",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Pakistan_528249_S1Hand.tif",
+        "s2": "flood\\Pakistan_528249_S2Hand.tif",
+        "mask": "flood\\Pakistan_528249_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "b12a55ded38df04c960d9c2f6256eef5ae40c7e46360624a85041f21f7068ede",
+          "bytes": 1631884,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Pakistan_528249_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "72f114eb74ce795f3fbed7dbeb360db923b9f1750658c3e1faab0fa382183a27",
+          "bytes": 2320686,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Pakistan_528249_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "f1517de67af03fe9997448a04a16bd6e7f129707ba0e05b383216eecf3c09292",
+          "bytes": 2810,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Pakistan_528249_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Nigeria_417184",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Nigeria_417184_S1Hand.tif",
+        "s2": "flood\\Nigeria_417184_S2Hand.tif",
+        "mask": "flood\\Nigeria_417184_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "99b58fdcad3b27e09a0bb672246cf59f58e1c7e211d290e45485c5321995d7dc",
+          "bytes": 1074073,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Nigeria_417184_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "4c0772d6fb10a0c1288e649fc9ee9d354de3fe33c937e5df56cf3f8f2fc4e74b",
+          "bytes": 1628713,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Nigeria_417184_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "f0d0acbdd9483dfa0873dc6baf577e9f97b4e07f12c6d5de5088ec675976e6a4",
+          "bytes": 4593,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Nigeria_417184_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Paraguay_34417",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Paraguay_34417_S1Hand.tif",
+        "s2": "flood\\Paraguay_34417_S2Hand.tif",
+        "mask": "flood\\Paraguay_34417_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "1e495c046f50b200a40839161ea97aedcc59344a0e2e1a285c33f37b3e0b7e5a",
+          "bytes": 2744,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Paraguay_34417_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "792ea20abeee3e845403496aa1a87de9e5aa52413806549f4ceb719b1789a7c2",
+          "bytes": 8469,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Paraguay_34417_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "11cef03399b25373abbc5c6354dde920dcd3511eb276967944b557eaff63c0bf",
+          "bytes": 2655,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Paraguay_34417_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_India_900498",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\India_900498_S1Hand.tif",
+        "s2": "flood\\India_900498_S2Hand.tif",
+        "mask": "flood\\India_900498_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "83bc6bca280cb51264028515c944928ea2201386bee411d8bb5cabbcb51cc4a6",
+          "bytes": 1668656,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/India_900498_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "ee898621b387a731503a01960397599f209b45c268d4e088689928c704dbe968",
+          "bytes": 2151620,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/India_900498_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "b39f6854a1fd5ef262de184064b2fafd59da2314131e7b25ab792a76b27559c1",
+          "bytes": 10430,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/India_900498_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "flood_Sri-Lanka_377277",
+      "hazard": "flood",
+      "upstream_split": "official_test",
+      "source": "https://github.com/cloudtostreet/Sen1Floods11",
+      "revision": null,
+      "files": {
+        "s1": "flood\\Sri-Lanka_377277_S1Hand.tif",
+        "s2": "flood\\Sri-Lanka_377277_S2Hand.tif",
+        "mask": "flood\\Sri-Lanka_377277_LabelHand.tif"
+      },
+      "assets": {
+        "s1": {
+          "sha256": "945fc64fd2b61eae40aa73086f60ac7136d1ef90d6f1d973caa6ed5d9eb7140f",
+          "bytes": 1793706,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S1Hand/Sri-Lanka_377277_S1Hand.tif"
+        },
+        "s2": {
+          "sha256": "3caae5b0815a852bc6c8dae352c0906d13c2d63c1f04e8bc7d94537c94c4bf2d",
+          "bytes": 2200577,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/S2Hand/Sri-Lanka_377277_S2Hand.tif"
+        },
+        "mask": {
+          "sha256": "6540085bae0fa58de10f7b6e0cdbb1df3498c2276b8c7b7f14628759c7cbc063",
+          "bytes": 3456,
+          "url": "https://storage.googleapis.com/sen1floods11/v1.1/data/flood_events/HandLabeled/LabelHand/Sri-Lanka_377277_LabelHand.tif"
+        }
+      }
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T12SVC.2019280.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T12SVC.2019280.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T12SVC.2019280.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "c97e27969f9d8488f061e07e0dae52e8475dc6941e05d5ef0490e6b61a181793",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=54&column=image"
+        },
+        "mask": {
+          "sha256": "74b34278a3d9cd5c41929af155ca91cc724355cf45278712b31a3b0ccda74b8c",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=54&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T16TGQ.2018133.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T16TGQ.2018133.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T16TGQ.2018133.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "223bfc4234784e95015989eb85ca8287992f33c2a2e1327d9e8c088a01848d04",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=46&column=image"
+        },
+        "mask": {
+          "sha256": "2f97c5b640874a36d59de3088aa80458e18fc1a28928d511f7892a2b56fb0144",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=46&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T14RKV.2018213.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T14RKV.2018213.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T14RKV.2018213.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "b483d3fdeb68bc6b46b4a353b6ea055bf29c35e34ba72bfb76f76a56d9715904",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=31&column=image"
+        },
+        "mask": {
+          "sha256": "ee31397185108a23dd491f54e4d43f2fae2d54dde89fd4f0292f419fd85697fb",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=31&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T10SFG.2020215.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T10SFG.2020215.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T10SFG.2020215.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "37966daef44a97302b916805dd423fff72dded185a181d842b9a73d2352ec213",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=82&column=image"
+        },
+        "mask": {
+          "sha256": "7a1eae2a94214dcb9c88c47f82ca47216b51c930e46c0c16b30adb29836b6085",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=82&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T12RXV.2018182.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T12RXV.2018182.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T12RXV.2018182.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "a1b35e7c6982480c9a95697a59252d50db5591552cb669a2f205fce8e3a6e013",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=35&column=image"
+        },
+        "mask": {
+          "sha256": "bafdb58a8ee1c5e76c902da3d8020efb068c716fe9aae7382542b90f361e1b5c",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=35&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T12TVM.2018246.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T12TVM.2018246.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T12TVM.2018246.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "2028f17dd152e789850631d0ecac6fb4e8dce00275779f77eca87e9600b76aa6",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=13&column=image"
+        },
+        "mask": {
+          "sha256": "2e06de808042f543dc84b442dc1a837b0653224a6456b9c9033db1273cf3e10a",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=13&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T12TXK.2018215.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T12TXK.2018215.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T12TXK.2018215.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "9c5b4b86bceb7aca7f895d2c3e84b5d897fba259e91b339b8184eff854fc85b0",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=79&column=image"
+        },
+        "mask": {
+          "sha256": "62ee10132c1cbda45216b14b4a4c58eea676f08c8b9f5e36f26fef0fa0a5147e",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=79&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T11SLV.2021216.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T11SLV.2021216.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T11SLV.2021216.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "ac003e681ce2f57db58d3a1514df085aae23629b4597aacce678d19be2e444f8",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=59&column=image"
+        },
+        "mask": {
+          "sha256": "1128e1d4a8555544bad7e6be39d403cc96656da795346c48a1ac61b008e3f146",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=59&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T11SLV.2018249.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T11SLV.2018249.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T11SLV.2018249.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "1e54337731906cc3d015f865d34295d638a546e5eded866a4c2ffb18e41e1e07",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=4&column=image"
+        },
+        "mask": {
+          "sha256": "bdb536b5a1b096d65bac19e197bb015b6e5770bf66f4b34670204296a9d02dbb",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=4&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T11TNJ.2018217.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T11TNJ.2018217.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T11TNJ.2018217.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "7d9e920c2184bfd44a0ce9b73631aeb7d39a3a1f3716546f75fbc250819e6b63",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=89&column=image"
+        },
+        "mask": {
+          "sha256": "412c3f30aa5f43df97d72eb17b97d76ad22144ee91ac3123976b052f4238b2e2",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=89&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T12UXU.2021250.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T12UXU.2021250.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T12UXU.2021250.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "d43083593edeb04a4e748fd12cbafe21d02ad936673ea1841a5f68a5a59d50ad",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=14&column=image"
+        },
+        "mask": {
+          "sha256": "4f00a0de837612a2fbb64f9cf4339a51b4bffae267a824be243cb53b90bbdcb1",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=14&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T17SKT.2018107.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T17SKT.2018107.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T17SKT.2018107.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "274aa046f5c661f8a71c8132875d7127dba22f03f772055bad0b39011fa81f0f",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=67&column=image"
+        },
+        "mask": {
+          "sha256": "c44ae357210d8138164fe0cdb7c793ef24bd8561288de07e1394f685e8f0af27",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=67&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T14SKB.2019268.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T14SKB.2019268.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T14SKB.2019268.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "e1c41412476130144eed9b8654d3b26bd8e42cb8c737fad7b6ec6c5716158da2",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=8&column=image"
+        },
+        "mask": {
+          "sha256": "110eb98224eec8262cfa78c3a3d0359e5594131f18e746fa9effd2199608b448",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=8&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T11TQG.2018291.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T11TQG.2018291.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T11TQG.2018291.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "c1a3df6355df97dbe8768c3e8f86d111fecf4be0d97af2e2de22e3d3e44c82dd",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=56&column=image"
+        },
+        "mask": {
+          "sha256": "97d154b2193c88c4bd370ffa41c68d8a5b44af6660f6963a1719b968d54bf3ce",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=56&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T13TDK.2020217.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T13TDK.2020217.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T13TDK.2020217.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "522894140aaba242db40ccc7ab6cc8d7e85fcba19c2b1db740799c9c1bd6d7c1",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=51&column=image"
+        },
+        "mask": {
+          "sha256": "1a7fad8b1953a7cb8062108684d4412198aa7d251fbb88cdf373359a364c3a00",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=51&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T13SBT.2019202.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T13SBT.2019202.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T13SBT.2019202.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "a3ceca1f8fdf11b632a1a7bd4c5beea5c5b72f59be128ef5921118d54fa42a5f",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=78&column=image"
+        },
+        "mask": {
+          "sha256": "e3a872d1a2ac93dd0ff4ea45c18d0634fbf7308bbc38dd3beea8e5b3b012c9d8",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=78&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T10TGR.2018215.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T10TGR.2018215.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T10TGR.2018215.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "64abecf4750d9b3e6d8e385158a8594761bb33c61d04ff53c99d28bb11b1c4e5",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=0&column=image"
+        },
+        "mask": {
+          "sha256": "630e53b807aa9d64ed0484d4b4f40033e39427e2bf95ae5d696a2b064407356a",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=0&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T12SUC.2019223.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T12SUC.2019223.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T12SUC.2019223.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "521d5087a1a6155752e6c22c5c2f495ca80970b315225302e41e6824a19c38d8",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=7&column=image"
+        },
+        "mask": {
+          "sha256": "32ff82990d1c8e6f76718d8b8726eda1285a3acbdfb0e74f2af882b03526c72e",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=7&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T16REV.2021129.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T16REV.2021129.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T16REV.2021129.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "b3e22186e32ec01cdf1ff8043eb2c9b963e4cfe2537e4cb0058b7833afec8418",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=44&column=image"
+        },
+        "mask": {
+          "sha256": "eee0328fe5823747da2972023fcf7a1a5d16103a2cd611bec22374c109c3c2cf",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=44&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T12SUF.2020183.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T12SUF.2020183.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T12SUF.2020183.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "2908a0a4a8107c251fa43f25f140978bd77735a0f1b87628937e461ded4156dd",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=21&column=image"
+        },
+        "mask": {
+          "sha256": "cd16436b8087258a8a9259f8981c910619b2b46cfe14a778e38fa8c9b4ddc911",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=21&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T13TEE.2020249.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T13TEE.2020249.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T13TEE.2020249.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "4bc2e456fa3b0585751caaefd9fbb921e99beb831ae7c3b6e9092ab97b75258e",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=57&column=image"
+        },
+        "mask": {
+          "sha256": "ab2e7099d67e4090f38a25b9c32cc65167f10652a6e6949e888a60e426282f66",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=57&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T14SND.2018125.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T14SND.2018125.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T14SND.2018125.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "0c9d3928cfe5f1845bc658a214d83e896ab3a2aab371eea78105099f9887a3ac",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=81&column=image"
+        },
+        "mask": {
+          "sha256": "3ef53c169a4b68197f900c965beb616d8dc63988f6e5bf73fb7602096ef03cf0",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=81&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T16SDC.2018098.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T16SDC.2018098.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T16SDC.2018098.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "28ae225fe29b49a2d34beea67db144310d5eb718d5d7a8e5a90b583ca9fa5381",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=66&column=image"
+        },
+        "mask": {
+          "sha256": "bddd7794c6a9a0bd3a2f2de3f17b775796725ca75cc4f641b6a5427581661dbc",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=66&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T10SGG.2020247.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T10SGG.2020247.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T10SGG.2020247.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "51baf73bf405eefff177adc082fcfedbede30f50f92abdf8458880aa89aabeee",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=86&column=image"
+        },
+        "mask": {
+          "sha256": "2e661b9a46b70c275f0ae3e22594031c56c8c463b288e941159cf628872552c2",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=86&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T10TFM.2018110.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T10TFM.2018110.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T10TFM.2018110.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "bfdac214cc8f46a7da6c4cd905bf38f6d33e54de9f2346df0dc3d3a289918eb4",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=43&column=image"
+        },
+        "mask": {
+          "sha256": "6c2b42063936b0c6d23d89b507a86bcfa0b6ca62de1ed9afce694ac513200be8",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=43&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T14SLD.2018163.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T14SLD.2018163.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T14SLD.2018163.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "26a8cfd6ed0ca91914114e471c96bef9b079b13a4353c7f19326ae2880242e60",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=74&column=image"
+        },
+        "mask": {
+          "sha256": "da6a6db40f5a1adad7f44bb1b2d3d6d2ee695c67313780f06e60e0838aebc8a3",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=74&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T10TFQ.2018183.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T10TFQ.2018183.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T10TFQ.2018183.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "2e1abf5a30818ff2c25f86a2e1b41b65ab0b0c2f7d1ca056200d8750700995fb",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=83&column=image"
+        },
+        "mask": {
+          "sha256": "5bc7243cdca002ff7c0abce26a9088d8eede0499154288ec27d861afe4305ee9",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=83&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T13TEE.2020214.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T13TEE.2020214.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T13TEE.2020214.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "4fb8528f8a7e37cf76bc57868df60c6c537c37e2b62254c28bb93196d821a5af",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=75&column=image"
+        },
+        "mask": {
+          "sha256": "2ba7d22cd77d9e3ed3b87e8832c13ee6c77074248d7f9c828921ec6a2b4ce1a7",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=75&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T15RVQ.2021063.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T15RVQ.2021063.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T15RVQ.2021063.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "b4c1dce15fc94b9f7e21aa16680e0a683520892c04f8cb5c153bb0bfff3f61e4",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=71&column=image"
+        },
+        "mask": {
+          "sha256": "7ad8660b74568f26a41e436169c2497aa16daec1ee60c5ec6dd8a2c7de9c7884",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=71&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "wildfire_subsetted_512x512_HLS.S30.T10TFR.2018188.v1.4_merged",
+      "hazard": "wildfire",
+      "upstream_split": "official_validation",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "revision": "7883d2870854ab04882ec9f146e9cd60af85f3ab",
+      "files": {
+        "image": "wildfire\\subsetted_512x512_HLS.S30.T10TFR.2018188.v1.4_merged.tif",
+        "mask": "wildfire\\subsetted_512x512_HLS.S30.T10TFR.2018188.v1.4.mask.tif"
+      },
+      "assets": {
+        "image": {
+          "sha256": "96cde829b95931168007c2455039d56d1db5ab906f9f101afd98c093adb69185",
+          "bytes": 6295168,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=30&column=image"
+        },
+        "mask": {
+          "sha256": "ea8f69112f839da93e497793a293ba007b1b5225819ea9a165d9b1601af05b4f",
+          "bytes": 525272,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars/resolve/7883d2870854ab04882ec9f146e9cd60af85f3ab/hls_burn_scars/test/0000.parquet#row=30&column=annotation"
+        }
+      },
+      "selection_population": "fixed-seed sample from first 100 validation rows in converted shard 0000; not full validation population",
+      "container_sha256": "d00269cb25f73040d0ae798f3df1a40a8d6cf1d80488386675d8bba827098767"
+    },
+    {
+      "case_id": "landslide_519",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_519.h5",
+        "mask": "landslide\\mask_519.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "9a956909bc610d843d8b3b48e9ec32bd482574d765269c650f22ec1588b6e0f9",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_519.h5"
+        },
+        "mask": {
+          "sha256": "ef9226357abd192ded02be027c600e020d394eea521da1fac62b971e7e738384",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_519.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_639",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_639.h5",
+        "mask": "landslide\\mask_639.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "e98f7a0b862ca46f4fa596b9bb9c37d4df60ed8f5f1139fbd5687bc4a950a632",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_639.h5"
+        },
+        "mask": {
+          "sha256": "85185da14618a43ddbd8a5e9e05a14d01502966a0c565629bb1fce94a80a2488",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_639.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_5",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_5.h5",
+        "mask": "landslide\\mask_5.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "44eb10cd329da072e8e177757dce734f2ffdd896c98ee15f713ab00f80b8994d",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_5.h5"
+        },
+        "mask": {
+          "sha256": "b65ffd0204e580ecc641c8920054e1018c5944d15762ec4bc53132e366e04939",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_5.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_660",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_660.h5",
+        "mask": "landslide\\mask_660.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "94534479b496e3d88774f6b9efc464c7f28a6c8ddd1bb51558f41ec508db05ae",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_660.h5"
+        },
+        "mask": {
+          "sha256": "017475be155722989decb31df57addf310c4c8654a1634fa98fc0e1a2750e89f",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_660.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_124",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_124.h5",
+        "mask": "landslide\\mask_124.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "4172694144c1d568c3aa3275098910cb4df061c6cd3dd90e0af709eb404fbe7e",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_124.h5"
+        },
+        "mask": {
+          "sha256": "b18f9b09dca1731c2ea23516f99221420588d33388c2755af361b591bfdaa4ea",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_124.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_502",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_502.h5",
+        "mask": "landslide\\mask_502.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "c5a4775349e4f23e837914e1377ec51eb0b825f2a258b8f1c263facbbea5cf23",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_502.h5"
+        },
+        "mask": {
+          "sha256": "b18f9b09dca1731c2ea23516f99221420588d33388c2755af361b591bfdaa4ea",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_502.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_161",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_161.h5",
+        "mask": "landslide\\mask_161.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "c7a0394a5352d2398e63fb33700711d23cf6e6b524cceb91d9519fe96efd506e",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_161.h5"
+        },
+        "mask": {
+          "sha256": "b18f9b09dca1731c2ea23516f99221420588d33388c2755af361b591bfdaa4ea",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_161.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_457",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_457.h5",
+        "mask": "landslide\\mask_457.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "a419617178c09bd465d5fbbc8693f0d46c0ac12f52e990d7bb006bb91f2182a6",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_457.h5"
+        },
+        "mask": {
+          "sha256": "8126aa98832645660f638cc6e6cc0dc592fa04610aa7d007b68fb35c330f3d2d",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_457.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_71",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_71.h5",
+        "mask": "landslide\\mask_71.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "3d098272ae12ecea4cb83c4de792bd00d9536fdc9754a6530139a2970e8755d8",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_71.h5"
+        },
+        "mask": {
+          "sha256": "bd1f060d9caf47a5c910d36163d3d838275122dc146c0193875608e5870ec597",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_71.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_144",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_144.h5",
+        "mask": "landslide\\mask_144.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "c63daee10df573eeb8c8fda0b96f9a100c4cd6cd6f8bb874fe3205d511f4eca5",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_144.h5"
+        },
+        "mask": {
+          "sha256": "b18f9b09dca1731c2ea23516f99221420588d33388c2755af361b591bfdaa4ea",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_144.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_658",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_658.h5",
+        "mask": "landslide\\mask_658.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "c33844e0e5bfbb85435e06d8b7de3281640f524e74271e5964376513b63b025f",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_658.h5"
+        },
+        "mask": {
+          "sha256": "a644d45af0c3b72609e5301159314a64a9b5810a0ea78e98db8d8a3bd138594d",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_658.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_137",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_137.h5",
+        "mask": "landslide\\mask_137.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "81df3858add314e06e526d6c09fb7ecf669e6812152f3d3740a00ac67cf92fa8",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_137.h5"
+        },
+        "mask": {
+          "sha256": "bc65a1d51cbad1d11d48cf38c8ac849c88120c17081232cf95c6927932b2c502",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_137.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_558",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_558.h5",
+        "mask": "landslide\\mask_558.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "f94fb96b342ea950af382e24fdd206da599c7facacbc9f807b44c57e6cdb3479",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_558.h5"
+        },
+        "mask": {
+          "sha256": "b18f9b09dca1731c2ea23516f99221420588d33388c2755af361b591bfdaa4ea",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_558.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_180",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_180.h5",
+        "mask": "landslide\\mask_180.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "0c62b70cc0eed33110338bf8f76c0d5950316fad60251c3779eb65c252cc3cf2",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_180.h5"
+        },
+        "mask": {
+          "sha256": "4bf704b4abd41d4e51eca6a675a2c60ec109675ffe13d1420c4138ba377d38e6",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_180.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_564",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_564.h5",
+        "mask": "landslide\\mask_564.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "6200a0138798cd5ab370ebd098a35218099b0ed3a28bd3783424d3bada4ae567",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_564.h5"
+        },
+        "mask": {
+          "sha256": "9beb5a6930d7e4fa961d285354d6f24d7e3982a530583264822c8d4a3eac0326",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_564.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_428",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_428.h5",
+        "mask": "landslide\\mask_428.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "d8dec6abc2fa8c916393a8f90dfef6a1d15a45e3b4be54ebda08c9e6ee87d9ef",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_428.h5"
+        },
+        "mask": {
+          "sha256": "4bf704b4abd41d4e51eca6a675a2c60ec109675ffe13d1420c4138ba377d38e6",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_428.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_576",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_576.h5",
+        "mask": "landslide\\mask_576.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "ff47422313ba886ec798aa2560a4456c1eed6508790d50412d9b259bac7d6afa",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_576.h5"
+        },
+        "mask": {
+          "sha256": "8a4bbd92c388db9415d9c242fef7342504ce9ddabf0acd3581734c9f5306320d",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_576.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_615",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_615.h5",
+        "mask": "landslide\\mask_615.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "eceecd32d87179aeb4078be9f3c575fd8d4aa524537fbce2f2a5c1a99fae8ab8",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_615.h5"
+        },
+        "mask": {
+          "sha256": "c0d46cc92a117b26dc5a242ce65043cc99fdacc400ba032fb66eb1831367d9e0",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_615.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_274",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_274.h5",
+        "mask": "landslide\\mask_274.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "c6f935b1d6ee0cccfc4c0848b32a778560adac3e288e96f4c5dacfa2bc6a24ce",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_274.h5"
+        },
+        "mask": {
+          "sha256": "be903383da41868a8418099c5606d94be9191d7768d05088f9598b93d9612266",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_274.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_359",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_359.h5",
+        "mask": "landslide\\mask_359.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "7b32309d35eb2c33ce2d54e743c1d9bb0b9e111b73128ab6bd19b9d81406f6bc",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_359.h5"
+        },
+        "mask": {
+          "sha256": "5f9dcfb849884beb68bf6214b9f7142c45e39f2a2e8c4598177c54d9b5166296",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_359.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_412",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_412.h5",
+        "mask": "landslide\\mask_412.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "59bd42f2cc3920be209c74df7a4aa416ebd51face358fd4b2907745e8ece16f3",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_412.h5"
+        },
+        "mask": {
+          "sha256": "a66922ba935eca5b57563890cfd7daf67f530a8e44d38ac0f2af23dec3fb18e9",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_412.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_450",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_450.h5",
+        "mask": "landslide\\mask_450.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "6ca908d4b9a55cc6ba7e3feb171c264955e9a3c83e7c87d6be88d52fbd25c1fa",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_450.h5"
+        },
+        "mask": {
+          "sha256": "c30dda1d957c282245b0ce5bb9bdf168b95d1dce3b4ccf0843f0adde35d47f92",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_450.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_745",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_745.h5",
+        "mask": "landslide\\mask_745.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "3da5283dc26493febaeaad2acb1a732903272d5eb12ae21cbd0d67790d526f93",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_745.h5"
+        },
+        "mask": {
+          "sha256": "6c6af382640c207079f459ac7568a878db2fa6308c4ed27da0a0c9f96c20a7c8",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_745.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_500",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_500.h5",
+        "mask": "landslide\\mask_500.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "185daf38be01ddb4d23e8ee95339bddedf6fbce1b6b4bdf6a651e060cc2acb9e",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_500.h5"
+        },
+        "mask": {
+          "sha256": "28586b2872f3c3055101ebdcdd06182f933681a67072dfd3e20b7e335d25c8f4",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_500.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_299",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_299.h5",
+        "mask": "landslide\\mask_299.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "ccc0dc221615db7f3e5393caaf18fb2b526d9ddbbbdd1ea23e1e6502215a3406",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_299.h5"
+        },
+        "mask": {
+          "sha256": "b18f9b09dca1731c2ea23516f99221420588d33388c2755af361b591bfdaa4ea",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_299.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_767",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_767.h5",
+        "mask": "landslide\\mask_767.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "6562191fe498c4b24b817d875e67940cbd83a29b630c3dfc88d72f80775f7719",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_767.h5"
+        },
+        "mask": {
+          "sha256": "b18f9b09dca1731c2ea23516f99221420588d33388c2755af361b591bfdaa4ea",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_767.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_261",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_261.h5",
+        "mask": "landslide\\mask_261.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "6385abcf9aa0633a4762f3c979dbc5c0820d044c59803daaef844904851e7bf6",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_261.h5"
+        },
+        "mask": {
+          "sha256": "ecc88050a3d90f539e35bd483aa43513ca5af71c0da200fd0139342c1f35a0ae",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_261.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_198",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_198.h5",
+        "mask": "landslide\\mask_198.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "88c962ae63e88f236b7149283432def42aa67e44adb3fb6143c92a71534eebe1",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_198.h5"
+        },
+        "mask": {
+          "sha256": "8eef13d48e94900f8009c7e8871b19382af588b243884455d5aca431201aa452",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_198.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_310",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_310.h5",
+        "mask": "landslide\\mask_310.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "8574cb07374e85755b85afe46fcc4655332299b77fd0d02e32e80c8a048191c1",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_310.h5"
+        },
+        "mask": {
+          "sha256": "b18f9b09dca1731c2ea23516f99221420588d33388c2755af361b591bfdaa4ea",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_310.h5"
+        }
+      }
+    },
+    {
+      "case_id": "landslide_16",
+      "hazard": "landslide",
+      "upstream_split": "official_test",
+      "source": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense",
+      "revision": "4b291891badf301b5c75c2153f0f8fe00eeb1435",
+      "files": {
+        "image": "landslide\\image_16.h5",
+        "mask": "landslide\\mask_16.h5"
+      },
+      "assets": {
+        "image": {
+          "sha256": "beef6cc2a30a708db59611f52c5a7e9d034e041ae415ad291a79bf99550360f6",
+          "bytes": 1837056,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/images/test/image_16.h5"
+        },
+        "mask": {
+          "sha256": "1e3ef989249e077448aa6343f89fe846cb78199f076d34f6cddea0bc164618da",
+          "bytes": 18432,
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense/resolve/4b291891badf301b5c75c2153f0f8fe00eeb1435/annotations/test/mask_16.h5"
+        }
+      }
+    }
+  ],
+  "errors": {},
+  "sources": {
+    "flood": "https://github.com/cloudtostreet/Sen1Floods11",
+    "wildfire": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+    "landslide": "https://huggingface.co/datasets/ibm-nasa-geospatial/Landslide4sense"
+  }
+}

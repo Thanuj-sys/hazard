@@ -1,0 +1,30 @@
+{
+  "predicted_hazard": null,
+  "hazard_probabilities": null,
+  "predicted_latitude": null,
+  "predicted_longitude": null,
+  "predicted_radius_km": null,
+  "predicted_claims": null,
+  "predicted_geo_claims": null,
+  "predicted_interventions": null,
+  "predicted_action_priorities": null,
+  "predicted_mask_path": null,
+  "model_version": null,
+  "inference_timestamp": null,
+  "case_id": "REPLACE_WITH_UNIQUE_ID",
+  "prediction_status": "not_run",
+  "missing_reasons": {
+    "predicted_hazard": "Inference has not been run on this case.",
+    "hazard_probabilities": "Inference has not been run on this case.",
+    "predicted_latitude": "Inference has not been run on this case.",
+    "predicted_longitude": "Inference has not been run on this case.",
+    "predicted_radius_km": "Inference has not been run on this case.",
+    "predicted_claims": "Inference has not been run on this case.",
+    "predicted_geo_claims": "Inference has not been run on this case.",
+    "predicted_interventions": "Inference has not been run on this case.",
+    "predicted_action_priorities": "Inference has not been run on this case.",
+    "predicted_mask_path": "Inference has not been run on this case.",
+    "model_version": "Inference has not been run on this case.",
+    "inference_timestamp": "Inference has not been run on this case."
+  }
+}
